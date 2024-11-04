@@ -1,6 +1,6 @@
 ---
-title: Revealjs Quarto template 
-subtitle: for the Australian National University
+title: Bivariate Outcome Small Area Estimation using Bayesian Hierarchical Models
+subtitle: A Methodological Framework for Improved Precision and Efficiency
 format:
   anu-light-revealjs:
     width: 1920
@@ -9,19 +9,68 @@ format:
     auto-stretch: false
     html-math-method: katex
     self-contained: false
-author: Emi Tanaka
-institute: Biological Data Science Institute
+    navigation-mode: vertical
+author:
+  - name: "Mu Li"
+  - name: "Supervised by: "
+  - name: "Dr. Bernard Baffour, Dr. Alice Richardson, Dr. Susanna Cramb"
+institute: School of Demography
 date: last-modified
 date-format: "D[th] MMMM YYYY"
 ---
 
-## Introduction
+# Introduction
 
-{{< fa link >}}
+- **Overview of PhD Research**:
+  - This research focuses on two distinct, but interconnected areas of study: spatial epidemiology and socio-economic status measurement.
+  - The first part introduces a longitudinal socio-economic index to better capture changes over time, enhancing traditional measures which are typically static.
+  - The second part addresses the use of advanced statistical models to improve disease mapping, particularly focusing on the challenges of data sparsity.
+  
+- **Goal**: Contributions to public health and socio-economic analysis through statistical modeling.
+
+## List of Contents
+
+**Part One: Longitudinal Socio-Economic Index Construction (L-IRSD)**
+    
+   - **Construction of a Longitudinal Socio-Economic Index for Australia**
+      - Motivation
+      - Review of Principal Component Analysis (PCA)
+      - Historical review of the SEIFA - limitations and challenges
+      - Development of the Longitudinal IRSD (L-IRSD) and PC2 Index
+      - Validations and comparisons with the SEIFA.
+   
+   - **Application of the L-IRSD in the context of Australia**
+      - Application of the L-IRSD in the context of Australia
+      - Results One - Longitudinal trends and spatial Patterns
+      - Results Two - PC2 index, the second dimension of Socio-Economic disparities
+
+---
+
+**Part Two: Bivariate Copula-based Bayesian Hierarchical Models**
+
+   - **Construction of Bivariate Bayesian Hierarchical Models with Copula-based Spatial Effects**
+      - Motivation
+      - Review of Small Area Estimation (SAE) and Disease Mapping by Bayesian Hierarchical Models
+      - Review of Copula Functions
+      - Review of MCMC Algorithms for fitting Bayesian Hierarchical Models
+      - Development of the Bivariate Bayesian Hierarchical Models
+   
+   - **Application and Simulation Study**
+      - Simulation Study
+      - Application to AEDC data
+
+
+# Part One: Constructing a Socio-Economic Index for Longitudinal Analysis
+
+## Background and Motivations for L-IRSD
+
+- Composite indices are widely used in socio-economic research.
 
 
 
-## More Information
 
-You can learn more about controlling the appearance of RevealJS output here: <https://quarto.org/docs/presentations/revealjs/>
+
+
+
+
 

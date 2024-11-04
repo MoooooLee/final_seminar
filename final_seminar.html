@@ -6,14 +6,13 @@
 <script src="final_seminar_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="final_seminar_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="final_seminar_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="final_seminar_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="final_seminar_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<link href="final_seminar_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="final_seminar_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+<link href="final_seminar_files/libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.32">
 
-  <meta name="author" content="Emi Tanaka">
-  <title>Revealjs Quarto template</title>
+  <meta name="author" content="Mu Li">
+  <meta name="author" content="Supervised by:">
+  <meta name="author" content="Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb">
+  <title>Bivariate Outcome Small Area Estimation using Bayesian Hierarchical Models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -32,7 +31,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="final_seminar_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="final_seminar_files/libs/revealjs/dist/theme/quarto-44a4fee74d4427260c4686afd629523f.css">
   <link href="final_seminar_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="final_seminar_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="final_seminar_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -330,38 +329,108 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="_extensions/anu-links/anu-light/logo/anu-title-slide.png" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title">Revealjs Quarto template</h1>
-  <p class="subtitle">for the Australian National University</p>
+  <h1 class="title">Bivariate Outcome Small Area Estimation using Bayesian Hierarchical Models</h1>
+  <p class="subtitle">A Methodological Framework for Improved Precision and Efficiency</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Emi Tanaka 
+Mu Li 
 </div>
         <p class="quarto-title-affiliation">
-            Biological Data Science Institute
+            School of Demography
           </p>
     </div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Supervised by: 
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb 
+</div>
+</div>
 </div>
 
-  <p class="date">17th March 2024</p>
+  <p class="date">5th November 2024</p>
 </section>
-<section id="introduction" class="slide level2">
-<h2>Introduction</h2>
-<p><i class="fa-solid fa-link" aria-label="link"></i></p>
+<section>
+<section id="introduction" class="title-slide slide level1 center">
+<h1>Introduction</h1>
+<ul>
+<li><strong>Overview of PhD Research</strong>:
+<ul>
+<li>This research focuses on two distinct, but interconnected areas of study: spatial epidemiology and socio-economic status measurement.</li>
+<li>The first part introduces a longitudinal socio-economic index to better capture changes over time, enhancing traditional measures which are typically static.</li>
+<li>The second part addresses the use of advanced statistical models to improve disease mapping, particularly focusing on the challenges of data sparsity.</li>
+</ul></li>
+<li><strong>Goal</strong>: Contributions to public health and socio-economic analysis through statistical modeling.</li>
+</ul>
 </section>
-<section id="more-information" class="slide level2">
-<h2>More Information</h2>
-<p>You can learn more about controlling the appearance of RevealJS output here: <a href="https://quarto.org/docs/presentations/revealjs/" class="uri">https://quarto.org/docs/presentations/revealjs/</a></p>
-<div class="quarto-auto-generated-content">
+<section id="list-of-contents" class="slide level2">
+<h2>List of Contents</h2>
+<p><strong>Part One: Longitudinal Socio-Economic Index Construction (L-IRSD)</strong></p>
+<ul>
+<li><strong>Construction of a Longitudinal Socio-Economic Index for Australia</strong>
+<ul>
+<li>Motivation</li>
+<li>Review of Principal Component Analysis (PCA)</li>
+<li>Historical review of the SEIFA - limitations and challenges</li>
+<li>Development of the Longitudinal IRSD (L-IRSD) and PC2 Index</li>
+<li>Validations and comparisons with the SEIFA.</li>
+</ul></li>
+<li><strong>Application of the L-IRSD in the context of Australia</strong>
+<ul>
+<li>Application of the L-IRSD in the context of Australia</li>
+<li>Results One - Longitudinal trends and spatial Patterns</li>
+<li>Results Two - PC2 index, the second dimension of Socio-Economic disparities</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><strong>Part Two: Bivariate Copula-based Bayesian Hierarchical Models</strong></p>
+<ul>
+<li><strong>Construction of Bivariate Bayesian Hierarchical Models with Copula-based Spatial Effects</strong>
+<ul>
+<li>Motivation</li>
+<li>Review of Small Area Estimation (SAE) and Disease Mapping by Bayesian Hierarchical Models</li>
+<li>Review of Copula Functions</li>
+<li>Review of MCMC Algorithms for fitting Bayesian Hierarchical Models</li>
+<li>Development of the Bivariate Bayesian Hierarchical Models</li>
+</ul></li>
+<li><strong>Application and Simulation Study</strong>
+<ul>
+<li>Simulation Study</li>
+<li>Application to AEDC data</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="part-one-constructing-a-socio-economic-index-for-longitudinal-analysis" class="title-slide slide level1 center">
+<h1>Part One: Constructing a Socio-Economic Index for Longitudinal Analysis</h1>
+
+</section>
+<section id="motivation-for-l-irsd" class="slide level2">
+<h2>Motivation for L-IRSD</h2>
+<ul>
+<li>Problem Statement:</li>
+</ul>
+<p>Traditional SEIFA indices are static and fail to capture longitudinal socio-economic changes.</p>
+<p>Objective:</p>
+<ul>
+<li>Create a longitudinal index (L-IRSD) to monitor socio-economic changes over time.</li>
+</ul>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="_extensions/anu-links/anu-light/logo/ANU_ Crest_Gold.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
-</div>
-</section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="final_seminar_files/libs/revealjs/dist/reveal.js"></script>
@@ -390,7 +459,8 @@ Emi Tanaka
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -453,7 +523,7 @@ Emi Tanaka
         rtl: false,
 
         // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'linear',
+        navigationMode: 'default',
 
         // Randomizes the order of slides each time the presentation loads
         shuffle: false,
@@ -554,23 +624,41 @@ Emi Tanaka
       });
     </script>
     
+
     <script type="text/javascript">
+
         Reveal.on('ready', event => {
+
           if (event.indexh === 0) {
+
             document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+
           }
+
         });
+
         Reveal.addEventListener('slidechanged', (event) => {
+
           if (event.indexh === 0) {
+
             Reveal.configure({ slideNumber: null });
+
             document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+
           }
+
           if (event.indexh === 1) {
+
             Reveal.configure({ slideNumber: 'c/t' });
+
             document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+
           }
+
         });
+
     </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
