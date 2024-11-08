@@ -1,30 +1,35 @@
 ---
 title: Bivariate Outcome Small Area Estimation using Bayesian Hierarchical Models
 subtitle: A Methodological Framework for Improved Precision and Efficiency
+bibliography: ref.bib
 format:
   anu-light-revealjs:
     width: 1920
     height: 1080
-    chalkboard: true
-    auto-stretch: false
+    chalkboard: false
+    auto-stretch: true
     html-math-method: katex
     self-contained: false
     navigation-mode: vertical
+    scrollable: true
+number-sections: true
 author:
   - name: "Mu Li"
-  - name: "Supervised by: "
+  - name: "Supervised by"
   - name: "Dr. Bernard Baffour, Dr. Alice Richardson, Dr. Susanna Cramb"
 institute: School of Demography
 date: last-modified
 date-format: "D[th] MMMM YYYY"
+execute:
+  freeze: auto
 ---
 
 # Introduction
 
 - **Overview of PhD Research**:
-  - This research focuses on two distinct, but interconnected areas of study: spatial epidemiology and socio-economic status measurement.
+  - This research focuses on two distinct, but interconnected areas of study: spatial model and socio-economic status measurement.
   - The first part introduces a longitudinal socio-economic index to better capture changes over time, enhancing traditional measures which are typically static.
-  - The second part addresses the use of advanced statistical models to improve disease mapping, particularly focusing on the challenges of data sparsity.
+  - The second part addresses the use of advanced statistical models to improve disease mapping and small area estimation, particularly focusing on the challenges of data sparsity and bivariate outcomes.
   
 - **Goal**: Contributions to public health and socio-economic analysis through statistical modeling.
 
@@ -33,9 +38,8 @@ date-format: "D[th] MMMM YYYY"
 **Part One: Longitudinal Socio-Economic Index Construction (L-IRSD)**
     
    - **Construction of a Longitudinal Socio-Economic Index for Australia**
-      - Motivation
-      - Review of Principal Component Analysis (PCA)
-      - Historical review of the SEIFA - limitations and challenges
+      - Backgrounds
+      - Historical review of the SEIFA - limitations and motivations
       - Development of the Longitudinal IRSD (L-IRSD) and PC2 Index
       - Validations and comparisons with the SEIFA.
    
@@ -62,9 +66,343 @@ date-format: "D[th] MMMM YYYY"
 
 # Part One: Constructing a Socio-Economic Index for Longitudinal Analysis
 
-## Background and Motivations for L-IRSD
+## Background and Socio-Economic Indices
 
-- Composite indices are widely used in socio-economic research.
+- Composite indices are widely used in socio-economic research
+
+To measure socio-economic status is a complex task, as it is a multidimensional concept that encompasses various aspects of life, such as income, education, occupation and house conditions [@Zagorski1986Demographic]. Constructing a composite index is a common approach to measure socio-economic status, as it can provide a single summary measure that captures the multidimensional nature of socio-economic status.
+
+- Principal Component Analysis (PCA) is a common method to construct composite indices
+
+When given multiple indicators of socio-economic status, PCA can be used to construct a composite index by providing a linear combination of the indicators that maximizes the variance of the data. The first principal component is often used as the composite index, as it captures the most variation in the data, where this variation is assumed to be related to socio-economic status [@Mazziotta2019Use].
+
+---
+
+### PCA steps
+
+PCA is a statistical method that can be used to reduce the dimensional of a dataset by transforming the data into a new set of uncorrelated variables called principal components.
+
+1. Standardize the data
+$$
+        Z_{i,j} = \frac{Y_{i,j} - \bar{y}_{j}}{s_j}
+$$
+
+    In the case of PCA with weights, the standardized value need to be weighted by the corresponding weight, where the mean and standard deviation are calculated based on the weighted data. Here we list the simple formula for the weighted mean and standard deviation. 
+$$
+    \bar{y}_{j} = \frac{\sum_{i=1}^{n} w_i Y_{i,j}}{\sum_{i=1}^{n} w_i} \quad \quad s_{j} = \sqrt{\frac{\sum_{i=1}^{n} w_i (Y_{i,j} - \bar{y}_{j})^2}{\sum_{i=1}^{n} w_i}}
+$$ 
+
+    
+---
+
+2. Calculate the covariance matrix
+
+    The empirical covariance matrix $\mathbf{C}$ is a $p \times p$ matrix that captures the pairwise relationships between variables. 
+    In the case of PCA with weights, the covariance matrix is computed based on the weighted standardized data:
+$$
+    C_{j,k} = \frac{1}{\sum_{i=1}^{n} w_i} \sum_{i=1}^{n} w_i Z_{i,j} Z_{i,k}
+$$
+
+---
+
+3. Eigenvalue Decomposition
+
+    The third step in PCA is to perform an eigenvalue decomposition of the covariance matrix. The eigenvalue decomposition of the covariance matrix $\mathbf{C}$ yields a set of eigenvectors and eigenvalues. The eigenvectors represent the directions of maximum variance in the data, while the eigenvalues represent the amount of variance explained by each eigenvector. The eigenvectors are arranged in descending order based on their corresponding eigenvalues. Here we denote the $k$th eigenvector as $\mathbf{v}_{k}$, and the $k$th eigenvalue is denoted as $\lambda_{k}$.
+
+---
+
+4. Principal Component Scores
+
+    The fourth step in PCA is to compute the principal component scores. The principal component scores represent the linear combinations of the original variables that capture the maximum amount of variance in the data. The $k$th principal component score for the $i$th observation can be calculated as: 
+$$
+    PC_{i,k} = \sum_{j=1}^{p} \alpha_{j,k} Z_{i,j}
+$$
+
+    where $\alpha_{j,k}$ is the loading of the $j$th variable on the $k$th principal component, can be calculated from the eigenvectors and eigenvalues. The formula for the loading is: 
+$$
+    \alpha_{j,k} = \sqrt{\lambda_{k}} v_{j,k}
+$$ 
+
+    where $v_{j,k}$ is the $j$th element of the $k$th eigenvector and the $\lambda_{k}$ is the $k$th eigenvalue as we mentioned in the previous step.
+
+
+## Historical Review of the SEIFA-IRSD
+
+- The current recognized form of SEIFA first appeared in 1986 and has been updated every five years since then.
+
+Five indices are produced from 1986 to 1996, where there were two different indices produced for urban and rural areas for measuring socio-economic advantage and disadvantage. ABS justifies this urban/rural split, citing significant structural differences between variables in urban and rural areas.
+
+- The 2001 SEIFA replaced two indices with one, which was the IRSAD. And four indices were produced since then until 2021, which are IRSD, IRSAD, IEO and IER.
+
+Among these indexes, the IRSD is regarded as the most established and widely used, as it encompasses all available variables that reflect or measure socio-economic disadvantage [@SEIFA2001]. Furthermore, the IRSD is recognized for its consistency, as it has maintained a nearly identical methodological approach and variables in its construction process across various periods [@SEIFA2001; @SEIFA2021].
+
+---
+
+### Variable Selection for IRSD
+::: {.panel-tabset}
+
+#### 2006
+
+<div style="font-size: 0.5em;">
+
+| **Dimension**     | **Variable** | **Loading** | **Variable Description** |
+|:-----|:-----|:--|:-------------------------------------------------------------------|
+| **Income**            | INC\_LOW              | -0.76       | % People with stated annual household equivalized income between \$13,000 and \$20,799 (approx. 2nd and 3rd deciles) |
+| **Education**     | NOQUAL                | -0.76       | % People aged 15 years and over with no post-school qualifications |
+|                   | NOSCHOOL              | -0.44       | % People aged 15 years and over who did not go to school |
+| **Employment**    | UNEMPLOYED            | -0.7        | % People (in the labour force) unemployed |
+| **Occupation**    | OCC\_LABOUR           | -0.76       | % Employed people classified as Labourers |
+|                   | OCC\_DRIVERS          | -0.51       | % Employed people classified as Machinery Operators and Drivers |
+|                   | OCC\_SERVICE\_L       | -0.44       | % Employed people classified as Low Skill Community and Personal Service Workers |
+| **Housing**       | RENT\_SOCIAL          | -0.7        | % Households renting from a Government or Community organization |
+|                   | LOWRENT               | -0.67       | % Households paying rent who pay less than \$120 per week (excluding \$0 per week) |
+| **Miscellaneous** | NONET                 | -0.85       | % Occupied private dwellings with no Internet connection |
+|                   | ONEPARENT             | -0.67       | % Families that are one-parent families with dependent offspring only |
+|                   | DISABILITYU70         | -0.61       | % People aged under 70 who have a long-term health condition or disability and need assistance with core activities |
+|                   | NOCAR                 | -0.57       | % Occupied private dwellings with no car |
+|                   | INDIGENOUS            | -0.52       | % People who identified themselves as being Aboriginal and/or Torres Strait Islander origin |
+|                   | OVERCROWD             | -0.52       | % Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard) |
+|                   | DIVORCED              | -0.51       | % People aged 15 years and over who are separated or divorced |
+|                   | ENGLISHPOOR           | -0.33       | % People who do not speak English well |
+| **Total Number** |             | **17**      |                           |
+
+</div>
+
+
+#### 2011
+
+<div style="font-size: 0.5em;">
+
+| **Dimension**     | **Variable** | **Loading** | **Variable Description** |
+|:-----|:-----|:--|:-------------------------------------------------------------------|
+| **Income**          | INC\_LOW             | -0.9        | % People with stated annual household equivalized income between \$1 and \$20,799 (approx. 1st and 2nd deciles) |
+| **Education**   | NOYR12ORHIGHER       | -0.75       | % People aged 15 years and over whose highest level of education is Year 12 or lower, including Certificate I and II |
+|                 | NOEDU                | -0.44       | % People aged 15 years and over who have no educational attainment |
+| **Employment**  | UNEMPLOYED           | -0.74       | % People (in the labour force) unemployed |
+| **Occupation**  | OCC\_LABOUR          | -0.75       | % Employed people classified as "labourers" |
+|                 | OCC\_DRIVERS         | -0.52       | % Employed people classified as Machinery Operators and Drivers |
+|                 | OCC\_SERVICE\_L      | -0.5        | % Employed people classified as Low Skill Community and Personal Service Workers |
+| **Housing**     | LOWRENT              | -0.73       | % Occupied private dwellings paying rent less than \$166 per week (excluding \$0 per week) |
+| **Miscellaneous** | CHILDJOBLESS       | -0.85       | % Families with children under 15 years of age who live with jobless parents |
+|                 | NONET                | -0.81       | % Occupied private dwellings with no Internet connection |
+|                 | ONEPARENT            | -0.71       | % One parent families with dependent offspring only |
+|                 | DISABILITYU70        | -0.66       | % People aged under 70 who have a long-term health condition or disability and need assistance with core activities |
+|                 | NOCAR                | -0.56       | % Occupied private dwellings with no car |
+|                 | OVERCROWD            | -0.52       | % Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard) |
+|                 | SEP\_DIVORCED        | -0.54       | % People aged 15 years and over who are separated or divorced |
+|                 | ENGLISHPOOR          | -0.34       | % People who do not speak English well |
+| **Total Number** | | **16** | |
+
+</div>
+
+#### 2016
+
+<div style="font-size: 0.5em;">
+
+| **Dimension**     | **Variable** | **Loading** | **Variable Description** |
+|:-----|:-----|:--|:-------------------------------------------------------------------|
+| **Income**          | INC\_LOW             | -0.91       | % People with stated annual household equivalized income between \$1 and \$25,999 (approx. 1st and 2nd deciles) |
+| **Education**   | NOYR12ORHIGHER       | -0.77       | % People aged 15 years and over whose highest level of education is Year 12 or lower, including Certificate I and II |
+|                 | NOEDU                | -0.43       | % People aged 15 years and over who have no educational attainment |
+| **Employment**  | UNEMPLOYED           | -0.75       | % People (in the labour force) unemployed |
+| **Occupation**  | OCC\_LABOUR          | -0.74       | % Employed people classified as "labourers" |
+|                 | OCC\_DRIVERS         | -0.54       | % Employed people classified as Machinery Operators and Drivers |
+|                 | OCC\_SERVICE\_L      | -0.53       | % Employed people classified as Low Skill Community and Personal Service Workers |
+| **Housing**     | LOWRENT              | -0.73       | % Occupied private dwellings paying rent less than \$215 per week (excluding \$0 per week) |
+| **Miscellaneous** | CHILDJOBLESS       | -0.83       | % Families with children under 15 years of age who live with jobless parents |
+|                 | NONET                | -0.79       | % Occupied private dwellings with no Internet connection |
+|                 | ONEPARENT            | -0.67       | % One parent families with dependent offspring only |
+|                 | DISABILITYU70        | -0.67       | % People aged under 70 who have a long-term health condition or disability and need assistance with core activities |
+|                 | SEPDIVORCED          | -0.55       | % People aged 15 years and over who are separated or divorced |
+|                 | NOCAR                | -0.49       | % Occupied private dwellings with no car |
+|                 | OVERCROWD            | -0.46       | % Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard) |
+|                 | ENGLISHPOOR          | -0.3        | % People who do not speak English well |
+| **Total Number** | | **16** | |
+
+</div>
+
+#### 2021
+
+<div style="font-size: 0.5em;">
+
+| **Dimension**     | **Variable** | **Loading** | **Variable Description** |
+|:-----|:-----|:--|:-------------------------------------------------------------------|
+| **Income**          | INC\_LOW             | -0.87       | % People with stated annual household equivalized income between \$1 and \$25,999 (approx. 1st and 2nd deciles) |
+| **Education**   | NOYR12ORHIGHER       | -0.75       | % People aged 15 years and over whose highest level of education is Year 12 or lower, including Certificate I and II |
+|                 | NOEDU                | -0.47       | % People aged 15 years and over who have no educational attainment |
+| **Employment**  | UNEMPLOYED           | -0.68       | % People (in the labour force) unemployed |
+| **Occupation**  | OCC\_LABOUR          | -0.74       | % Employed people classified as "labourers" |
+|                 | OCC\_DRIVERS         | -0.51       | % Employed people classified as Machinery Operators and Drivers |
+|                 | OCC\_SERVICE\_L      | -0.45       | % Employed people classified as Low Skill Community and Personal Service Workers |
+| **Housing**     | LOWRENT              | -0.71       | % Occupied private dwellings paying rent less than \$250 per week (excluding \$0 per week) |
+| **Miscellaneous** | CHILDJOBLESS       | -0.78       | % Families with children under 15 years of age who live with jobless parents |
+|                 | DISABILITYU70        | -0.63       | % People aged under 70 who have a long-term health condition or disability and need assistance with core activities |
+|                 | ONEPARENT            | -0.58       | % One parent families with dependent offspring only |
+|                 | OVERCROWD            | -0.51       | % Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard) |
+|                 | SEPDIVORCED          | -0.51       | % People aged 15 years and over who are separated or divorced |
+|                 | NOCAR                | -0.43       | % Occupied private dwellings with no car |
+|                 | ENGLISHPOOR          | -0.35       | % People who do not speak English well |
+| **Total Number** | | **15** | |
+
+</div>
+
+:::
+
+---
+
+- **Addition of Variables**
+    - `CHILDJOBLESS` was added from 2011, which quantifies the percentage of families with children under age 15 and parents without employment
+
+- **Removal of Variables**
+    - `RENT_SOCIAL` was removed from 2011, since its skewed distribution and relatively high non-response rate made it less reliable as an indicator of socio-economic status.
+    - `INDIGENOUS` was removed from 2011, as it was deemed to be a sensitive variable that could lead to complex interpretations issues.
+    - `NONET` was removed from 2021, as it was removed from the Census data collection, since having a fixed Internet connection was no longer a reliable indicator of socio-economic status, as many people now use mobile devices and other ways to access the Internet.
+
+---
+
+- **Changes in Variable Definitions**
+    - `NOQUAL` was changed to `NOYR12ORHIGHER`, `NOSCHOOL` was changed to `NOEDU` from 2011, to better reflect the educational attainment of the population.
+
+- **Changes in Variable Reference Value**
+    - `INC_LOW` and `LOWRENT` had their reference values changed in each period with no pattern (not uniform, not distribution-based, not inflation-adjusted), which makes it difficult to compare the index across different periods.
+
+<div style="font-size: 0.65em;">
+
+| **Wave** | **INC_LOW Reference Level**                                  | **LOWRENT Reference Level**                         |
+|----------|--------------------------------------------------------------|-----------------------------------------------------|
+| 2006     | Income between \$13,000 and \$20,799 (approx. 2nd and 3rd deciles) | Rent less than \$120 per week (excluding \$0 per week) |
+| 2011     | Income between \$1 and \$20,799 (approx. 1st and 2nd deciles)  | Rent less than \$166 per week (excluding \$0 per week) |
+| 2016     | Income between \$1 and \$25,999 (approx. 1st and 2nd deciles)  | Rent less than \$215 per week (excluding \$0 per week) |
+| 2021     | Income between \$1 and \$25,999 (approx. 1st and 2nd deciles)  | Rent less than \$250 per week (excluding \$0 per week) |
+
+</div>
+
+
+---
+
+### Geographical Boundary Changes
+
+- **Two systems of geographical boundaries in Australia**
+    - **ASGC**: Australian Standard Geographical Classification before 2011
+    - **ASGS**: Australian Statistical Geography Standard after 2011, updated every five year
+
+- **SEIFA based on areal units**
+    - **CD**: Census Collection District (ASGC) in 2006
+    - **SA1**: Statistical Area Level 1 (ASGS) in 2011 - 2021
+    - **Larger spatial units**: Population weighted average of CD/SA1
+
+- **Exclusions of areas with rules**
+    - **Non-residential and high non-response rates areas**: such as airports, ports, and military bases
+    - **One more phrase of exclusions in 2011, 2016, 2021**: areas with less than 6 denominator in the calculation of the index
+
+---
+
+**Number of Valid Areas in Constructing Index**
+
+When comparing the index, all index will be converted into the same geographical standard, which is SA2 ASGS 2021. The conversion process is done by population-weighted average provided by correspondence files from ABS [@SEIFACorrespondences]
+
+<div style="font-size: 0.6em;">
+
+| **Index**| **Geographical Standards** | **2006** | **2011** | **2016** | **2021** |
+|:------:|:------:|:------:|:------:|:------:|:------:|
+| **IRSD**       | CD ASGC06                  | 37448/38704 (96.75%)              |                                    |                                    |                                    |
+|                | SA1 ASGC11                 |                                    | 52577/54508 (96.46%)              |                                    |                                    |
+|                | SA1 ASGC16                 |                                    |                                    | 55028/57523 (95.66%)              |                                    |
+|                | SA1 ASGC21                 |                                    |                                    |                                    | 59283/61845 (95.86%)              |
+| **Converted**  | SA2 ASGC21                 | 2423/2473 (97.98%)                | 2355/2473 (95.23%)                | 2344/2473 (94.78%)                | 2312/2473 (93.49%)                |
+| | | | | | |
+| **L-IRSD**     | CD ASGC06                  | 37737/38704 (97.5%)               |                                    |                                    |                                    |
+|                | SA2 ASGC11                 |                                    | 2123/2214 (95.89%)                |                                    |                                    |
+|                | SA2 ASGC16                 |                                    |                                    | 2200/2310 (95.24%)                |                                    |
+|                | SA2 ASGC21                 |                                    |                                    |                                    | 2372/2473 (95.92%)               |
+| **Converted**  | SA2 ASGC21                 | 2392/2473 (96.72%)                | 2343/2473 (94.74%)                | 2347/2473 (94.9%)                | 2366/2473 (95.67%)               |
+
+</div>
+
+
+---
+
+### Loading of Variables in IRSD
+
+```{r, fig.width =10, fig.height = 5, fig.align='center', out.width='100%'}
+
+#| label: fig-centered
+#| fig-cap: Loading of Variables in IRSD
+
+# library packages
+library(tidyverse)
+
+# load data
+SEIFA_Loading <- read_csv("data/IRSD_loading.csv") 
+
+# graph 
+
+SEIFA_Loading %>%
+  pivot_longer(3:6,
+               names_to = "Year",
+               values_to = "Loading") %>%
+  mutate(Variables = fct_reorder(Variables, Loading,
+                                 .desc = TRUE, .na_rm = FALSE)) %>%
+  ggplot() +
+  geom_point(aes(x = Loading,
+                 y = Variables,
+                 fill = Year,
+                 size = Year),
+             alpha = 0.65,
+             shape = 21,
+             color = "black") +
+  scale_size_manual(values = c("2006" = 3, 
+                               "2011" = 4,
+                               "2016" = 5,
+                               "2021" = 6)) +
+  scale_fill_brewer(palette = "YlOrRd") +
+  labs(fill = "Census Year",
+       size = "Census Year",
+       x = "Loadings") +
+  scale_x_reverse(limits = c(0,-1)) +
+  theme_bw()
+
+```
+
+
+
+
+---
+
+- **Proportion of Variance Explained**
+    - IRSD accounted for 39% of the variation among variables in 2006, changing to 44% in 2011, 43% in 2016, and 37% in 2021
+
+- **Loading Trends**
+    - Stability in the loadings of certain variables—such as `DISABILITYU70`, `SEPDIVORCED`, `ENGLISHPOOR`, `LOWRENT`, `NOYEAR12ORHIGHER`, `NOEDU`, `OCC_DRIVER`, and `OVERCROWD`
+    - `CHILDJOBLESS` and `ONEPARENT` have decreasing loadings over time - may be linked to changing societal attitudes towards marriage and divorce [@Tucker2008Enduring] and improvements in the welfare system for single-parent families [@Chiappori2006Divorce; @Herbst2016Mothers]
+    - `INC_LOW` increased significantly between 2011 and 2016.
+
+
+---
+
+### Limitations and Motivations for Longitudinal analysis
+
+- **Challenges for Longitudinal Analysis**
+
+    - **Inconsistent Variable Selection**: The selection of variables for the index can vary across different years due to changes in data availability, definitions, or relevance.
+    
+    - **Reference Value Shift**: The reference value of each variable may change over time due to shifts in data collection methods, definitions, or population characteristics.
+    
+    - **Spatial Boundary Changes**: Changes in spatial boundaries, such as the merging or splitting of regions, can affect the comparability of data across years. Another issue that arises from the spatial boundary changes is the population distribution.
+    
+    - **Standardization Issues**: The standardization of variables may vary across years due to changes in data collection methods or definitions. Inconsistent standardization can lead to discrepancies in the index's representation of socio-economic status over time.
+    
+    - **Pattern Shift**: The underlying patterns of socio-economic status may shift over time due to changes in economic conditions, social policies, or population characteristics. In detail, some variables may have different importance in different years, which may lead to the different interpretation of the index.
+
+---
+
+- **Motivations**: In response to these challenges, we aim to develop an index that can longitudinally capture socio-economic status variance in Australia
+    - **Consistency**: Based on the framework of the SEIFA as Australia provide one of the most comprehensive socio-economic indices with technical details and data availability and SEIFA is widely used in the research community with clear and transparent methodology
+    - **Comparability**: The new index LIRSD and WLIRSD should be able to comparing with the traditional widely used SEIFA index, and can be used to track the socio-economic status of areas over time
+    - **Secondary Finding**: Analysis the potential role of the second principal component of the constructed index
+
+
+## Development of the Longitudinal IRSD (L-IRSD) and PC2 Index
 
 
 
@@ -73,4 +411,10 @@ date-format: "D[th] MMMM YYYY"
 
 
 
+
+
+## References
+
+::: {#refs}
+:::
 

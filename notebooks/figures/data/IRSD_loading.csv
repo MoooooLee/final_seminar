@@ -1,0 +1,19 @@
+Dimensions,Variables,2006,2011,2016,2021
+Income,INC_LOW,-0.76,-0.76,-0.91,-0.87
+Education,NOQUAL / NOYR12ORHIGHER,-0.76,-0.75,-0.77,-0.75
+Education,NOSCHOOL / NOEDU,-0.44,-0.44,-0.43,-0.47
+Employment,UNEMPLOYED,-0.7,-0.74,-0.75,-0.68
+Occupation,OCC_LABOUR,-0.76,-0.75,-0.74,-0.68
+Occupation,OCC_DRIVERS,-0.51,-0.52,-0.54,-0.51
+Occupation,OCC_SERVICE_L,-0.44,-0.5,-0.53,-0.45
+Housing,RENT_SOCIAL,-0.7,,,
+Housing,LOWRENT,-0.67,-0.73,-0.73,-0.71
+Miscellaneous,NONET,-0.85,-0.81,-0.79,
+Miscellaneous,ONEPARENT,-0.67,-0.71,-0.67,-0.58
+Miscellaneous,DISABILITYU70,-0.61,-0.66,-0.67,-0.63
+Miscellaneous,NOCAR,-0.57,-0.56,-0.49,-0.43
+Miscellaneous,INDIGENOUS,-0.52,,,
+Miscellaneous,OVERCROWD,-0.52,-0.52,-0.46,-0.51
+Miscellaneous,DIVORCED / SEPDIVORCED,-0.51,-0.54,-0.55,-0.51
+Miscellaneous,ENGLISHPOOR,-0.33,-0.34,-0.3,-0.35
+Miscellaneous,CHILDJOBLESS,,-0.85,-0.83,-0.78

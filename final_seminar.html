@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.32">
 
   <meta name="author" content="Mu Li">
-  <meta name="author" content="Supervised by:">
+  <meta name="author" content="Supervised by">
   <meta name="author" content="Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb">
   <title>Bivariate Outcome Small Area Estimation using Bayesian Hierarchical Models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,13 +30,47 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="final_seminar_files/libs/revealjs/dist/theme/quarto-44a4fee74d4427260c4686afd629523f.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="final_seminar_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="final_seminar_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="final_seminar_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="final_seminar_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="final_seminar_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="final_seminar_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -247,6 +281,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -343,7 +378,7 @@ Mu Li
     </div>
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Supervised by: 
+Supervised by 
 </div>
 </div>
 <div class="quarto-title-author">
@@ -353,30 +388,29 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 </div>
 </div>
 
-  <p class="date">5th November 2024</p>
+  <p class="date">9th November 2024</p>
 </section>
 <section>
-<section id="introduction" class="title-slide slide level1 center">
-<h1>Introduction</h1>
+<section id="introduction" class="title-slide slide level1 center" data-number="1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
 <ul>
 <li><strong>Overview of PhD Research</strong>:
 <ul>
-<li>This research focuses on two distinct, but interconnected areas of study: spatial epidemiology and socio-economic status measurement.</li>
+<li>This research focuses on two distinct, but interconnected areas of study: spatial model and socio-economic status measurement.</li>
 <li>The first part introduces a longitudinal socio-economic index to better capture changes over time, enhancing traditional measures which are typically static.</li>
-<li>The second part addresses the use of advanced statistical models to improve disease mapping, particularly focusing on the challenges of data sparsity.</li>
+<li>The second part addresses the use of advanced statistical models to improve disease mapping and small area estimation, particularly focusing on the challenges of data sparsity and bivariate outcomes.</li>
 </ul></li>
 <li><strong>Goal</strong>: Contributions to public health and socio-economic analysis through statistical modeling.</li>
 </ul>
 </section>
-<section id="list-of-contents" class="slide level2">
-<h2>List of Contents</h2>
+<section id="list-of-contents" class="slide level2" data-number="1.1">
+<h2><span class="header-section-number">1.1</span> List of Contents</h2>
 <p><strong>Part One: Longitudinal Socio-Economic Index Construction (L-IRSD)</strong></p>
 <ul>
 <li><strong>Construction of a Longitudinal Socio-Economic Index for Australia</strong>
 <ul>
-<li>Motivation</li>
-<li>Review of Principal Component Analysis (PCA)</li>
-<li>Historical review of the SEIFA - limitations and challenges</li>
+<li>Backgrounds</li>
+<li>Historical review of the SEIFA - limitations and motivations</li>
 <li>Development of the Longitudinal IRSD (L-IRSD) and PC2 Index</li>
 <li>Validations and comparisons with the SEIFA.</li>
 </ul></li>
@@ -408,20 +442,857 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 </ul>
 </section></section>
 <section>
-<section id="part-one-constructing-a-socio-economic-index-for-longitudinal-analysis" class="title-slide slide level1 center">
-<h1>Part One: Constructing a Socio-Economic Index for Longitudinal Analysis</h1>
+<section id="part-one-constructing-a-socio-economic-index-for-longitudinal-analysis" class="title-slide slide level1 center" data-number="2">
+<h1><span class="header-section-number">2</span> Part One: Constructing a Socio-Economic Index for Longitudinal Analysis</h1>
 
 </section>
-<section id="motivation-for-l-irsd" class="slide level2">
-<h2>Motivation for L-IRSD</h2>
+<section id="background-and-socio-economic-indices" class="slide level2" data-number="2.1">
+<h2><span class="header-section-number">2.1</span> Background and Socio-Economic Indices</h2>
 <ul>
-<li>Problem Statement:</li>
+<li>Composite indices are widely used in socio-economic research</li>
 </ul>
-<p>Traditional SEIFA indices are static and fail to capture longitudinal socio-economic changes.</p>
-<p>Objective:</p>
+<p>To measure socio-economic status is a complex task, as it is a multidimensional concept that encompasses various aspects of life, such as income, education, occupation and house conditions <span class="citation" data-cites="Zagorski1986Demographic">(<a href="#/references" role="doc-biblioref" onclick="">Zagórski 1986</a>)</span>. Constructing a composite index is a common approach to measure socio-economic status, as it can provide a single summary measure that captures the multidimensional nature of socio-economic status.</p>
 <ul>
-<li>Create a longitudinal index (L-IRSD) to monitor socio-economic changes over time.</li>
+<li>Principal Component Analysis (PCA) is a common method to construct composite indices</li>
 </ul>
+<p>When given multiple indicators of socio-economic status, PCA can be used to construct a composite index by providing a linear combination of the indicators that maximizes the variance of the data. The first principal component is often used as the composite index, as it captures the most variation in the data, where this variation is assumed to be related to socio-economic status <span class="citation" data-cites="Mazziotta2019Use">(<a href="#/references" role="doc-biblioref" onclick="">Mazziotta and Pareto 2019</a>)</span>.</p>
+</section>
+<section class="slide level2 scrollable">
+
+<h3 data-number="2.1.1" id="pca-steps"><span class="header-section-number">2.1.1</span> PCA steps</h3>
+<p>PCA is a statistical method that can be used to reduce the dimensional of a dataset by transforming the data into a new set of uncorrelated variables called principal components.</p>
+<ol type="1">
+<li><p>Standardize the data <span class="math display">
+     Z_{i,j} = \frac{Y_{i,j} - \bar{y}_{j}}{s_j}
+</span></p>
+<p>In the case of PCA with weights, the standardized value need to be weighted by the corresponding weight, where the mean and standard deviation are calculated based on the weighted data. Here we list the simple formula for the weighted mean and standard deviation. <span class="math display">
+\bar{y}_{j} = \frac{\sum_{i=1}^{n} w_i Y_{i,j}}{\sum_{i=1}^{n} w_i} \quad \quad s_{j} = \sqrt{\frac{\sum_{i=1}^{n} w_i (Y_{i,j} - \bar{y}_{j})^2}{\sum_{i=1}^{n} w_i}}
+</span></p></li>
+</ol>
+</section>
+<section class="slide level2 scrollable">
+
+<ol start="2" type="1">
+<li><p>Calculate the covariance matrix</p>
+<p>The empirical covariance matrix <span class="math inline">\mathbf{C}</span> is a <span class="math inline">p \times p</span> matrix that captures the pairwise relationships between variables. In the case of PCA with weights, the covariance matrix is computed based on the weighted standardized data: <span class="math display">
+C_{j,k} = \frac{1}{\sum_{i=1}^{n} w_i} \sum_{i=1}^{n} w_i Z_{i,j} Z_{i,k}
+</span></p></li>
+</ol>
+</section>
+<section class="slide level2 scrollable">
+
+<ol start="3" type="1">
+<li><p>Eigenvalue Decomposition</p>
+<p>The third step in PCA is to perform an eigenvalue decomposition of the covariance matrix. The eigenvalue decomposition of the covariance matrix <span class="math inline">\mathbf{C}</span> yields a set of eigenvectors and eigenvalues. The eigenvectors represent the directions of maximum variance in the data, while the eigenvalues represent the amount of variance explained by each eigenvector. The eigenvectors are arranged in descending order based on their corresponding eigenvalues. Here we denote the <span class="math inline">k</span>th eigenvector as <span class="math inline">\mathbf{v}_{k}</span>, and the <span class="math inline">k</span>th eigenvalue is denoted as <span class="math inline">\lambda_{k}</span>.</p></li>
+</ol>
+</section>
+<section class="slide level2 scrollable">
+
+<ol start="4" type="1">
+<li><p>Principal Component Scores</p>
+<p>The fourth step in PCA is to compute the principal component scores. The principal component scores represent the linear combinations of the original variables that capture the maximum amount of variance in the data. The <span class="math inline">k</span>th principal component score for the <span class="math inline">i</span>th observation can be calculated as: <span class="math display">
+PC_{i,k} = \sum_{j=1}^{p} \alpha_{j,k} Z_{i,j}
+</span></p>
+<p>where <span class="math inline">\alpha_{j,k}</span> is the loading of the <span class="math inline">j</span>th variable on the <span class="math inline">k</span>th principal component, can be calculated from the eigenvectors and eigenvalues. The formula for the loading is: <span class="math display">
+\alpha_{j,k} = \sqrt{\lambda_{k}} v_{j,k}
+</span></p>
+<p>where <span class="math inline">v_{j,k}</span> is the <span class="math inline">j</span>th element of the <span class="math inline">k</span>th eigenvector and the <span class="math inline">\lambda_{k}</span> is the <span class="math inline">k</span>th eigenvalue as we mentioned in the previous step.</p></li>
+</ol>
+</section>
+<section id="historical-review-of-the-seifa-irsd" class="slide level2" data-number="2.2">
+<h2><span class="header-section-number">2.2</span> Historical Review of the SEIFA-IRSD</h2>
+<ul>
+<li>The current recognized form of SEIFA first appeared in 1986 and has been updated every five years since then.</li>
+</ul>
+<p>Five indices are produced from 1986 to 1996, where there were two different indices produced for urban and rural areas for measuring socio-economic advantage and disadvantage. ABS justifies this urban/rural split, citing significant structural differences between variables in urban and rural areas.</p>
+<ul>
+<li>The 2001 SEIFA replaced two indices with one, which was the IRSAD. And four indices were produced since then until 2021, which are IRSD, IRSAD, IEO and IER.</li>
+</ul>
+<p>Among these indexes, the IRSD is regarded as the most established and widely used, as it encompasses all available variables that reflect or measure socio-economic disadvantage <span class="citation" data-cites="SEIFA2001">(<a href="#/references" role="doc-biblioref" onclick="">Trewin 2004</a>)</span>. Furthermore, the IRSD is recognized for its consistency, as it has maintained a nearly identical methodological approach and variables in its construction process across various periods <span class="citation" data-cites="SEIFA2001 SEIFA2021">(<a href="#/references" role="doc-biblioref" onclick="">Trewin 2004</a>; <a href="#/references" role="doc-biblioref" onclick="">Statistics 2023</a>)</span>.</p>
+</section>
+<section class="slide level2">
+
+<h3 data-number="2.2.1" id="variable-selection-for-irsd"><span class="header-section-number">2.2.1</span> Variable Selection for IRSD</h3>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">2006</a></li><li><a href="#tabset-1-2">2011</a></li><li><a href="#tabset-1-3">2016</a></li><li><a href="#tabset-1-4">2021</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div style="font-size: 0.5em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Dimension</strong></th>
+<th style="text-align: left;"><strong>Variable</strong></th>
+<th style="text-align: left;"><strong>Loading</strong></th>
+<th style="text-align: left;"><strong>Variable Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Income</strong></td>
+<td style="text-align: left;">INC_LOW</td>
+<td style="text-align: left;">-0.76</td>
+<td style="text-align: left;">% People with stated annual household equivalized income between $13,000 and $20,799 (approx. 2nd and 3rd deciles)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Education</strong></td>
+<td style="text-align: left;">NOQUAL</td>
+<td style="text-align: left;">-0.76</td>
+<td style="text-align: left;">% People aged 15 years and over with no post-school qualifications</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NOSCHOOL</td>
+<td style="text-align: left;">-0.44</td>
+<td style="text-align: left;">% People aged 15 years and over who did not go to school</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Employment</strong></td>
+<td style="text-align: left;">UNEMPLOYED</td>
+<td style="text-align: left;">-0.7</td>
+<td style="text-align: left;">% People (in the labour force) unemployed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Occupation</strong></td>
+<td style="text-align: left;">OCC_LABOUR</td>
+<td style="text-align: left;">-0.76</td>
+<td style="text-align: left;">% Employed people classified as Labourers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OCC_DRIVERS</td>
+<td style="text-align: left;">-0.51</td>
+<td style="text-align: left;">% Employed people classified as Machinery Operators and Drivers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OCC_SERVICE_L</td>
+<td style="text-align: left;">-0.44</td>
+<td style="text-align: left;">% Employed people classified as Low Skill Community and Personal Service Workers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Housing</strong></td>
+<td style="text-align: left;">RENT_SOCIAL</td>
+<td style="text-align: left;">-0.7</td>
+<td style="text-align: left;">% Households renting from a Government or Community organization</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">LOWRENT</td>
+<td style="text-align: left;">-0.67</td>
+<td style="text-align: left;">% Households paying rent who pay less than $120 per week (excluding $0 per week)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Miscellaneous</strong></td>
+<td style="text-align: left;">NONET</td>
+<td style="text-align: left;">-0.85</td>
+<td style="text-align: left;">% Occupied private dwellings with no Internet connection</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ONEPARENT</td>
+<td style="text-align: left;">-0.67</td>
+<td style="text-align: left;">% Families that are one-parent families with dependent offspring only</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">DISABILITYU70</td>
+<td style="text-align: left;">-0.61</td>
+<td style="text-align: left;">% People aged under 70 who have a long-term health condition or disability and need assistance with core activities</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NOCAR</td>
+<td style="text-align: left;">-0.57</td>
+<td style="text-align: left;">% Occupied private dwellings with no car</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">INDIGENOUS</td>
+<td style="text-align: left;">-0.52</td>
+<td style="text-align: left;">% People who identified themselves as being Aboriginal and/or Torres Strait Islander origin</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OVERCROWD</td>
+<td style="text-align: left;">-0.52</td>
+<td style="text-align: left;">% Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">DIVORCED</td>
+<td style="text-align: left;">-0.51</td>
+<td style="text-align: left;">% People aged 15 years and over who are separated or divorced</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ENGLISHPOOR</td>
+<td style="text-align: left;">-0.33</td>
+<td style="text-align: left;">% People who do not speak English well</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Total Number</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>17</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="tabset-1-2">
+<div style="font-size: 0.5em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Dimension</strong></th>
+<th style="text-align: left;"><strong>Variable</strong></th>
+<th style="text-align: left;"><strong>Loading</strong></th>
+<th style="text-align: left;"><strong>Variable Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Income</strong></td>
+<td style="text-align: left;">INC_LOW</td>
+<td style="text-align: left;">-0.9</td>
+<td style="text-align: left;">% People with stated annual household equivalized income between $1 and $20,799 (approx. 1st and 2nd deciles)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Education</strong></td>
+<td style="text-align: left;">NOYR12ORHIGHER</td>
+<td style="text-align: left;">-0.75</td>
+<td style="text-align: left;">% People aged 15 years and over whose highest level of education is Year 12 or lower, including Certificate I and II</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NOEDU</td>
+<td style="text-align: left;">-0.44</td>
+<td style="text-align: left;">% People aged 15 years and over who have no educational attainment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Employment</strong></td>
+<td style="text-align: left;">UNEMPLOYED</td>
+<td style="text-align: left;">-0.74</td>
+<td style="text-align: left;">% People (in the labour force) unemployed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Occupation</strong></td>
+<td style="text-align: left;">OCC_LABOUR</td>
+<td style="text-align: left;">-0.75</td>
+<td style="text-align: left;">% Employed people classified as “labourers”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OCC_DRIVERS</td>
+<td style="text-align: left;">-0.52</td>
+<td style="text-align: left;">% Employed people classified as Machinery Operators and Drivers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OCC_SERVICE_L</td>
+<td style="text-align: left;">-0.5</td>
+<td style="text-align: left;">% Employed people classified as Low Skill Community and Personal Service Workers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Housing</strong></td>
+<td style="text-align: left;">LOWRENT</td>
+<td style="text-align: left;">-0.73</td>
+<td style="text-align: left;">% Occupied private dwellings paying rent less than $166 per week (excluding $0 per week)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Miscellaneous</strong></td>
+<td style="text-align: left;">CHILDJOBLESS</td>
+<td style="text-align: left;">-0.85</td>
+<td style="text-align: left;">% Families with children under 15 years of age who live with jobless parents</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NONET</td>
+<td style="text-align: left;">-0.81</td>
+<td style="text-align: left;">% Occupied private dwellings with no Internet connection</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ONEPARENT</td>
+<td style="text-align: left;">-0.71</td>
+<td style="text-align: left;">% One parent families with dependent offspring only</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">DISABILITYU70</td>
+<td style="text-align: left;">-0.66</td>
+<td style="text-align: left;">% People aged under 70 who have a long-term health condition or disability and need assistance with core activities</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NOCAR</td>
+<td style="text-align: left;">-0.56</td>
+<td style="text-align: left;">% Occupied private dwellings with no car</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OVERCROWD</td>
+<td style="text-align: left;">-0.52</td>
+<td style="text-align: left;">% Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SEP_DIVORCED</td>
+<td style="text-align: left;">-0.54</td>
+<td style="text-align: left;">% People aged 15 years and over who are separated or divorced</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ENGLISHPOOR</td>
+<td style="text-align: left;">-0.34</td>
+<td style="text-align: left;">% People who do not speak English well</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total Number</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>16</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="tabset-1-3">
+<div style="font-size: 0.5em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Dimension</strong></th>
+<th style="text-align: left;"><strong>Variable</strong></th>
+<th style="text-align: left;"><strong>Loading</strong></th>
+<th style="text-align: left;"><strong>Variable Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Income</strong></td>
+<td style="text-align: left;">INC_LOW</td>
+<td style="text-align: left;">-0.91</td>
+<td style="text-align: left;">% People with stated annual household equivalized income between $1 and $25,999 (approx. 1st and 2nd deciles)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Education</strong></td>
+<td style="text-align: left;">NOYR12ORHIGHER</td>
+<td style="text-align: left;">-0.77</td>
+<td style="text-align: left;">% People aged 15 years and over whose highest level of education is Year 12 or lower, including Certificate I and II</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NOEDU</td>
+<td style="text-align: left;">-0.43</td>
+<td style="text-align: left;">% People aged 15 years and over who have no educational attainment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Employment</strong></td>
+<td style="text-align: left;">UNEMPLOYED</td>
+<td style="text-align: left;">-0.75</td>
+<td style="text-align: left;">% People (in the labour force) unemployed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Occupation</strong></td>
+<td style="text-align: left;">OCC_LABOUR</td>
+<td style="text-align: left;">-0.74</td>
+<td style="text-align: left;">% Employed people classified as “labourers”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OCC_DRIVERS</td>
+<td style="text-align: left;">-0.54</td>
+<td style="text-align: left;">% Employed people classified as Machinery Operators and Drivers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OCC_SERVICE_L</td>
+<td style="text-align: left;">-0.53</td>
+<td style="text-align: left;">% Employed people classified as Low Skill Community and Personal Service Workers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Housing</strong></td>
+<td style="text-align: left;">LOWRENT</td>
+<td style="text-align: left;">-0.73</td>
+<td style="text-align: left;">% Occupied private dwellings paying rent less than $215 per week (excluding $0 per week)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Miscellaneous</strong></td>
+<td style="text-align: left;">CHILDJOBLESS</td>
+<td style="text-align: left;">-0.83</td>
+<td style="text-align: left;">% Families with children under 15 years of age who live with jobless parents</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NONET</td>
+<td style="text-align: left;">-0.79</td>
+<td style="text-align: left;">% Occupied private dwellings with no Internet connection</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ONEPARENT</td>
+<td style="text-align: left;">-0.67</td>
+<td style="text-align: left;">% One parent families with dependent offspring only</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">DISABILITYU70</td>
+<td style="text-align: left;">-0.67</td>
+<td style="text-align: left;">% People aged under 70 who have a long-term health condition or disability and need assistance with core activities</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SEPDIVORCED</td>
+<td style="text-align: left;">-0.55</td>
+<td style="text-align: left;">% People aged 15 years and over who are separated or divorced</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NOCAR</td>
+<td style="text-align: left;">-0.49</td>
+<td style="text-align: left;">% Occupied private dwellings with no car</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OVERCROWD</td>
+<td style="text-align: left;">-0.46</td>
+<td style="text-align: left;">% Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ENGLISHPOOR</td>
+<td style="text-align: left;">-0.3</td>
+<td style="text-align: left;">% People who do not speak English well</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total Number</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>16</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="tabset-1-4">
+<div style="font-size: 0.5em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Dimension</strong></th>
+<th style="text-align: left;"><strong>Variable</strong></th>
+<th style="text-align: left;"><strong>Loading</strong></th>
+<th style="text-align: left;"><strong>Variable Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Income</strong></td>
+<td style="text-align: left;">INC_LOW</td>
+<td style="text-align: left;">-0.87</td>
+<td style="text-align: left;">% People with stated annual household equivalized income between $1 and $25,999 (approx. 1st and 2nd deciles)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Education</strong></td>
+<td style="text-align: left;">NOYR12ORHIGHER</td>
+<td style="text-align: left;">-0.75</td>
+<td style="text-align: left;">% People aged 15 years and over whose highest level of education is Year 12 or lower, including Certificate I and II</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NOEDU</td>
+<td style="text-align: left;">-0.47</td>
+<td style="text-align: left;">% People aged 15 years and over who have no educational attainment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Employment</strong></td>
+<td style="text-align: left;">UNEMPLOYED</td>
+<td style="text-align: left;">-0.68</td>
+<td style="text-align: left;">% People (in the labour force) unemployed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Occupation</strong></td>
+<td style="text-align: left;">OCC_LABOUR</td>
+<td style="text-align: left;">-0.74</td>
+<td style="text-align: left;">% Employed people classified as “labourers”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OCC_DRIVERS</td>
+<td style="text-align: left;">-0.51</td>
+<td style="text-align: left;">% Employed people classified as Machinery Operators and Drivers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OCC_SERVICE_L</td>
+<td style="text-align: left;">-0.45</td>
+<td style="text-align: left;">% Employed people classified as Low Skill Community and Personal Service Workers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Housing</strong></td>
+<td style="text-align: left;">LOWRENT</td>
+<td style="text-align: left;">-0.71</td>
+<td style="text-align: left;">% Occupied private dwellings paying rent less than $250 per week (excluding $0 per week)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Miscellaneous</strong></td>
+<td style="text-align: left;">CHILDJOBLESS</td>
+<td style="text-align: left;">-0.78</td>
+<td style="text-align: left;">% Families with children under 15 years of age who live with jobless parents</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">DISABILITYU70</td>
+<td style="text-align: left;">-0.63</td>
+<td style="text-align: left;">% People aged under 70 who have a long-term health condition or disability and need assistance with core activities</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ONEPARENT</td>
+<td style="text-align: left;">-0.58</td>
+<td style="text-align: left;">% One parent families with dependent offspring only</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">OVERCROWD</td>
+<td style="text-align: left;">-0.51</td>
+<td style="text-align: left;">% Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SEPDIVORCED</td>
+<td style="text-align: left;">-0.51</td>
+<td style="text-align: left;">% People aged 15 years and over who are separated or divorced</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NOCAR</td>
+<td style="text-align: left;">-0.43</td>
+<td style="text-align: left;">% Occupied private dwellings with no car</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ENGLISHPOOR</td>
+<td style="text-align: left;">-0.35</td>
+<td style="text-align: left;">% People who do not speak English well</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Total Number</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>15</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li><strong>Addition of Variables</strong>
+<ul>
+<li><code>CHILDJOBLESS</code> was added from 2011, which quantifies the percentage of families with children under age 15 and parents without employment</li>
+</ul></li>
+<li><strong>Removal of Variables</strong>
+<ul>
+<li><code>RENT_SOCIAL</code> was removed from 2011, since its skewed distribution and relatively high non-response rate made it less reliable as an indicator of socio-economic status.</li>
+<li><code>INDIGENOUS</code> was removed from 2011, as it was deemed to be a sensitive variable that could lead to complex interpretations issues.</li>
+<li><code>NONET</code> was removed from 2021, as it was removed from the Census data collection, since having a fixed Internet connection was no longer a reliable indicator of socio-economic status, as many people now use mobile devices and other ways to access the Internet.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<ul>
+<li><strong>Changes in Variable Definitions</strong>
+<ul>
+<li><code>NOQUAL</code> was changed to <code>NOYR12ORHIGHER</code>, <code>NOSCHOOL</code> was changed to <code>NOEDU</code> from 2011, to better reflect the educational attainment of the population.</li>
+</ul></li>
+<li><strong>Changes in Variable Reference Value</strong>
+<ul>
+<li><code>INC_LOW</code> and <code>LOWRENT</code> had their reference values changed in each period with no pattern (not uniform, not distribution-based, not inflation-adjusted), which makes it difficult to compare the index across different periods.</li>
+</ul></li>
+</ul>
+<div style="font-size: 0.65em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 49%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Wave</strong></th>
+<th><strong>INC_LOW Reference Level</strong></th>
+<th><strong>LOWRENT Reference Level</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2006</td>
+<td>Income between $13,000 and $20,799 (approx. 2nd and 3rd deciles)</td>
+<td>Rent less than $120 per week (excluding $0 per week)</td>
+</tr>
+<tr class="even">
+<td>2011</td>
+<td>Income between $1 and $20,799 (approx. 1st and 2nd deciles)</td>
+<td>Rent less than $166 per week (excluding $0 per week)</td>
+</tr>
+<tr class="odd">
+<td>2016</td>
+<td>Income between $1 and $25,999 (approx. 1st and 2nd deciles)</td>
+<td>Rent less than $215 per week (excluding $0 per week)</td>
+</tr>
+<tr class="even">
+<td>2021</td>
+<td>Income between $1 and $25,999 (approx. 1st and 2nd deciles)</td>
+<td>Rent less than $250 per week (excluding $0 per week)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 data-number="2.2.2" id="geographical-boundary-changes"><span class="header-section-number">2.2.2</span> Geographical Boundary Changes</h3>
+<ul>
+<li><strong>Two systems of geographical boundaries in Australia</strong>
+<ul>
+<li><strong>ASGC</strong>: Australian Standard Geographical Classification before 2011</li>
+<li><strong>ASGS</strong>: Australian Statistical Geography Standard after 2011, updated every five year</li>
+</ul></li>
+<li><strong>SEIFA based on areal units</strong>
+<ul>
+<li><strong>CD</strong>: Census Collection District (ASGC) in 2006</li>
+<li><strong>SA1</strong>: Statistical Area Level 1 (ASGS) in 2011 - 2021</li>
+<li><strong>Larger spatial units</strong>: Population weighted average of CD/SA1</li>
+</ul></li>
+<li><strong>Exclusions of areas with rules</strong>
+<ul>
+<li><strong>Non-residential and high non-response rates areas</strong>: such as airports, ports, and military bases</li>
+<li><strong>One more phrase of exclusions in 2011, 2016, 2021</strong>: areas with less than 6 denominator in the calculation of the index</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><strong>Number of Valid Areas in Constructing Index</strong></p>
+<p>When comparing the index, all index will be converted into the same geographical standard, which is SA2 ASGS 2021. The conversion process is done by population-weighted average provided by correspondence files from ABS <span class="citation" data-cites="SEIFACorrespondences">(<a href="#/references" role="doc-biblioref" onclick="">ABS 2021</a>)</span></p>
+<div style="font-size: 0.6em;">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Index</strong></th>
+<th style="text-align: center;"><strong>Geographical Standards</strong></th>
+<th style="text-align: center;"><strong>2006</strong></th>
+<th style="text-align: center;"><strong>2011</strong></th>
+<th style="text-align: center;"><strong>2016</strong></th>
+<th style="text-align: center;"><strong>2021</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>IRSD</strong></td>
+<td style="text-align: center;">CD ASGC06</td>
+<td style="text-align: center;">37448/38704 (96.75%)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">SA1 ASGC11</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">52577/54508 (96.46%)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">SA1 ASGC16</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">55028/57523 (95.66%)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">SA1 ASGC21</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">59283/61845 (95.86%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Converted</strong></td>
+<td style="text-align: center;">SA2 ASGC21</td>
+<td style="text-align: center;">2423/2473 (97.98%)</td>
+<td style="text-align: center;">2355/2473 (95.23%)</td>
+<td style="text-align: center;">2344/2473 (94.78%)</td>
+<td style="text-align: center;">2312/2473 (93.49%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>L-IRSD</strong></td>
+<td style="text-align: center;">CD ASGC06</td>
+<td style="text-align: center;">37737/38704 (97.5%)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">SA2 ASGC11</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2123/2214 (95.89%)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">SA2 ASGC16</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2200/2310 (95.24%)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">SA2 ASGC21</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2372/2473 (95.92%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Converted</strong></td>
+<td style="text-align: center;">SA2 ASGC21</td>
+<td style="text-align: center;">2392/2473 (96.72%)</td>
+<td style="text-align: center;">2343/2473 (94.74%)</td>
+<td style="text-align: center;">2347/2473 (94.9%)</td>
+<td style="text-align: center;">2366/2473 (95.67%)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 data-number="2.2.3" id="loading-of-variables-in-irsd"><span class="header-section-number">2.2.3</span> Loading of Variables in IRSD</h3>
+
+<img data-src="final_seminar_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<ul>
+<li><strong>Proportion of Variance Explained</strong>
+<ul>
+<li>IRSD accounted for 39% of the variation among variables in 2006, changing to 44% in 2011, 43% in 2016, and 37% in 2021</li>
+</ul></li>
+<li><strong>Loading Trends</strong>
+<ul>
+<li>Stability in the loadings of certain variables—such as <code>DISABILITYU70</code>, <code>SEPDIVORCED</code>, <code>ENGLISHPOOR</code>, <code>LOWRENT</code>, <code>NOYEAR12ORHIGHER</code>, <code>NOEDU</code>, <code>OCC_DRIVER</code>, and <code>OVERCROWD</code></li>
+<li><code>CHILDJOBLESS</code> and <code>ONEPARENT</code> have decreasing loadings over time - may be linked to changing societal attitudes towards marriage and divorce <span class="citation" data-cites="Tucker2008Enduring">(<a href="#/references" role="doc-biblioref" onclick="">Tucker and Crouter 2008</a>)</span> and improvements in the welfare system for single-parent families <span class="citation" data-cites="Chiappori2006Divorce Herbst2016Mothers">(<a href="#/references" role="doc-biblioref" onclick="">Chiappori and Weiss 2006</a>; <a href="#/references" role="doc-biblioref" onclick="">Herbst and Kaplan 2016</a>)</span></li>
+<li><code>INC_LOW</code> increased significantly between 2011 and 2016.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 data-number="2.2.4" id="limitations-and-motivations-for-longitudinal-analysis"><span class="header-section-number">2.2.4</span> Limitations and Motivations for Longitudinal analysis</h3>
+<ul>
+<li><p><strong>Challenges for Longitudinal Analysis</strong></p>
+<ul>
+<li><p><strong>Inconsistent Variable Selection</strong>: The selection of variables for the index can vary across different years due to changes in data availability, definitions, or relevance.</p></li>
+<li><p><strong>Reference Value Shift</strong>: The reference value of each variable may change over time due to shifts in data collection methods, definitions, or population characteristics.</p></li>
+<li><p><strong>Spatial Boundary Changes</strong>: Changes in spatial boundaries, such as the merging or splitting of regions, can affect the comparability of data across years. Another issue that arises from the spatial boundary changes is the population distribution.</p></li>
+<li><p><strong>Standardization Issues</strong>: The standardization of variables may vary across years due to changes in data collection methods or definitions. Inconsistent standardization can lead to discrepancies in the index’s representation of socio-economic status over time.</p></li>
+<li><p><strong>Pattern Shift</strong>: The underlying patterns of socio-economic status may shift over time due to changes in economic conditions, social policies, or population characteristics. In detail, some variables may have different importance in different years, which may lead to the different interpretation of the index.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<ul>
+<li><strong>Motivations</strong>: In response to these challenges, we aim to develop an index that can longitudinally capture socio-economic status variance in Australia
+<ul>
+<li><strong>Consistency</strong>: Based on the framework of the SEIFA as Australia provide one of the most comprehensive socio-economic indices with technical details and data availability and SEIFA is widely used in the research community with clear and transparent methodology</li>
+<li><strong>Comparability</strong>: The new index LIRSD and WLIRSD should be able to comparing with the traditional widely used SEIFA index, and can be used to track the socio-economic status of areas over time</li>
+<li><strong>Secondary Finding</strong>: Analysis the potential role of the second principal component of the constructed index</li>
+</ul></li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable" data-number="2.3">
+<h2><span class="header-section-number">2.3</span> References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-SEIFACorrespondences" class="csl-entry" role="listitem">
+ABS. 2021. <span>“Correspondences.”</span> Australian Bureau of Statistics.
+</div>
+<div id="ref-Chiappori2006Divorce" class="csl-entry" role="listitem">
+Chiappori, P., and Y. Weiss. 2006. <span>“Divorce, Remarriage, and Welfare: A General Equilibrium Approach.”</span> <em>Journal of the European Economic Association</em> 4: 415–26. <a href="https://doi.org/10.1162/JEEA.2006.4.2-3.415">https://doi.org/10.1162/JEEA.2006.4.2-3.415</a>.
+</div>
+<div id="ref-Herbst2016Mothers" class="csl-entry" role="listitem">
+Herbst, Anat, and Amit Kaplan. 2016. <span>“Mothers’ Postdivorce Earnings in the Context of Welfare Policy Change.”</span> <em>International Journal of Social Welfare</em> 25: 222–34. <a href="https://doi.org/10.1111/IJSW.12205">https://doi.org/10.1111/IJSW.12205</a>.
+</div>
+<div id="ref-Mazziotta2019Use" class="csl-entry" role="listitem">
+Mazziotta, M., and Adriano Pareto. 2019. <span>“Use and Misuse of PCA for Measuring Well-Being.”</span> <em>Social Indicators Research</em> 142: 451–76. <a href="https://doi.org/10.1007/S11205-018-1933-0">https://doi.org/10.1007/S11205-018-1933-0</a>.
+</div>
+<div id="ref-SEIFA2021" class="csl-entry" role="listitem">
+Statistics, Australian Bureau of. 2023. <span>“Socio-Economic Indexes for Areas (SEIFA): Technical Paper 2021.”</span> Australian Bureau of Statistics.
+</div>
+<div id="ref-SEIFA2001" class="csl-entry" role="listitem">
+Trewin, Dennis. 2004. <span>“Census of Population and Housing: Socio-Economic Indexes for Area’s (SEIFA) - Technical Paper 2001.”</span> Australian Bureau of Statistics.
+</div>
+<div id="ref-Tucker2008Enduring" class="csl-entry" role="listitem">
+Tucker, M., and A. Crouter. 2008. <span>“Enduring Couples in Varying Sociocultural Contexts.”</span> <em>Family Relations</em> 57: 113–16. <a href="https://doi.org/10.1111/J.1741-3729.2008.00487.X">https://doi.org/10.1111/J.1741-3729.2008.00487.X</a>.
+</div>
+<div id="ref-Zagorski1986Demographic" class="csl-entry" role="listitem">
+Zagórski, K. 1986. <span>“Demographic Characteristics, Work Complexity and Economic Setting as Social Status Determinants.”</span> <em>Social Indicators Research</em> 18: 175–92. <a href="https://doi.org/10.1007/BF00317547">https://doi.org/10.1007/BF00317547</a>.
+</div>
+</div>
 
 </section></section>
     </div>
@@ -439,7 +1310,6 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
   <script src="final_seminar_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="final_seminar_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="final_seminar_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="final_seminar_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="final_seminar_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -460,8 +1330,7 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -615,7 +1484,7 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
         margin: 0.1,
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
           RevealNotes,
           RevealSearch,
@@ -658,6 +1527,82 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
         });
 
     </script>
+
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {

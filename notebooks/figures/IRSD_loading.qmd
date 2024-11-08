@@ -1,0 +1,50 @@
+---
+title: Loading of IRSD
+authors:
+  - name: Mu Li
+    affiliation: School of Demography, Australian National University
+    roles: writing
+    corresponding: true
+    email: mu.li@anu.edu.au
+---
+
+```{r}
+
+#| label: fig-loading
+#| fig-cap: Loadings of Variables on IRSD produced by ABS
+
+# library packages
+library(tidyverse)
+
+# load data
+SEIFA_Loading <- read_csv("data/IRSD_loading.csv") 
+
+# graph 
+
+SEIFA_Loading %>%
+  pivot_longer(3:6,
+               names_to = "Year",
+               values_to = "Loading") %>%
+  mutate(Variables = fct_reorder(Variables, Loading,
+                                 .desc = TRUE, .na_rm = FALSE)) %>%
+  ggplot() +
+  geom_point(aes(x = Loading,
+                 y = Variables,
+                 fill = Year,
+                 size = Year),
+             alpha = 0.65,
+             shape = 21,
+             color = "black") +
+  scale_size_manual(values = c("2006" = 3, 
+                               "2011" = 4.5,
+                               "2016" = 6,
+                               "2021" = 7.5)) +
+  scale_fill_brewer(palette = "YlOrRd") +
+  labs(fill = "Census Year",
+       size = "Census Year",
+       shape = "ss",
+       x = "Loadings") +
+  scale_x_reverse(limits = c(0,-1)) +
+  theme_bw()
+
+```
