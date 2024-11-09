@@ -389,6 +389,53 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 </div>
 
   <p class="date">9th November 2024</p>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#/introduction" id="/toc-introduction"><span class="header-section-number">1</span> Introduction</a>
+<ul>
+<li><a href="#/list-of-contents" id="/toc-list-of-contents"><span class="header-section-number">1.1</span> List of Contents</a></li>
+
+</ul></li>
+<li><a href="#/part-one-constructing-a-socio-economic-index-for-longitudinal-analysis" id="/toc-part-one-constructing-a-socio-economic-index-for-longitudinal-analysis"><span class="header-section-number">2</span> Part One: Constructing a Socio-Economic Index for Longitudinal Analysis</a>
+<ul>
+<li><a href="#/background-and-socio-economic-indices" id="/toc-background-and-socio-economic-indices"><span class="header-section-number">2.1</span> Background and Socio-Economic Indices</a></li>
+<li>
+<ul>
+<li><a href="#/pca-steps" id="/toc-pca-steps"><span class="header-section-number">2.1.1</span> PCA steps</a></li>
+</ul></li>
+<li><a href="#/historical-review-of-the-seifa-irsd" id="/toc-historical-review-of-the-seifa-irsd"><span class="header-section-number">2.2</span> Historical Review of the SEIFA-IRSD</a></li>
+<li>
+<ul>
+<li><a href="#/variable-selection-for-irsd" id="/toc-variable-selection-for-irsd"><span class="header-section-number">2.2.1</span> Variable Selection for IRSD</a></li>
+</ul></li>
+
+
+<li>
+<ul>
+<li><a href="#/geographical-boundary-changes" id="/toc-geographical-boundary-changes"><span class="header-section-number">2.2.2</span> Geographical Boundary Changes</a></li>
+</ul></li>
+
+<li>
+<ul>
+<li><a href="#/loading-of-variables-in-irsd" id="/toc-loading-of-variables-in-irsd"><span class="header-section-number">2.2.3</span> Loading of Variables in IRSD</a></li>
+</ul></li>
+
+<li>
+<ul>
+<li><a href="#/limitations-and-motivations-for-longitudinal-analysis" id="/toc-limitations-and-motivations-for-longitudinal-analysis"><span class="header-section-number">2.2.4</span> Limitations and Motivations for Longitudinal analysis</a></li>
+</ul></li>
+
+<li><a href="#/development-of-the-longitudinal-irsd-l-irsd-and-pc2-index" id="/toc-development-of-the-longitudinal-irsd-l-irsd-and-pc2-index"><span class="header-section-number">2.3</span> Development of the Longitudinal IRSD (L-IRSD) and PC2 Index</a></li>
+<li>
+<ul>
+<li><a href="#/variable-selection-for-l-irsd" id="/toc-variable-selection-for-l-irsd"><span class="header-section-number">2.3.1</span> Variable Selection for L-IRSD</a></li>
+</ul></li>
+<li><a href="#/references" id="/toc-references"><span class="header-section-number">2.4</span> References</a></li>
+</ul></li>
+</ul>
+</nav>
 </section>
 <section>
 <section id="introduction" class="title-slide slide level1 center" data-number="1">
@@ -468,27 +515,12 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 <p>In the case of PCA with weights, the standardized value need to be weighted by the corresponding weight, where the mean and standard deviation are calculated based on the weighted data. Here we list the simple formula for the weighted mean and standard deviation. <span class="math display">
 \bar{y}_{j} = \frac{\sum_{i=1}^{n} w_i Y_{i,j}}{\sum_{i=1}^{n} w_i} \quad \quad s_{j} = \sqrt{\frac{\sum_{i=1}^{n} w_i (Y_{i,j} - \bar{y}_{j})^2}{\sum_{i=1}^{n} w_i}}
 </span></p></li>
-</ol>
-</section>
-<section class="slide level2 scrollable">
-
-<ol start="2" type="1">
 <li><p>Calculate the covariance matrix</p>
 <p>The empirical covariance matrix <span class="math inline">\mathbf{C}</span> is a <span class="math inline">p \times p</span> matrix that captures the pairwise relationships between variables. In the case of PCA with weights, the covariance matrix is computed based on the weighted standardized data: <span class="math display">
 C_{j,k} = \frac{1}{\sum_{i=1}^{n} w_i} \sum_{i=1}^{n} w_i Z_{i,j} Z_{i,k}
 </span></p></li>
-</ol>
-</section>
-<section class="slide level2 scrollable">
-
-<ol start="3" type="1">
 <li><p>Eigenvalue Decomposition</p>
 <p>The third step in PCA is to perform an eigenvalue decomposition of the covariance matrix. The eigenvalue decomposition of the covariance matrix <span class="math inline">\mathbf{C}</span> yields a set of eigenvectors and eigenvalues. The eigenvectors represent the directions of maximum variance in the data, while the eigenvalues represent the amount of variance explained by each eigenvector. The eigenvectors are arranged in descending order based on their corresponding eigenvalues. Here we denote the <span class="math inline">k</span>th eigenvector as <span class="math inline">\mathbf{v}_{k}</span>, and the <span class="math inline">k</span>th eigenvalue is denoted as <span class="math inline">\lambda_{k}</span>.</p></li>
-</ol>
-</section>
-<section class="slide level2 scrollable">
-
-<ol start="4" type="1">
 <li><p>Principal Component Scores</p>
 <p>The fourth step in PCA is to compute the principal component scores. The principal component scores represent the linear combinations of the original variables that capture the maximum amount of variance in the data. The <span class="math inline">k</span>th principal component score for the <span class="math inline">i</span>th observation can be calculated as: <span class="math display">
 PC_{i,k} = \sum_{j=1}^{p} \alpha_{j,k} Z_{i,j}
@@ -1106,7 +1138,7 @@ PC_{i,k} = \sum_{j=1}^{p} \alpha_{j,k} Z_{i,j}
 <section class="slide level2">
 
 <p><strong>Number of Valid Areas in Constructing Index</strong></p>
-<p>When comparing the index, all index will be converted into the same geographical standard, which is SA2 ASGS 2021. The conversion process is done by population-weighted average provided by correspondence files from ABS <span class="citation" data-cites="SEIFACorrespondences">(<a href="#/references" role="doc-biblioref" onclick="">ABS 2021</a>)</span></p>
+<p>When comparing the index, all index will be converted into the same geographical standard, which is SA2 ASGS 2021. The conversion process is done by population-weighted average provided by correspondence files from ABS <span class="citation" data-cites="SEIFACorrespondences">(<a href="#/references" role="doc-biblioref" onclick="">ABS 2021a</a>)</span></p>
 <div style="font-size: 0.6em;">
 <table class="caption-top" style="width:100%;">
 <colgroup>
@@ -1265,17 +1297,274 @@ PC_{i,k} = \sum_{j=1}^{p} \alpha_{j,k} Z_{i,j}
 </ul></li>
 </ul>
 </section>
-<section id="references" class="slide level2 smaller scrollable" data-number="2.3">
-<h2><span class="header-section-number">2.3</span> References</h2>
+<section id="development-of-the-longitudinal-irsd-l-irsd-and-pc2-index" class="slide level2" data-number="2.3">
+<h2><span class="header-section-number">2.3</span> Development of the Longitudinal IRSD (L-IRSD) and PC2 Index</h2>
+<ul>
+<li><p><strong>Trade-off between static and dynamic variable weights <span class="citation" data-cites="liborio2022principal">(<a href="#/references" role="doc-biblioref" onclick="">Libório et al. 2022</a>)</span></strong></p>
+<ul>
+<li><p><strong>Single Indicator Approach</strong>: A single weights is determined and applied across all time period, which prioritize comparability, assuming the importance of variable on SES remains stable.</p></li>
+<li><p><strong>Multiple Indicator Approach</strong>: Weights are determined for each time period, which prioritize the capturing of the changing chracteristics of SES over time. But hard to compare the index across different time period.</p></li>
+<li><p><strong>Structured Indicator Approach</strong>: This method was designed to maintain both dynamic socio-economic context representation and temporal comparability when comparing two time periods. When there are only two time periods, two indicators are created. The first indicator is constructed using PCA as usual, and the second indicator is built using the eigenvalue from the first PCA model and the standardized variables from the second period.</p></li>
+</ul></li>
+<li><p>The ABS clearly adapted the <strong>Multiple Indicator Approach</strong> when producing SEIFA</p></li>
+<li><p><strong>Structured Indicator Approach</strong> is not suitable here as when there are more than two time periods, the number of indicators will increase exponentially. And is is only recommended when the explained variance of the first principal component is greater than 50% <span class="citation" data-cites="liborio2022principal">(<a href="#/references" role="doc-biblioref" onclick="">Libório et al. 2022</a>)</span>.</p></li>
+<li><p>We choose the <strong>Single Indicator Approach</strong> for the L-IRSD and WL-IRSD, as it aligns with our objective.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 data-number="2.3.1" id="variable-selection-for-l-irsd"><span class="header-section-number">2.3.1</span> Variable Selection for L-IRSD</h3>
+<div style="font-size: 0.6em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Dimension</strong></th>
+<th><strong>Variable</strong></th>
+<th style="text-align: center;"><strong>06</strong></th>
+<th style="text-align: center;"><strong>11</strong></th>
+<th style="text-align: center;"><strong>16</strong></th>
+<th style="text-align: center;"><strong>21</strong></th>
+<th style="text-align: center;"><strong>(W)LIRSD</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Income</strong></td>
+<td>INC_LOW</td>
+<td style="text-align: center;">-0.76</td>
+<td style="text-align: center;">-0.76</td>
+<td style="text-align: center;">-0.91</td>
+<td style="text-align: center;">-0.87</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td><strong>Education</strong></td>
+<td>NOQUAL</td>
+<td style="text-align: center;">-0.76</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>NOYR12ORHIGHER</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">-0.75</td>
+<td style="text-align: center;">-0.77</td>
+<td style="text-align: center;">-0.75</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>NOSCHOOL</td>
+<td style="text-align: center;">-0.44</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>NOEDU</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">-0.44</td>
+<td style="text-align: center;">-0.43</td>
+<td style="text-align: center;">-0.47</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td><strong>Employment</strong></td>
+<td>UNEMPLOYED</td>
+<td style="text-align: center;">-0.7</td>
+<td style="text-align: center;">-0.74</td>
+<td style="text-align: center;">-0.75</td>
+<td style="text-align: center;">-0.68</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td><strong>Occupation</strong></td>
+<td>OCC_LABOUR</td>
+<td style="text-align: center;">-0.76</td>
+<td style="text-align: center;">-0.75</td>
+<td style="text-align: center;">-0.74</td>
+<td style="text-align: center;">-0.68</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>OCC_DRIVERS</td>
+<td style="text-align: center;">-0.51</td>
+<td style="text-align: center;">-0.52</td>
+<td style="text-align: center;">-0.54</td>
+<td style="text-align: center;">-0.51</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>OCC_SERVICE_L</td>
+<td style="text-align: center;">-0.44</td>
+<td style="text-align: center;">-0.5</td>
+<td style="text-align: center;">-0.53</td>
+<td style="text-align: center;">-0.45</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="even">
+<td><strong>Housing</strong></td>
+<td>RENT_SOCIAL</td>
+<td style="text-align: center;">-0.7</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>LOWRENT</td>
+<td style="text-align: center;">-0.67</td>
+<td style="text-align: center;">-0.73</td>
+<td style="text-align: center;">-0.73</td>
+<td style="text-align: center;">-0.71</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td><strong>Miscellaneous</strong></td>
+<td>NONET</td>
+<td style="text-align: center;">-0.85</td>
+<td style="text-align: center;">-0.81</td>
+<td style="text-align: center;">-0.79</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>ONEPARENT</td>
+<td style="text-align: center;">-0.67</td>
+<td style="text-align: center;">-0.71</td>
+<td style="text-align: center;">-0.67</td>
+<td style="text-align: center;">-0.58</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>DISABILITYU70</td>
+<td style="text-align: center;">-0.61</td>
+<td style="text-align: center;">-0.66</td>
+<td style="text-align: center;">-0.67</td>
+<td style="text-align: center;">-0.63</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>NOCAR</td>
+<td style="text-align: center;">-0.57</td>
+<td style="text-align: center;">-0.56</td>
+<td style="text-align: center;">-0.49</td>
+<td style="text-align: center;">-0.43</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>INDIGENOUS</td>
+<td style="text-align: center;">-0.52</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>OVERCROWD</td>
+<td style="text-align: center;">-0.52</td>
+<td style="text-align: center;">-0.52</td>
+<td style="text-align: center;">-0.46</td>
+<td style="text-align: center;">-0.51</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>DIVORCED</td>
+<td style="text-align: center;">-0.51</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>SEPDIVORCED</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">-0.54</td>
+<td style="text-align: center;">-0.55</td>
+<td style="text-align: center;">-0.51</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>ENGLISHPOOR</td>
+<td style="text-align: center;">-0.33</td>
+<td style="text-align: center;">-0.34</td>
+<td style="text-align: center;">-0.3</td>
+<td style="text-align: center;">-0.35</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>CHILDJOBLESS</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">-0.85</td>
+<td style="text-align: center;">-0.83</td>
+<td style="text-align: center;">-0.78</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td><strong>Total Number of Variables</strong></td>
+<td></td>
+<td style="text-align: center;"><strong>17</strong></td>
+<td style="text-align: center;"><strong>16</strong></td>
+<td style="text-align: center;"><strong>16</strong></td>
+<td style="text-align: center;"><strong>15</strong></td>
+<td style="text-align: center;"><strong>11</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>Data obtained from <em>TableBuilder</em> from the ABS <span class="citation" data-cites="TableBuilder">(<a href="#/references" role="doc-biblioref" onclick="">ABS 2021b</a>)</span>.</p>
+<ul>
+<li><code>INC_LOW</code> and “LOWRENT` are excluded from as the reference value of these variables can not be customized in the <em>TableBuilder</em></li>
+<li><code>OVERCROWD</code> is excluded since it is not accessible in the 2006 and 2011</li>
+<li><code>CHILDJOBLESS</code> is excluded since it is not accessible in the 2006</li>
+</ul></li>
+<li><p>This careful exclusion strategy is essential to maintaining the index’s longitudinal consistency and robustness, even in light of certain data unavailability. Nevertheless, keeping there eleven variables in the L-IRSD ensures that the index remains comprehensive and representative of socio-economic status across different periods.</p></li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable" data-number="2.4">
+<h2><span class="header-section-number">2.4</span> References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-SEIFACorrespondences" class="csl-entry" role="listitem">
-ABS. 2021. <span>“Correspondences.”</span> Australian Bureau of Statistics.
+ABS. 2021a. <span>“Correspondences.”</span> Australian Bureau of Statistics.
+</div>
+<div id="ref-TableBuilder" class="csl-entry" role="listitem">
+———. 2021b. <span>“TableBuilder.”</span> Australian Bureau of Statistics. <a href="https://www.abs.gov.au/statistics/microdata-tablebuilder/tablebuilder">https://www.abs.gov.au/statistics/microdata-tablebuilder/tablebuilder</a>.
 </div>
 <div id="ref-Chiappori2006Divorce" class="csl-entry" role="listitem">
 Chiappori, P., and Y. Weiss. 2006. <span>“Divorce, Remarriage, and Welfare: A General Equilibrium Approach.”</span> <em>Journal of the European Economic Association</em> 4: 415–26. <a href="https://doi.org/10.1162/JEEA.2006.4.2-3.415">https://doi.org/10.1162/JEEA.2006.4.2-3.415</a>.
 </div>
 <div id="ref-Herbst2016Mothers" class="csl-entry" role="listitem">
 Herbst, Anat, and Amit Kaplan. 2016. <span>“Mothers’ Postdivorce Earnings in the Context of Welfare Policy Change.”</span> <em>International Journal of Social Welfare</em> 25: 222–34. <a href="https://doi.org/10.1111/IJSW.12205">https://doi.org/10.1111/IJSW.12205</a>.
+</div>
+<div id="ref-liborio2022principal" class="csl-entry" role="listitem">
+Libório, Matheus Pereira, Oseias da Silva Martinuci, Alexei Manso Correa Machado, Thiago Melo Machado-Coelho, Sandro Laudares, and Patrı́cia Bernardes. 2022. <span>“Principal Component Analysis Applied to Multidimensional Social Indicators Longitudinal Studies: Limitations and Possibilities.”</span> <em>GeoJournal</em> 87 (3): 1453–68.
 </div>
 <div id="ref-Mazziotta2019Use" class="csl-entry" role="listitem">
 Mazziotta, M., and Adriano Pareto. 2019. <span>“Use and Misuse of PCA for Measuring Well-Being.”</span> <em>Social Indicators Research</em> 142: 451–76. <a href="https://doi.org/10.1007/S11205-018-1933-0">https://doi.org/10.1007/S11205-018-1933-0</a>.

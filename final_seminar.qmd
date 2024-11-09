@@ -22,6 +22,7 @@ date: last-modified
 date-format: "D[th] MMMM YYYY"
 execute:
   freeze: auto
+toc: true
 ---
 
 # Introduction
@@ -92,9 +93,6 @@ $$
     \bar{y}_{j} = \frac{\sum_{i=1}^{n} w_i Y_{i,j}}{\sum_{i=1}^{n} w_i} \quad \quad s_{j} = \sqrt{\frac{\sum_{i=1}^{n} w_i (Y_{i,j} - \bar{y}_{j})^2}{\sum_{i=1}^{n} w_i}}
 $$ 
 
-    
----
-
 2. Calculate the covariance matrix
 
     The empirical covariance matrix $\mathbf{C}$ is a $p \times p$ matrix that captures the pairwise relationships between variables. 
@@ -103,13 +101,9 @@ $$
     C_{j,k} = \frac{1}{\sum_{i=1}^{n} w_i} \sum_{i=1}^{n} w_i Z_{i,j} Z_{i,k}
 $$
 
----
-
 3. Eigenvalue Decomposition
 
     The third step in PCA is to perform an eigenvalue decomposition of the covariance matrix. The eigenvalue decomposition of the covariance matrix $\mathbf{C}$ yields a set of eigenvectors and eigenvalues. The eigenvectors represent the directions of maximum variance in the data, while the eigenvalues represent the amount of variance explained by each eigenvector. The eigenvectors are arranged in descending order based on their corresponding eigenvalues. Here we denote the $k$th eigenvector as $\mathbf{v}_{k}$, and the $k$th eigenvalue is denoted as $\lambda_{k}$.
-
----
 
 4. Principal Component Scores
 
@@ -403,6 +397,70 @@ SEIFA_Loading %>%
 
 
 ## Development of the Longitudinal IRSD (L-IRSD) and PC2 Index
+
+- **Trade-off between static and dynamic variable weights [@liborio2022principal]**
+
+    - **Single Indicator Approach**: A single weights is determined and applied across all time period, which prioritize comparability, assuming the importance of variable on SES remains stable.
+    
+    - **Multiple Indicator Approach**: Weights are determined for each time period, which prioritize the capturing of the changing chracteristics of SES over time. But hard to compare the index across different time period.
+    
+    - **Structured Indicator Approach**: This method was designed to maintain both dynamic socio-economic context representation and temporal comparability when comparing two time periods. When there are only two time periods, two indicators are created. The first indicator is constructed using PCA as usual, and the second indicator is built using the eigenvalue from the first PCA model and the standardized variables from the second period.
+
+- The ABS clearly adapted the **Multiple Indicator Approach** when producing SEIFA
+
+- **Structured Indicator Approach** is not suitable here as when there are more than two time periods, the number of indicators will increase exponentially. And is is only recommended when the explained variance of the first principal component is greater than 50% [@liborio2022principal].
+
+- We choose the **Single Indicator Approach** for the L-IRSD and WL-IRSD, as it aligns with our objective.
+
+
+---
+### Variable Selection for L-IRSD
+
+<div style="font-size: 0.65em;">
+
+| **Dimension**   | **Variable**        | **06** | **11** | **16** | **21** | **(W)LIRSD** |
+|-----------------|---------------------|:------:|:------:|:------:|:------:|:---------:|
+| **Income**      | INC\_LOW            | -0.76  | -0.76  | -0.91  | -0.87  |           |
+| **Education**   | NOQUAL              | -0.76  |        |        |        | Y         |
+|                 | NOYR12ORHIGHER      |        | -0.75  | -0.77  | -0.75  |           |
+|                 | NOSCHOOL            | -0.44  |        |        |        | Y         |
+|                 | NOEDU               |        | -0.44  | -0.43  | -0.47  |           |
+| **Employment**  | UNEMPLOYED          | -0.7   | -0.74  | -0.75  | -0.68  | Y         |
+| **Occupation**  | OCC\_LABOUR         | -0.76  | -0.75  | -0.74  | -0.68  | Y         |
+|                 | OCC\_DRIVERS        | -0.51  | -0.52  | -0.54  | -0.51  | Y         |
+|                 | OCC\_SERVICE\_L     | -0.44  | -0.5   | -0.53  | -0.45  | Y         |
+| **Housing**     | RENT\_SOCIAL        | -0.7   |        |        |        |           |
+|                 | LOWRENT             | -0.67  | -0.73  | -0.73  | -0.71  |           |
+| **Miscellaneous** | NONET             | -0.85  | -0.81  | -0.79  |        |           |
+|                 | ONEPARENT           | -0.67  | -0.71  | -0.67  | -0.58  | Y         |
+|                 | DISABILITYU70       | -0.61  | -0.66  | -0.67  | -0.63  | Y         |
+|                 | NOCAR               | -0.57  | -0.56  | -0.49  | -0.43  | Y         |
+|                 | INDIGENOUS          | -0.52  |        |        |        |           |
+|                 | OVERCROWD           | -0.52  | -0.52  | -0.46  | -0.51  |           |
+|                 | DIVORCED            | -0.51  |        |        |        | Y         |
+|                 | SEPDIVORCED         |        | -0.54  | -0.55  | -0.51  |           |
+|                 | ENGLISHPOOR         | -0.33  | -0.34  | -0.3   | -0.35  | Y         |
+|                 | CHILDJOBLESS        |        | -0.85  | -0.83  | -0.78  |           |
+| **Total Number of Variables** |       | **17** | **16** | **16** | **15** | **11**    |
+
+</div>
+
+- Data obtained from *TableBuilder* from the ABS [@TableBuilder].
+
+    - `INC_LOW` and "LOWRENT` are excluded from as the reference value of these variables can not be customized in the *TableBuilder*
+    - `OVERCROWD` is excluded since it is not accessible in the 2006 and 2011
+    - `CHILDJOBLESS` is excluded since it is not accessible in the 2006
+
+- This careful exclusion strategy is essential to maintaining the index’s longitudinal consistency and robustness, even in light of certain data unavailability. Nevertheless, keeping there eleven variables in the L-IRSD ensures that the index remains comprehensive and representative of socio-economic status across different periods.
+
+
+---
+
+### Alignment of Geographical Boundaries
+
+
+
+
 
 
 
