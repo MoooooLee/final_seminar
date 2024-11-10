@@ -870,21 +870,27 @@ increases or decreases are labeled. The statistical significance of the APC calc
 - The spatio-temporal models indicate that (W)LIRSD is more sensitive to socio-economic status across different periods than IRSD. The combination of (W)LIRSD and PC2 performs even better, demonstrating the new index's ability to capture socio-economic status variations over time in applications
 
 
-# Part Two: 
+# Part Two: Bivariate Bayesian Hierarchical Modeling with Copula-based Spatial Dependence Using Conditional Autoregressive Frameworks
+
+## Backgrounds
+
+- Disease mapping has become a critical tool for identifying high-risk areas, tracking disease trends, and understanding disparities within and across populations, which requires the development of spatial models [@persaud2021united].
+
+- Bayesian hierarchical models (BHMs) are a popular choice for disease mapping due to their ability to account for spatial dependence, unobserved heterogeneity, and measurement error. However, bivariate BHMs are less common, despite the importance of understanding the relationship between two diseases or health outcomes.
+    - The spatial dependence in BHMs is often modeled using conditional autoregressive (CAR) priors, as it assumes that near things are more related.
+    - The copula function is used to model the joint distribution of two random variables, which can capture the dependence structure between the two variables. Traditional spatial models only use bivariate normal distribution to model the joint distribution, which may not be flexible enough to capture the complex dependence structure between two diseases.
 
 
+## Reviews on Bivariate BHMs, Spatial Dependence, and Copula Functions
+
+- **Bayesian Hierarchical Models (BHMs)**: Bayesian models can be complex and flexible (than frequentest models) as they can incorporate prior information, can (always) be fitted by Markov Chain Monte Carlo (MCMC) methods.
+
+- **BHM with CAR Priors**: Spatial effects are the effects of the location of the area on the outcome, where near areas are more related. The CAR prior is a popular choice for spatial effects in BHMs, as it can capture the spatial dependence between areas by assuming the conditional distribution of the outcome in one area depends on the outcomes in neighboring areas.
+
+- **Copulas**: Copulas are a powerful tool for modeling the joint distribution of two or more random variables by decoupling the marginal distributions from the dependence structure.
 
 
-
-
-
-
-
-
-
-
-
-
+### Bayesian Hierarchical Models
 
 
 
