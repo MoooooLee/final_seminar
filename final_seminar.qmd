@@ -7,13 +7,13 @@ format:
     width: 1920
     height: 1080
     chalkboard: false
-    auto-stretch: true
+    auto-stretch: false
+    slide-level: 3
     html-math-method: katex
     navigation-mode: vertical
-    scrollable: true
-    slide-level: 4
     fig-cap-location: bottom
     tbl-cap-location: bottom
+    scrollable: true
 number-sections: true
 number-depth: 3
 author:
@@ -26,6 +26,7 @@ date-format: "D[th] MMMM YYYY"
 execute:
   freeze: auto
 toc: true
+toc-depth: 2
 ---
 
 
@@ -49,47 +50,6 @@ To measure socio-economic status is a complex task, as it is a multidimensional 
 - Principal Component Analysis (PCA) is a common method to construct composite indices
 
 When given multiple indicators of socio-economic status, PCA can be used to construct a composite index by providing a linear combination of the indicators that maximizes the variance of the data. The first principal component is often used as the composite index, as it captures the most variation in the data, where this variation is assumed to be related to socio-economic status [@Mazziotta2019Use].
-
-
-### PCA steps
-
-PCA is a statistical method that can be used to reduce the dimensional of a dataset by transforming the data into a new set of uncorrelated variables called principal components.
-
-1. Standardize the data
-$$
-        Z_{i,j} = \frac{Y_{i,j} - \bar{y}_{j}}{s_j}
-$$
-
-    In the case of PCA with weights, the standardized value need to be weighted by the corresponding weight, where the mean and standard deviation are calculated based on the weighted data. Here we list the simple formula for the weighted mean and standard deviation. 
-$$
-    \bar{y}_{j} = \frac{\sum_{i=1}^{n} w_i Y_{i,j}}{\sum_{i=1}^{n} w_i} \quad \quad s_{j} = \sqrt{\frac{\sum_{i=1}^{n} w_i (Y_{i,j} - \bar{y}_{j})^2}{\sum_{i=1}^{n} w_i}}
-$$ 
-
-2. Calculate the covariance matrix
-
-    The empirical covariance matrix $\mathbf{C}$ is a $p \times p$ matrix that captures the pairwise relationships between variables. 
-    In the case of PCA with weights, the covariance matrix is computed based on the weighted standardized data:
-$$
-    C_{j,k} = \frac{1}{\sum_{i=1}^{n} w_i} \sum_{i=1}^{n} w_i Z_{i,j} Z_{i,k}
-$$
-
-3. Eigenvalue Decomposition
-
-    The third step in PCA is to perform an eigenvalue decomposition of the covariance matrix. The eigenvalue decomposition of the covariance matrix $\mathbf{C}$ yields a set of eigenvectors and eigenvalues. The eigenvectors represent the directions of maximum variance in the data, while the eigenvalues represent the amount of variance explained by each eigenvector. The eigenvectors are arranged in descending order based on their corresponding eigenvalues. Here we denote the $k$th eigenvector as $\mathbf{v}_{k}$, and the $k$th eigenvalue is denoted as $\lambda_{k}$.
-
-4. Principal Component Scores
-
-    The fourth step in PCA is to compute the principal component scores. The principal component scores represent the linear combinations of the original variables that capture the maximum amount of variance in the data. The $k$th principal component score for the $i$th observation can be calculated as: 
-$$
-    PC_{i,k} = \sum_{j=1}^{p} \alpha_{j,k} Z_{i,j}
-$$
-
-    where $\alpha_{j,k}$ is the loading of the $j$th variable on the $k$th principal component, can be calculated from the eigenvectors and eigenvalues. The formula for the loading is: 
-$$
-    \alpha_{j,k} = \sqrt{\lambda_{k}} v_{j,k}
-$$ 
-
-    where $v_{j,k}$ is the $j$th element of the $k$th eigenvector and the $\lambda_{k}$ is the $k$th eigenvalue as we mentioned in the previous step.
 
 
 ## Historical Review of the SEIFA-IRSD
@@ -223,7 +183,7 @@ Among these indexes, the IRSD is regarded as the most established and widely use
 
 :::
 
-#### Remarks on Variable Selection
+**Remarks on Variable Selection**
 
 - **Addition of Variables**
     - `CHILDJOBLESS` was added from 2011, which quantifies the percentage of families with children under age 15 and parents without employment
@@ -295,14 +255,16 @@ When comparing the index, all index will be converted into the same geographical
 
 ### Loading of Variables in IRSD
 
-
 ```{r}
 #| label: fig-loading
 #| fig-cap: "Loading of Variables in IRSD"
 #| fig.width: 10
 #| fig.height: 5
 #| fig.align: center
-#| out.width: 100%
+#| out.width: "100%"
+#| echo: false         # Suppresses code display
+#| warning: false      # Suppresses warnings
+#| message: false      # Suppresses messages
 
 # library packages
 library(tidyverse)
@@ -336,10 +298,10 @@ SEIFA_Loading %>%
        x = "Loadings") +
   scale_x_reverse(limits = c(0,-1)) +
   theme_bw()
-
 ```
 
-#### Remarks on Loading of Variables
+
+**Remarks**
 
 - **Proportion of Variance Explained**
     - IRSD accounted for 39% of the variation among variables in 2006, changing to 44% in 2011, 43% in 2016, and 37% in 2021
@@ -364,7 +326,8 @@ SEIFA_Loading %>%
 
 - **Pattern Shift**: The underlying patterns of socio-economic status may shift over time due to changes in economic conditions, social policies, or population characteristics. In detail, some variables may have different importance in different years, which may lead to the different interpretation of the index.
 
-#### Motivations
+
+**Motivations**
 
 In response to these challenges, we aim to develop an index that can longitudinally capture socio-economic status variance in Australia
 
@@ -384,9 +347,6 @@ In response to these challenges, we aim to develop an index that can longitudina
 - **Multiple Indicator Approach**: Weights are determined for each time period, which prioritize the capturing of the changing chracteristics of SES over time. But hard to compare the index across different time period.
 
 - **Structured Indicator Approach**: This method was designed to maintain both dynamic socio-economic context representation and temporal comparability when comparing two time periods. When there are only two time periods, two indicators are created. The first indicator is constructed using PCA as usual, and the second indicator is built using the eigenvalue from the first PCA model and the standardized variables from the second period.
-
-
-#### Remarks on the Single Indicator Approach
 
 **Choose the Single Indicator Approach for L-IRSD**
 
@@ -695,7 +655,7 @@ Scatter between IRSD and L-IRSD, WLIRSD at SA2
     - The sharpening of trend lines for capital areas suggests that the socio-economic status of these regions has become increasingly polarized over time, with some areas showing notable improvement while others have declined.
     
 
-#### Trend Analysis
+**Trend Analysis**
 
 ::: {#fig-PCA-trend layout-ncol=2}
 
@@ -753,7 +713,8 @@ Following the methodologies of @cramb2018investigation, @li2020bayesian, and @mo
 \end{align*}
 ```
 
-#### Model fit results for Communication Skills and General Knowledge domain
+
+**Model fit results**
 
 <div style="font-size: 0.55em;">
 
@@ -786,9 +747,13 @@ Following the methodologies of @cramb2018investigation, @li2020bayesian, and @mo
 
 - PC2 is more significant in the model than ARIA, suggesting that PC2 may be a more suitable covariate for remoteness. This may be because ARIA is skewed toward major cities, whereas PC2 is more evenly distributed across different levels.
 
-#### Variance and bias trade-off by Taylor Diagram
 
-![Taylor diagrams of estimations in prevalence of childhood developmentally vulnerability in Communication Skills & General Knowledge domain by SA3 in Capital and Non-Capital regions.](notebooks/figures/Model_01/Figure_Taylor_Communication.png){#fig-LIRSD-model01}
+**Variance and bias trade-off by Taylor Diagram**
+
+![Taylor diagrams of estimations in prevalence of childhood developmentally vulnerability in Communication Skills & General Knowledge domain by SA3 in Capital and Non-Capital regions](notebooks/figures/Model_01/Figure_Taylor_Communication.png){#fig-LIRSD-model01 width=80%}
+
+- Combination of (W)LIRSD and PC2 as predictors in the model works best in terms of lower variations while still achieving strong correlation with the observed data on non-capital areas
+
 
 ### Model Comparison II: Spatio-Temporal Models on multiple periods
 
@@ -808,7 +773,7 @@ The Bayesian hierarchical model with spatio-temporal structured random effects w
 \end{align*}
 ```
 
-#### Model fit results
+**Model fit results**
 
 <div style="font-size: 0.55em;">
 
@@ -832,9 +797,80 @@ The Bayesian hierarchical model with spatio-temporal structured random effects w
 | LOOIC            | 34460.99     |               | **33756.56** |               | 33987.54     |                |
 | ELPD             | -17230.5     |               | **-16878.3** |               | -16993.8     |                |
 
+: Estimated regression coefficient, standard deviation parameter, and model information criteria (DIC, WAIC, LOOIC, ELPD) for the developed models M1 to M4 for prevalence of vulnerability in **Communication Skills and General Knowledge** domain {#tbl-model-02-communication}
+
+</div>
+
+- We only show the results of the Communication Skills and General Knowledge domain in @tbl-model-02-communication, and the results of other domains are similar
+
+- (W)LIRSD works better than IRSD, while the combination of (W)LIRSD and PC2 works the best
+
+- This may be because the (W)LIRSD and PC2 are more sensitive to the socio-economic status of the areas in different periods than the IRSD
+
+
+**Variance and bias trade-off by Taylor Diagram**
+
+![Taylor diagrams of estimations in prevalence of childhood developmentally vulnerability in Communication Skills & General Knowledge domain by SA3 in Capital and Non-Capital regions](notebooks/figures/Model_02/I02_Fig_Taylor_Communication.png){#fig-LIRSD-taylor-model02 width=80%}
+
+- The combination of (W)LIRSD and PC2 as predictors in the model works best in terms of lower variations while still achieving strong correlation with the observed data on non-capital areas
+
+**Trend Analysis**
+
+![Trends in prevalence of childhood developmentally vulnerability in Physical Health & Wellbeing and Communication Skills & General Knowledge domains by Greater Capital City Statistical Area (GCCSA)](notebooks/figures/Model_02/F02_Fig_Trend_GCC.png){#fig-LIRSD-trend-model02-all width=70%}
+
+![Trends in prevalence of childhood developmentally vulnerability in Physical Health & Wellbeing and Communication Skills & General Knowledge domains by Greater Capital City Statistical Area (GCCSA)](notebooks/figures/Model_02/F02_Fig_Trend_SA3_ACT.png){#fig-LIRSD-trend-model02-act width=70%}
+
+**Annual Percentage Change**
+
+<div style="font-size: 0.55em;">
+
+| **Region**                       | **2015 - 2018 APC** | **t-value** | **LL**  | **UL**  | **2018 - 2021 APC** | **t-value** | **LL**  | **UL**  |
+|:---------------------------------|:-----------------:|:-------:|:-------:|:-------:|:-----------------:|:-------:|:-------:|:-------:|
+| Australian Capital Territory     | -0.03              | -0.02       | 3.39    | -3.37   | 3.53                 | **2.13**    | 6.78    | 0.28    |
+| Greater Adelaide                 | 0.10               | 0.10        | 2.21    | -1.99   | 0.45                 | 0.43        | 2.51    | -1.55   |
+| Greater Brisbane                 | -1.05              | -1.59       | 0.24    | -2.36   | -2.34                | **-3.44**   | -1.02   | -3.68   |
+| Greater Darwin                   | -1.81              | -0.73       | 3.00    | -6.77   | 8.69                 | **3.60**    | 13.34   | 3.83    |
+| Greater Hobart                   | -2.08              | -0.90       | 2.41    | -6.59   | 0.21                 | 0.09        | 4.82    | -4.30   |
+| Greater Melbourne                | -1.32              | **-2.10**   | -0.07   | -2.57   | 0.80                 | 1.29        | 2.02    | -0.41   |
+| Greater Perth                    | -3.51              | **-4.04**   | -1.82   | -5.26   | 3.00                 | **3.40**    | 4.76    | 1.30    |
+| Greater Sydney                   | -0.57              | -1.02       | 0.52    | -1.65   | 0.90                 | 1.62        | 2.00    | -0.16   |
+| Rest of NSW                      | -0.87              | -1.21       | 0.54    | -2.26   | 2.08                 | **2.90**    | 3.47    | 0.70    |
+| Rest of NT                       | 1.53               | 0.71        | 5.69    | -2.72   | -3.63                | -1.60       | 0.82    | -8.06   |
+| Rest of Qld                      | -1.10              | -1.69       | 0.19    | -2.36   | -1.48                | **-2.22**   | -0.17   | -2.79   |
+| Rest of SA                       | 0.95               | 0.58        | 4.11    | -2.31   | 0.03                 | 0.02        | 3.30    | -3.21   |
+| Rest of Tas.                     | -4.19              | **-2.06**   | -0.26   | -8.24   | 5.30                 | **2.57**    | 9.36    | 1.33    |
+| Rest of Vic.                     | 0.18               | 0.19        | 2.10    | -1.71   | -0.99                | -0.99       | 0.98    | -2.91   |
+| Rest of WA                       | -2.30              | -1.74       | 0.23    | -4.86   | 2.61                 | 1.93        | 5.30    | 0.00    |
+
+: Annual percentage change (APC) estimated by M3 in the prevalence of childhood developmentally vulnerability in Communication Skills & General Knowledge
+in Australia by Greater Capital City Statistical Area. LL and UL denote for the lower and
+upper limits of 95% credibility interval respectively. Significant changes (with |t| > 2.00)
+are shown in bold. {#tbl-model-02-apc}
+
 </div>
 
 
+**Mapping of significant changes**
+
+![The map displays the significant and insignificant changes in prevalence of
+vulnerability in Communication Skills & General Knowledge across Australia and
+capital regions at Statistical Area level 3 (SA3) from 2018 to 2021. SA3s with significant
+increases or decreases are labeled. The statistical significance of the APC calculated on
+95% credibility level.](notebooks/figures/Model_02/H03_Map_Communication_APC_2018-2021.png){#fig-LIRSD-map-model02 width=100%}
+
+
+## Conclusion on Part One
+
+- A historical review of the ABS's IRSD reveals shifts in the socio-economic status norms of areas over time, captured by tracking variable loadings on the IRSD
+
+- The new index, (W)LIRSD, effectively captures changes in socio-economic status over time and reveals different types of socio-economic disadvantage by incorporating PC2
+
+- The combination of (W)LIRSD and PC2 serves as a better predictor of childhood vulnerability than IRSD and ARIA, demonstrating the new index's effectiveness in capturing socio-economic status in applications
+
+- The spatio-temporal models indicate that (W)LIRSD is more sensitive to socio-economic status across different periods than IRSD. The combination of (W)LIRSD and PC2 performs even better, demonstrating the new index's ability to capture socio-economic status variations over time in applications
+
+
+# Part Two: 
 
 
 
@@ -842,7 +878,83 @@ The Bayesian hierarchical model with spatio-temporal structured random effects w
 
 
 
-# References
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Appendix {.unnumbered}
+
+### PCA steps {.unnumbered}
+
+PCA is a statistical method that can be used to reduce the dimensional of a dataset by transforming the data into a new set of uncorrelated variables called principal components.
+
+1. Standardize the data
+$$
+        Z_{i,j} = \frac{Y_{i,j} - \bar{y}_{j}}{s_j}
+$$
+
+    In the case of PCA with weights, the standardized value need to be weighted by the corresponding weight, where the mean and standard deviation are calculated based on the weighted data. Here we list the simple formula for the weighted mean and standard deviation. 
+$$
+    \bar{y}_{j} = \frac{\sum_{i=1}^{n} w_i Y_{i,j}}{\sum_{i=1}^{n} w_i} \quad \quad s_{j} = \sqrt{\frac{\sum_{i=1}^{n} w_i (Y_{i,j} - \bar{y}_{j})^2}{\sum_{i=1}^{n} w_i}}
+$$ 
+
+2. Calculate the covariance matrix
+
+    The empirical covariance matrix $\mathbf{C}$ is a $p \times p$ matrix that captures the pairwise relationships between variables. 
+    In the case of PCA with weights, the covariance matrix is computed based on the weighted standardized data:
+$$
+    C_{j,k} = \frac{1}{\sum_{i=1}^{n} w_i} \sum_{i=1}^{n} w_i Z_{i,j} Z_{i,k}
+$$
+
+3. Eigenvalue Decomposition
+
+    The third step in PCA is to perform an eigenvalue decomposition of the covariance matrix. The eigenvalue decomposition of the covariance matrix $\mathbf{C}$ yields a set of eigenvectors and eigenvalues. The eigenvectors represent the directions of maximum variance in the data, while the eigenvalues represent the amount of variance explained by each eigenvector. The eigenvectors are arranged in descending order based on their corresponding eigenvalues. Here we denote the $k$th eigenvector as $\mathbf{v}_{k}$, and the $k$th eigenvalue is denoted as $\lambda_{k}$.
+
+4. Principal Component Scores
+
+    The fourth step in PCA is to compute the principal component scores. The principal component scores represent the linear combinations of the original variables that capture the maximum amount of variance in the data. The $k$th principal component score for the $i$th observation can be calculated as: 
+$$
+    PC_{i,k} = \sum_{j=1}^{p} \alpha_{j,k} Z_{i,j}
+$$
+
+    where $\alpha_{j,k}$ is the loading of the $j$th variable on the $k$th principal component, can be calculated from the eigenvectors and eigenvalues. The formula for the loading is: 
+$$
+    \alpha_{j,k} = \sqrt{\lambda_{k}} v_{j,k}
+$$ 
+
+    where $v_{j,k}$ is the $j$th element of the $k$th eigenvector and the $\lambda_{k}$ is the $k$th eigenvalue as we mentioned in the previous step.
+
+
+## References {.unnumbered}
 
 ::: {#refs}
 :::
