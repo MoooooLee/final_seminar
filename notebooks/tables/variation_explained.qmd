@@ -1,0 +1,142 @@
+---
+title: Variation Explained by IRSD, LIRSD and WLIRSD
+authors:
+  - name: Mu Li
+    affiliation: School of Demography, Australian National University
+    roles: writing
+    corresponding: true
+    email: mu.li@anu.edu.au
+---
+
+
+```{r}
+#| label: tbl-variationexplained
+#| tbl-cap: "Proportion of Variation Explained by IRSD, LIRSD and WLIRSD"
+#| echo: false         # Suppresses code display
+#| warning: false      # Suppresses warnings
+#| message: false      # Suppresses messages
+
+# library packages
+library(tidyverse)
+library("FactoMineR")
+library(matrixStats)
+library(flextable)
+
+# load data
+PCA_Allin21 <- readRDS("data/A05_PCA_Allin21_new.RDS")
+WPCA_Allin21 <- readRDS("data/A05_WPCA_Allin21_new.RDS")
+
+
+# calculate the proportion of variation explained by IRSD, LIRSD and WLIRSD
+
+FUN_var <- function(input_PCA) {
+  pca_result <- input_PCA
+  urp <- pca_result$call$row.w.init
+  ind_sup <- pca_result$call$ind.sup
+  X <- pca_result$call$X[-pca_result$call$ind.sup,] %>%
+    as_tibble(rownames = NA) %>%
+    mutate(Year = factor(Year)) %>%
+    select(SA2_NAME21, Year, 
+           DISABILITYU70, ENGLISHPOOR, NOCAR, NOEDU, NOYEAR12ORHIGHER, 
+           OCC_DRIVERS, OCC_LABOUR, OCC_SERVICE_L, ONEPARENT, SEPDIVORCED,
+           UNEMPLOYED) %>%
+    bind_cols(URP = pca_result$call$row.w.init) %>%
+    mutate(across(
+      .cols = where(is.numeric) & !all_of("URP"),    # Exclude the weights column
+      .fns = ~ {
+        w_mean <- weighted.mean(., URP, na.rm = TRUE)    # Weighted mean
+        w_sd <- sqrt(sum(URP * (. - w_mean)^2) / sum(URP))   # Weighted standard deviation
+        (. - w_mean) / w_sd  # Scale by subtracting weighted mean and dividing by weighted SD
+      },
+      .names = "scaled_{.col}"  # Naming convention for the scaled columns
+    ))
+  
+  X_var <- X %>%
+    group_by(Year) %>%
+    summarise(across(
+      .cols = starts_with("scaled_"),
+      ~ weightedVar(.,w = URP),
+      .names = "weighted_var_{.col}"     # Rename the output columns
+    )) %>%
+    ungroup() %>%
+    pivot_longer(
+      cols = starts_with("weighted_var_"),
+      names_to = "variable",
+      values_to = "weighted_variance"
+    ) %>%
+    group_by(Year) %>%
+    summarise(
+      weighted_variance = sum(weighted_variance)
+    )
+  
+  PC_var <- pca_result$ind$coord %>%
+    as_tibble(rownames = NA) %>% 
+    rename(PC1 = 1, 
+           PC2 = 2,
+           PC3 = 3,
+           PC4 = 4,
+           PC5 = 5) %>%
+    bind_cols(X) %>%
+    select(SA2_NAME21, URP, Year, PC1, PC2, PC3, PC4, PC5)  %>%
+    group_by(Year) %>%
+    summarise(across(
+      .cols = starts_with("PC"),
+      ~ weightedVar(.,w = URP),
+      .names = "weighted_var_{.col}"     # Rename the output columns
+    )) %>%
+    ungroup() 
+  
+  var_ratio <- PC_var %>%
+    left_join(X_var, by = "Year") %>%
+    mutate(
+      PC1 = weighted_var_PC1 / weighted_variance * 100,
+      PC2 = weighted_var_PC2 / weighted_variance * 100,
+      PC3 = weighted_var_PC3 / weighted_variance * 100,
+      PC4 = weighted_var_PC4 / weighted_variance * 100,
+      PC5 = weighted_var_PC5 / weighted_variance * 100
+    ) %>%
+    select(Year, PC1, PC2) %>%
+    add_row(Year = "Overall",
+            PC1 = pca_result$eig[1, 2],
+            PC2 = pca_result$eig[2, 2])
+}
+
+
+# generate the table
+
+tibble(Year = c("2006", "2011", "2016", "2021"),
+                   PC1 = c(39, 44, 43, 37),
+                   model = "IRSD") %>%
+  bind_rows(FUN_var(PCA_Allin21) %>% 
+  mutate(model = "LIRSD"),
+  FUN_var(WPCA_Allin21) %>% 
+              mutate(model = "WLIRSD")) %>%
+  pivot_longer(
+    cols = c(PC1, PC2),
+    names_to = "PC",
+    values_to = "VarExplained"
+  ) %>%
+  mutate(PC = if_else(PC=="PC1", "", "-PC2"),
+         var = str_c(model, PC)) %>%
+  select(-PC, -model) %>%
+  pivot_wider(
+    names_from = var,
+    values_from = VarExplained
+  ) %>%
+  select(Year, IRSD, LIRSD, WLIRSD, `LIRSD-PC2`, `WLIRSD-PC2`) %>%
+  flextable(.) %>%
+  colformat_double(j = 3:6,
+                   digits = 2,
+                   suffix = "%") %>%
+  colformat_double(j = 2,
+                   digit = 0,
+                   suffix = "%") %>%
+  fontsize(size = 20) %>%
+  fontsize(size = 20, part = "header") %>%
+  bold(part = "header") %>%   
+  padding(padding = 12) %>%
+  autofit()
+```
+
+
+

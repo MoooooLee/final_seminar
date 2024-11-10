@@ -9,9 +9,12 @@ authors:
 ---
 
 ```{r}
-
 #| label: fig-loading
-#| fig-cap: Loadings of Variables on IRSD produced by ABS
+#| fig-cap: "Loading of Variables in IRSD"
+#| fig.width: 10
+#| fig.height: 5
+#| fig.align: center
+#| out.width: 100%
 
 # library packages
 library(tidyverse)
@@ -36,13 +39,12 @@ SEIFA_Loading %>%
              shape = 21,
              color = "black") +
   scale_size_manual(values = c("2006" = 3, 
-                               "2011" = 4.5,
-                               "2016" = 6,
-                               "2021" = 7.5)) +
+                               "2011" = 4,
+                               "2016" = 5,
+                               "2021" = 6)) +
   scale_fill_brewer(palette = "YlOrRd") +
   labs(fill = "Census Year",
        size = "Census Year",
-       shape = "ss",
        x = "Loadings") +
   scale_x_reverse(limits = c(0,-1)) +
   theme_bw()

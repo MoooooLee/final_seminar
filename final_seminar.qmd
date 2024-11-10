@@ -1,6 +1,6 @@
 ---
-title: Bivariate Outcome Small Area Estimation using Bayesian Hierarchical Models
-subtitle: A Methodological Framework for Improved Precision and Efficiency
+title: "Bivariate Outcome Small Area Estimation using Bayesian Hierarchical Models"
+subtitle: "A Methodological Framework for Improved Precision and Efficiency"
 bibliography: ref.bib
 format:
   anu-light-revealjs:
@@ -9,21 +9,25 @@ format:
     chalkboard: false
     auto-stretch: true
     html-math-method: katex
-    self-contained: false
     navigation-mode: vertical
     scrollable: true
+    slide-level: 4
+    fig-cap-location: bottom
+    tbl-cap-location: bottom
 number-sections: true
+number-depth: 3
 author:
   - name: "Mu Li"
   - name: "Supervised by"
   - name: "Dr. Bernard Baffour, Dr. Alice Richardson, Dr. Susanna Cramb"
-institute: School of Demography
+institute: "School of Demography"
 date: last-modified
 date-format: "D[th] MMMM YYYY"
 execute:
   freeze: auto
 toc: true
 ---
+
 
 # Introduction
 
@@ -33,37 +37,6 @@ toc: true
   - The second part addresses the use of advanced statistical models to improve disease mapping and small area estimation, particularly focusing on the challenges of data sparsity and bivariate outcomes.
   
 - **Goal**: Contributions to public health and socio-economic analysis through statistical modeling.
-
-## List of Contents
-
-**Part One: Longitudinal Socio-Economic Index Construction (L-IRSD)**
-    
-   - **Construction of a Longitudinal Socio-Economic Index for Australia**
-      - Backgrounds
-      - Historical review of the SEIFA - limitations and motivations
-      - Development of the Longitudinal IRSD (L-IRSD) and PC2 Index
-      - Validations and comparisons with the SEIFA.
-   
-   - **Application of the L-IRSD in the context of Australia**
-      - Application of the L-IRSD in the context of Australia
-      - Results One - Longitudinal trends and spatial Patterns
-      - Results Two - PC2 index, the second dimension of Socio-Economic disparities
-
----
-
-**Part Two: Bivariate Copula-based Bayesian Hierarchical Models**
-
-   - **Construction of Bivariate Bayesian Hierarchical Models with Copula-based Spatial Effects**
-      - Motivation
-      - Review of Small Area Estimation (SAE) and Disease Mapping by Bayesian Hierarchical Models
-      - Review of Copula Functions
-      - Review of MCMC Algorithms for fitting Bayesian Hierarchical Models
-      - Development of the Bivariate Bayesian Hierarchical Models
-   
-   - **Application and Simulation Study**
-      - Simulation Study
-      - Application to AEDC data
-
 
 # Part One: Constructing a Socio-Economic Index for Longitudinal Analysis
 
@@ -77,7 +50,6 @@ To measure socio-economic status is a complex task, as it is a multidimensional 
 
 When given multiple indicators of socio-economic status, PCA can be used to construct a composite index by providing a linear combination of the indicators that maximizes the variance of the data. The first principal component is often used as the composite index, as it captures the most variation in the data, where this variation is assumed to be related to socio-economic status [@Mazziotta2019Use].
 
----
 
 ### PCA steps
 
@@ -130,9 +102,9 @@ Five indices are produced from 1986 to 1996, where there were two different indi
 
 Among these indexes, the IRSD is regarded as the most established and widely used, as it encompasses all available variables that reflect or measure socio-economic disadvantage [@SEIFA2001]. Furthermore, the IRSD is recognized for its consistency, as it has maintained a nearly identical methodological approach and variables in its construction process across various periods [@SEIFA2001; @SEIFA2021].
 
----
 
 ### Variable Selection for IRSD
+
 ::: {.panel-tabset}
 
 #### 2006
@@ -159,6 +131,8 @@ Among these indexes, the IRSD is regarded as the most established and widely use
 |                   | DIVORCED              | -0.51       | % People aged 15 years and over who are separated or divorced |
 |                   | ENGLISHPOOR           | -0.33       | % People who do not speak English well |
 | **Total Number** |             | **17**      |                           |
+
+: List of Variable for Constructing IRSD 2006 {#tbl-IRSDloading06}
 
 </div>
 
@@ -187,6 +161,8 @@ Among these indexes, the IRSD is regarded as the most established and widely use
 |                 | ENGLISHPOOR          | -0.34       | % People who do not speak English well |
 | **Total Number** | | **16** | |
 
+: List of Variable for Constructing IRSD 2011 {#tbl-IRSDloading11}
+
 </div>
 
 #### 2016
@@ -213,6 +189,8 @@ Among these indexes, the IRSD is regarded as the most established and widely use
 |                 | ENGLISHPOOR          | -0.3        | % People who do not speak English well |
 | **Total Number** | | **16** | |
 
+: List of Variable for Constructing IRSD 2016 {#tbl-IRSDloading16}
+
 </div>
 
 #### 2021
@@ -238,11 +216,14 @@ Among these indexes, the IRSD is regarded as the most established and widely use
 |                 | ENGLISHPOOR          | -0.35       | % People who do not speak English well |
 | **Total Number** | | **15** | |
 
+: List of Variable for Constructing IRSD 2021 {#tbl-IRSDloading21}
+
 </div>
+
 
 :::
 
----
+#### Remarks on Variable Selection
 
 - **Addition of Variables**
     - `CHILDJOBLESS` was added from 2011, which quantifies the percentage of families with children under age 15 and parents without employment
@@ -251,8 +232,6 @@ Among these indexes, the IRSD is regarded as the most established and widely use
     - `RENT_SOCIAL` was removed from 2011, since its skewed distribution and relatively high non-response rate made it less reliable as an indicator of socio-economic status.
     - `INDIGENOUS` was removed from 2011, as it was deemed to be a sensitive variable that could lead to complex interpretations issues.
     - `NONET` was removed from 2021, as it was removed from the Census data collection, since having a fixed Internet connection was no longer a reliable indicator of socio-economic status, as many people now use mobile devices and other ways to access the Internet.
-
----
 
 - **Changes in Variable Definitions**
     - `NOQUAL` was changed to `NOYR12ORHIGHER`, `NOSCHOOL` was changed to `NOEDU` from 2011, to better reflect the educational attainment of the population.
@@ -269,10 +248,10 @@ Among these indexes, the IRSD is regarded as the most established and widely use
 | 2016     | Income between \$1 and \$25,999 (approx. 1st and 2nd deciles)  | Rent less than \$215 per week (excluding \$0 per week) |
 | 2021     | Income between \$1 and \$25,999 (approx. 1st and 2nd deciles)  | Rent less than \$250 per week (excluding \$0 per week) |
 
+: Reference Level of INC_LOW and LOWRENT in Different Waves {#tbl-IRSDref}
+
 </div>
 
-
----
 
 ### Geographical Boundary Changes
 
@@ -288,8 +267,6 @@ Among these indexes, the IRSD is regarded as the most established and widely use
 - **Exclusions of areas with rules**
     - **Non-residential and high non-response rates areas**: such as airports, ports, and military bases
     - **One more phrase of exclusions in 2011, 2016, 2021**: areas with less than 6 denominator in the calculation of the index
-
----
 
 **Number of Valid Areas in Constructing Index**
 
@@ -311,17 +288,21 @@ When comparing the index, all index will be converted into the same geographical
 |                | SA2 ASGC21                 |                                    |                                    |                                    | 2372/2473 (95.92%)               |
 | **Converted**  | SA2 ASGC21                 | 2392/2473 (96.72%)                | 2343/2473 (94.74%)                | 2347/2473 (94.9%)                | 2366/2473 (95.67%)               |
 
+: Number of Valid Areas in Constructing IRSD and L-IRSD {#tbl-valid-areas}
+
 </div>
 
 
----
-
 ### Loading of Variables in IRSD
 
-```{r, fig.width =10, fig.height = 5, fig.align='center', out.width='100%'}
 
-#| label: fig-centered
-#| fig-cap: Loading of Variables in IRSD
+```{r}
+#| label: fig-loading
+#| fig-cap: "Loading of Variables in IRSD"
+#| fig.width: 10
+#| fig.height: 5
+#| fig.align: center
+#| out.width: 100%
 
 # library packages
 library(tidyverse)
@@ -358,10 +339,7 @@ SEIFA_Loading %>%
 
 ```
 
-
-
-
----
+#### Remarks on Loading of Variables
 
 - **Proportion of Variance Explained**
     - IRSD accounted for 39% of the variation among variables in 2006, changing to 44% in 2011, 43% in 2016, and 37% in 2021
@@ -372,39 +350,45 @@ SEIFA_Loading %>%
     - `INC_LOW` increased significantly between 2011 and 2016.
 
 
----
-
 ### Limitations and Motivations for Longitudinal analysis
 
-- **Challenges for Longitudinal Analysis**
+**Challenges for Longitudinal Analysis**
 
-    - **Inconsistent Variable Selection**: The selection of variables for the index can vary across different years due to changes in data availability, definitions, or relevance.
+- **Inconsistent Variable Selection**: The selection of variables for the index can vary across different years due to changes in data availability, definitions, or relevance.
     
-    - **Reference Value Shift**: The reference value of each variable may change over time due to shifts in data collection methods, definitions, or population characteristics.
-    
-    - **Spatial Boundary Changes**: Changes in spatial boundaries, such as the merging or splitting of regions, can affect the comparability of data across years. Another issue that arises from the spatial boundary changes is the population distribution.
-    
-    - **Standardization Issues**: The standardization of variables may vary across years due to changes in data collection methods or definitions. Inconsistent standardization can lead to discrepancies in the index's representation of socio-economic status over time.
-    
-    - **Pattern Shift**: The underlying patterns of socio-economic status may shift over time due to changes in economic conditions, social policies, or population characteristics. In detail, some variables may have different importance in different years, which may lead to the different interpretation of the index.
+- **Reference Value Shift**: The reference value of each variable may change over time due to shifts in data collection methods, definitions, or population characteristics.
 
----
+- **Spatial Boundary Changes**: Changes in spatial boundaries, such as the merging or splitting of regions, can affect the comparability of data across years. Another issue that arises from the spatial boundary changes is the population distribution.
 
-- **Motivations**: In response to these challenges, we aim to develop an index that can longitudinally capture socio-economic status variance in Australia
-    - **Consistency**: Based on the framework of the SEIFA as Australia provide one of the most comprehensive socio-economic indices with technical details and data availability and SEIFA is widely used in the research community with clear and transparent methodology
-    - **Comparability**: The new index LIRSD and WLIRSD should be able to comparing with the traditional widely used SEIFA index, and can be used to track the socio-economic status of areas over time
-    - **Secondary Finding**: Analysis the potential role of the second principal component of the constructed index
+- **Standardization Issues**: The standardization of variables may vary across years due to changes in data collection methods or definitions. Inconsistent standardization can lead to discrepancies in the index's representation of socio-economic status over time.
+
+- **Pattern Shift**: The underlying patterns of socio-economic status may shift over time due to changes in economic conditions, social policies, or population characteristics. In detail, some variables may have different importance in different years, which may lead to the different interpretation of the index.
+
+#### Motivations
+
+In response to these challenges, we aim to develop an index that can longitudinally capture socio-economic status variance in Australia
+
+- **Consistency**: Based on the framework of the SEIFA as Australia provide one of the most comprehensive socio-economic indices with technical details and data availability and SEIFA is widely used in the research community with clear and transparent methodology
+
+- **Comparability**: The new index LIRSD and WLIRSD should be able to comparing with the traditional widely used SEIFA index, and can be used to track the socio-economic status of areas over time
+
+- **Secondary Finding**: Analysis the potential role of the second principal component of the constructed index
 
 
 ## Development of the Longitudinal IRSD (L-IRSD) and PC2 Index
 
-- **Trade-off between static and dynamic variable weights [@liborio2022principal]**
+**Trade-off between static and dynamic variable weights [@liborio2022principal]**
 
-    - **Single Indicator Approach**: A single weights is determined and applied across all time period, which prioritize comparability, assuming the importance of variable on SES remains stable.
-    
-    - **Multiple Indicator Approach**: Weights are determined for each time period, which prioritize the capturing of the changing chracteristics of SES over time. But hard to compare the index across different time period.
-    
-    - **Structured Indicator Approach**: This method was designed to maintain both dynamic socio-economic context representation and temporal comparability when comparing two time periods. When there are only two time periods, two indicators are created. The first indicator is constructed using PCA as usual, and the second indicator is built using the eigenvalue from the first PCA model and the standardized variables from the second period.
+- **Single Indicator Approach**: A single weights is determined and applied across all time period, which prioritize comparability, assuming the importance of variable on SES remains stable.
+
+- **Multiple Indicator Approach**: Weights are determined for each time period, which prioritize the capturing of the changing chracteristics of SES over time. But hard to compare the index across different time period.
+
+- **Structured Indicator Approach**: This method was designed to maintain both dynamic socio-economic context representation and temporal comparability when comparing two time periods. When there are only two time periods, two indicators are created. The first indicator is constructed using PCA as usual, and the second indicator is built using the eigenvalue from the first PCA model and the standardized variables from the second period.
+
+
+#### Remarks on the Single Indicator Approach
+
+**Choose the Single Indicator Approach for L-IRSD**
 
 - The ABS clearly adapted the **Multiple Indicator Approach** when producing SEIFA
 
@@ -413,23 +397,22 @@ SEIFA_Loading %>%
 - We choose the **Single Indicator Approach** for the L-IRSD and WL-IRSD, as it aligns with our objective.
 
 
----
 ### Variable Selection for L-IRSD
 
-<div style="font-size: 0.65em;">
+<div style="font-size: 0.6em;">
 
-| **Dimension**   | **Variable**        | **06** | **11** | **16** | **21** | **(W)LIRSD** |
-|-----------------|---------------------|:------:|:------:|:------:|:------:|:---------:|
-| **Income**      | INC\_LOW            | -0.76  | -0.76  | -0.91  | -0.87  |           |
+| **Dimension** | **Variable**        | **06** | **11** | **16** | **21** | **W/LIRSD** |
+|:---------------:|:-------------------|:------:|:------:|:------:|:------:|:---------:|
+| **Income**      | INC_LOW            | -0.76  | -0.76  | -0.91  | -0.87  |           |
 | **Education**   | NOQUAL              | -0.76  |        |        |        | Y         |
 |                 | NOYR12ORHIGHER      |        | -0.75  | -0.77  | -0.75  |           |
 |                 | NOSCHOOL            | -0.44  |        |        |        | Y         |
 |                 | NOEDU               |        | -0.44  | -0.43  | -0.47  |           |
 | **Employment**  | UNEMPLOYED          | -0.7   | -0.74  | -0.75  | -0.68  | Y         |
-| **Occupation**  | OCC\_LABOUR         | -0.76  | -0.75  | -0.74  | -0.68  | Y         |
-|                 | OCC\_DRIVERS        | -0.51  | -0.52  | -0.54  | -0.51  | Y         |
-|                 | OCC\_SERVICE\_L     | -0.44  | -0.5   | -0.53  | -0.45  | Y         |
-| **Housing**     | RENT\_SOCIAL        | -0.7   |        |        |        |           |
+| **Occupation**  | OCC_LABOUR         | -0.76  | -0.75  | -0.74  | -0.68  | Y         |
+|                 | OCC_DRIVERS        | -0.51  | -0.52  | -0.54  | -0.51  | Y         |
+|                 | OCC_SERVICE_L     | -0.44  | -0.5   | -0.53  | -0.45  | Y         |
+| **Housing**     | RENT_SOCIAL        | -0.7   |        |        |        |           |
 |                 | LOWRENT             | -0.67  | -0.73  | -0.73  | -0.71  |           |
 | **Miscellaneous** | NONET             | -0.85  | -0.81  | -0.79  |        |           |
 |                 | ONEPARENT           | -0.67  | -0.71  | -0.67  | -0.58  | Y         |
@@ -443,22 +426,413 @@ SEIFA_Loading %>%
 |                 | CHILDJOBLESS        |        | -0.85  | -0.83  | -0.78  |           |
 | **Total Number of Variables** |       | **17** | **16** | **16** | **15** | **11**    |
 
+: List of Variables for Constructing IRSD across 2006-2021 {#tbl-variable-list}
+
 </div>
 
-- Data obtained from *TableBuilder* from the ABS [@TableBuilder].
 
-    - `INC_LOW` and "LOWRENT` are excluded from as the reference value of these variables can not be customized in the *TableBuilder*
-    - `OVERCROWD` is excluded since it is not accessible in the 2006 and 2011
-    - `CHILDJOBLESS` is excluded since it is not accessible in the 2006
+Data obtained from *TableBuilder* from the ABS [@TableBuilder].
 
-- This careful exclusion strategy is essential to maintaining the index’s longitudinal consistency and robustness, even in light of certain data unavailability. Nevertheless, keeping there eleven variables in the L-IRSD ensures that the index remains comprehensive and representative of socio-economic status across different periods.
+- `INC_LOW` and `LOWRENT` are excluded from as the reference value of these variables can not be customized in the *TableBuilder*
 
+- `OVERCROWD` is excluded since it is not accessible in the 2006 and 2011
 
----
+- `CHILDJOBLESS` is excluded since it is not accessible in the 2006
 
-### Alignment of Geographical Boundaries
+This careful exclusion strategy is essential to maintaining the index’s longitudinal consistency and robustness, even in light of certain data unavailability. Nevertheless, keeping there eleven variables in the L-IRSD ensures that the index remains comprehensive and representative of socio-economic status across different periods.
 
 
+### Alignment of Geographic Boundaries
+
+We align the raw (count) data from each census wave to the SA2 under the ASGS 2021. The conversion process is done by population-weighted average provided by correspondence files from ABS [@SEIFACorrespondences].
+
+- Explicit guidelines are available for converting data from older geographical standards to the new framework, facilitated by a detailed correspondence table. 
+
+- A significant objective of small area estimation research is to support forecasting the latest geographical standard allows for more accurate projections based on current data. This approach ensures that the L-IRSD is both historically consistent and relevant for future applications.
+
+Exclusion rules after translating the original data to the SA2s under the ASGS 2021 framework
+
+- Omitting areas where any variable has a denominator smaller than 6, which is a logical choice, mirroring the ABS’s own exclusion rule.
+
+
+### Overall Procedure for Constructing L-IRSD
+
+![Flowchart of constructing LIRSD and WLIRSD](notebooks/figures/steps.png){#fig-LIRSD-flowchart}
+
+
+## Results of LIRSD and WLIRSD
+
+Results will be analyzed in four aspects:
+
+- **Proportion of Variation Explained**: The proportion of variation explained by the L-IRSD and WL-IRSD will be compared to the IRSD across different years.
+
+- **Loading of Variables on PC1 and PC2**: The loadings of variables in the L-IRSD and WLIRSD will be compared to the IRSD across different years.
+
+- **Cluster Analysis on areas based on PC1 and PC2**: The clustering of SA2s based on the PC1 and PC2 of the L-IRSD and WLIRSD will be compared to the IRSD across different years.
+
+- **Comparison of (W)L-IRSD with IRSD and Trend Analysis**: The L-IRSD and WLIRSD will be compared to the IRSD across different years.
+
+
+### Proportion of Variation Explained
+
+
+```{r}
+#| label: tbl-variationexplained
+#| tbl-cap: "Proportion of Variation Explained by IRSD, LIRSD and WLIRSD"
+#| echo: false         # Suppresses code display
+#| warning: false      # Suppresses warnings
+#| message: false      # Suppresses messages
+
+# library packages
+library(tidyverse)
+library("FactoMineR")
+library(matrixStats)
+library(flextable)
+
+# load data
+PCA_Allin21 <- readRDS("data/A05_PCA_Allin21_new.RDS")
+WPCA_Allin21 <- readRDS("data/A05_WPCA_Allin21_new.RDS")
+
+
+# calculate the proportion of variation explained by IRSD, LIRSD and WLIRSD
+
+FUN_var <- function(input_PCA) {
+  pca_result <- input_PCA
+  urp <- pca_result$call$row.w.init
+  ind_sup <- pca_result$call$ind.sup
+  X <- pca_result$call$X[-pca_result$call$ind.sup,] %>%
+    as_tibble(rownames = NA) %>%
+    mutate(Year = factor(Year)) %>%
+    select(SA2_NAME21, Year, 
+           DISABILITYU70, ENGLISHPOOR, NOCAR, NOEDU, NOYEAR12ORHIGHER, 
+           OCC_DRIVERS, OCC_LABOUR, OCC_SERVICE_L, ONEPARENT, SEPDIVORCED,
+           UNEMPLOYED) %>%
+    bind_cols(URP = pca_result$call$row.w.init) %>%
+    mutate(across(
+      .cols = where(is.numeric) & !all_of("URP"),    # Exclude the weights column
+      .fns = ~ {
+        w_mean <- weighted.mean(., URP, na.rm = TRUE)    # Weighted mean
+        w_sd <- sqrt(sum(URP * (. - w_mean)^2) / sum(URP))   # Weighted standard deviation
+        (. - w_mean) / w_sd  # Scale by subtracting weighted mean and dividing by weighted SD
+      },
+      .names = "scaled_{.col}"  # Naming convention for the scaled columns
+    ))
+  
+  X_var <- X %>%
+    group_by(Year) %>%
+    summarise(across(
+      .cols = starts_with("scaled_"),
+      ~ weightedVar(.,w = URP),
+      .names = "weighted_var_{.col}"     # Rename the output columns
+    )) %>%
+    ungroup() %>%
+    pivot_longer(
+      cols = starts_with("weighted_var_"),
+      names_to = "variable",
+      values_to = "weighted_variance"
+    ) %>%
+    group_by(Year) %>%
+    summarise(
+      weighted_variance = sum(weighted_variance)
+    )
+  
+  PC_var <- pca_result$ind$coord %>%
+    as_tibble(rownames = NA) %>% 
+    rename(PC1 = 1, 
+           PC2 = 2,
+           PC3 = 3,
+           PC4 = 4,
+           PC5 = 5) %>%
+    bind_cols(X) %>%
+    select(SA2_NAME21, URP, Year, PC1, PC2, PC3, PC4, PC5)  %>%
+    group_by(Year) %>%
+    summarise(across(
+      .cols = starts_with("PC"),
+      ~ weightedVar(.,w = URP),
+      .names = "weighted_var_{.col}"     # Rename the output columns
+    )) %>%
+    ungroup() 
+  
+  var_ratio <- PC_var %>%
+    left_join(X_var, by = "Year") %>%
+    mutate(
+      PC1 = weighted_var_PC1 / weighted_variance * 100,
+      PC2 = weighted_var_PC2 / weighted_variance * 100,
+      PC3 = weighted_var_PC3 / weighted_variance * 100,
+      PC4 = weighted_var_PC4 / weighted_variance * 100,
+      PC5 = weighted_var_PC5 / weighted_variance * 100
+    ) %>%
+    select(Year, PC1, PC2) %>%
+    add_row(Year = "Overall",
+            PC1 = pca_result$eig[1, 2],
+            PC2 = pca_result$eig[2, 2])
+}
+
+
+# generate the table
+
+tibble(Year = c("2006", "2011", "2016", "2021"),
+                   PC1 = c(39, 44, 43, 37),
+                   model = "IRSD") %>%
+  bind_rows(FUN_var(PCA_Allin21) %>% 
+  mutate(model = "LIRSD"),
+  FUN_var(WPCA_Allin21) %>% 
+              mutate(model = "WLIRSD")) %>%
+  pivot_longer(
+    cols = c(PC1, PC2),
+    names_to = "PC",
+    values_to = "VarExplained"
+  ) %>%
+  mutate(PC = if_else(PC=="PC1", "", "-PC2"),
+         var = str_c(model, PC)) %>%
+  select(-PC, -model) %>%
+  pivot_wider(
+    names_from = var,
+    values_from = VarExplained
+  ) %>%
+  select(Year, IRSD, LIRSD, WLIRSD, `LIRSD-PC2`, `WLIRSD-PC2`) %>%
+  flextable(.) %>%
+  colformat_double(j = 3:6,
+                   digits = 2,
+                   suffix = "%") %>%
+  colformat_double(j = 2,
+                   digit = 0,
+                   suffix = "%") %>%
+  fontsize(size = 20) %>%
+  fontsize(size = 20, part = "header") %>%
+  bold(part = "header") %>%   
+  padding(padding = 12) %>%
+  autofit()
+```
+
+- `WLISD` show a higher proportion of variation explained by PC1 compared to `L-IRSD` and `IRSD` across different years, which is consistent with the expectation that the weighted index should better capture the socio-economic status of the areas.
+
+- The proportion of variation explained by PC2 around 20% in `L-IRSD` and `WLIRSD` across different years, which reveals the potential of PC2 in capturing the socio-economic status of the areas.
+
+- The higher value within each year compared to the overall value make sense as the they may have same pattern within each year, but different pattern across different years.
+
+
+### Loading of Variables on PC1 and PC2
+
+::: {#fig-PCA-var layout-ncol=2}
+
+![](notebooks/figures/PCA/A06_PCA_Var.png){#fig-LIRSD-var}
+
+![](notebooks/figures/PCA/B06_WPCA_Var.png){#fig-WLIRSD-var}
+
+Correlation Circle of Variables on PC1 and PC2 for L-IRSD and WLIRSD
+:::
+
+- **Orthogonal Relationship**: PC2 is always orthogonal to PC1, which means that the interpretation of PC2 should be somewhat independent of PC1.
+
+- **PC1 Loading**
+    - All loadings are in the same direction, which is good for the interpretation of the index.
+    - The variables `OCC LABOUR`, `ONEPARENT`, and `DISABILITYU70` show the highest loadings. This is followed closely by
+`UNEMPLOYED` and occupation-related variables like `OCC_DRIVERS` and `OCC_SERVICE_L`.
+    - `NOYEAR12ORHIGHER` and `NOEDU` are moderate
+    - `ENGLISHPOOR` and `NOCAR` have the lowest loadings
+
+- **PC2 Loading**
+    - Some loading are in opposite direction with each other, however, there are **clusters** of variables that have similar loading patterns.
+    -  `ENGLISHPOOR` and `NOCAR` cluster together, revealing a lifestyle or demographic grouping where English proficiency and vehicle ownership are common attributes
+    - `ONEPARENT`, `SEPDIVORCED`, and `DISABILITYU70` cluster together, indicating a socio-economic grouping where single-parent families, divorced individuals, and those with disabilities are prevalent
+    - The above two clusters are in opposite direction in PC2, which means that there are two different types of disadvantage in the socio-economic status occurs in different areas
+    - The diverse between `NOEDU` and `NOYEAR12ORHIGHER` is also interesting, indicating the lack of different level of education may refers to different types of disadvantage in the socio-economic status
+
+
+### Cluster Analysis on areas based on PC1 and PC2
+
+::: {#fig-PCA-ind layout-ncol=2}
+
+![](notebooks/figures/PCA/A06_PCA_Ind.png){#fig-LIRSD-ind}
+
+![](notebooks/figures/PCA/B06_WPCA_Ind.png){#fig-WLIRSD-ind}
+
+Scatter plot of PC1 and PC2 of Observations across SA2s for L-IRSD and WLIRSD
+:::
+
+- **SA2s with High Contribution to PC1:** In PCA analysis, high contribution of PC1 on units means this units was represented by the PC1 well, which we highlight them with label on @fig-LIRSD-ind and @fig-WLIRSD-ind
+    
+    - **TYPE 1:** Functional areas of urban centers, with high proportion of certain occupations and low educational attainment
+    
+    *Elizabeth*, *Smithfield - Elizabeth North*, *Bridge - Gagebrook* and *Logan Central*
+    
+    - **TYPE 2:** Areas with high proportion of first nations people with unique cultural and social characteristics
+    
+    *Yarrabah*, *East Arnhem*, *Yuendumu - Anmatjere* and *Sandover - Plenty*
+    
+    - **TYPE 3:** Areas with high proportion of immigrants with low English proficiency and car ownership
+    
+    *Cabramatta-Lansvale*, *Inala - Richlands*, *Ashcroft - Busby - Miller*, *Smithfield - Elizabeth North*, and *Davoren Park*
+
+- **Capital vs. Non-Capital areas**
+    - Both capital and non-capital areas spread across different levels of PC1, indicating that disadvantage is not limited to only capital or only non-capital areas
+    
+    - However, capital areas tend to have higher PC2 values, indicating a different type of disadvantage compared to non-capital areas
+    
+    - Also, this founding enlighten the importance of PC2 in capturing the urban-rural differences in socio-economic status
+
+
+### Comparison of (W)L-IRSD with IRSD and Trend Analysis
+
+::: {#fig-PCA-compare layout-ncol=2}
+
+![](notebooks/figures/PCA/A07_ScoreCompar_SA2.png){#fig-LIRSD-compare}
+
+![](notebooks/figures/PCA/B07_ScoreCompar_SA2_WPCA.png){#fig-WLIRSD-compare}
+
+Scatter between IRSD and L-IRSD, WLIRSD at SA2
+:::
+
+- Diagonal line represents the scores of IRSD and (W)L-IRSD are the same, and the points above the line means the score of (W)L-IRSD are higher than IRSD, and the points below the line means the score of (W)L-IRSD are lower than IRSD
+
+- **Convergence vs. Divergence**
+    
+    - Trend lines of both capital and non-capital areas nearly converge with diagnal in 2006, but become more and more divergent as time goes on
+    
+    - The flattening of trend lines for non-capital areas suggests that, although these areas still face socio-economic challenges, their level of disadvantage has decreased over time—reflected in improved scores when considered longitudinally.
+    
+    - The sharpening of trend lines for capital areas suggests that the socio-economic status of these regions has become increasingly polarized over time, with some areas showing notable improvement while others have declined.
+    
+
+#### Trend Analysis
+
+::: {#fig-PCA-trend layout-ncol=2}
+
+![](notebooks/figures/PCA/A07_ScoreCompar_GCC.png){#fig-LIRSD-trend}
+
+![](notebooks/figures/PCA/B07_ScoreCompar_GCC_WPCA.png){#fig-WLIRSD-trend}
+
+Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital Cities (GCC) over Years
+:::
+
+- In ACT and Greater Sydney, there is a modest decline in the IRSD, which is not mirrored
+in the (W)LIRSD scores, indicating that the socio-economic status of these areas has improved over time, but the relative level within each time period declined
+
+- In non-capital areas of NT, there is decreasing trend in the IRSD, but increasing trend in the (W)LIRSD, indicating that the socio-economic status of these areas has improved over time, and the relative level within each time period became worse (other areas improved more than these areas)
+
+
+## Applications
+
+- Not only the (W)LIRSD, but also the PC2 of each of them can be used as covariates in the models.
+
+- There are two series of models can be built:
+
+    - **Spatial Models within one period**: 
+    
+    We want to explore the validity of the (W)LIRSD and PC2 in capturing the socio-economic status of areas within one period. The (W)LIRSD will be used as a covariate in the models comparing to use the IRSD. The PC2 will be used as a covariate in the models comparing to use the ARIA index.
+    
+    - **Spatio-Temporal Models across four period**:
+    
+    We want to validate the (W)LIRSD on capturing the socio-economic status of areas across different periods. The (W)LIRSD will be used as a covariate in the models comparing to use the IRSD. No other covariates will be used in the models.
+
+
+### Data
+
+Other than IRSD and (W)LIRSD, two other datasets will be used in the models.
+
+- **The Australia Early Development Census (AEDC)**: The AEDC is a national census of early childhood development in Australia. It provides a snapshot of how children have developed by the time they start their first year of full-time school. It is conducted every three years from 2009, and consists of five domains: `physical health and well-being`, `social competence`, `emotional maturity`, `language and cognitive skills`, and `communication skills and general knowledge`.
+
+- **Accessibility/Remoteness Index of Australia (ARIA)**: The ARIA is a measure of the relative access to services in different parts of Australia. It is based on the road distance to different types of services, such as hospitals, schools, and shopping centers. The ARIA can be grouped into five categories: `major cities`, `inner regional`, `outer regional`, `remote`, and `very remote`. However, in this study, we will use the continuous ARIA index in 2016.
+
+
+### Model Comparison I: Spatial Models within one period
+
+**Model specification**
+
+Following the methodologies of @cramb2018investigation, @li2020bayesian, and @mollie1996bayesian, this study applies a **Bayesian hierarchical model** to smooth observed estimates of childhood vulnerability. This model is specifically designed to account for socio-economic disparities, spatial variations, and unobserved factors that may affect estimate accuracy. We choose **Leroux spatial model** as the spatial structure in the model, which is a popular choice in spatial modeling due to its flexibility and computational efficiency [@leroux2000estimation].
+
+**Model development**
+
+```{=latex}
+\begin{align*}
+    M1: logit(\mathbf{p}) &= \beta_0 + \beta_1 \mathbf{x}_{IRSD} + \mathbf{\phi}\\
+    M2: logit(\mathbf{p}) &= \beta_0 + \beta_1 \mathbf{x}_{IRSD} + \beta_2 \mathbf{x}_{ARIA} + \mathbf{\phi}\\
+    M3: logit(\mathbf{p}) &= \beta_0 + \beta_1 \mathbf{x}_{L-IRSD} + \mathbf{\phi}\\
+    M4: logit(\mathbf{p}) &= \beta_0 + \beta_1 \mathbf{x}_{L-IRSD} + \beta_2 \mathbf{x}_{L-IRSD-PC2} + \mathbf{\phi}
+\end{align*}
+```
+
+#### Model fit results for Communication Skills and General Knowledge domain
+
+<div style="font-size: 0.55em;">
+
+| **Variable**      | **M1 %Mean** | **M1 t-value** | **M2 %Mean** | **M2 t-value** | **M3 %Mean** | **M3 t-value** | **M4 %Mean** | **M4 t-value** |
+|---------------|-----|-----|-----|-----|-----|-----|-----|-----|
+| **Coefficients of Fixed Effects** |  |  |  |  |  |  |  |  |
+| (Intercept)      | 291.34       | **7.45**      | 312.74       | **7.65**      | 136.15       | **4.79**      | 305.92       | **8.82**      |
+| IRSD             | -0.54        | **-13.78**    | -0.56        | **-13.9**     |              |                |              |               |
+| L-IRSD           |              |               |              |               | -0.39        | **-13.58**    | -0.36        | **-13.54**    |
+| ARIA             |              |               | -0.87        | -0.85         |              |                |              |               |
+| L-IRSD-PC2       |              |               |              |               |              |                | -0.2         | **-7.74**     |
+| **Parameters in Random Effects** |  |  |  |  |  |  |  |  |
+| $\tau^2$         | 20.78        | **8.12**      | 20.96        | **8.12**      | 23.65        | **8.32**      | 19.79        | **8.47**      |
+| $\rho$           | 68.43        | **6.23**      | 70.59        | **6.57**      | 73.49        | **7.31**      | 78.78        | **8.7**       |
+| **Information Criteria** |  |  |  |  |  |  |  |  |
+| DIC \& $p_d$     | 2477.9       | 241.79        | 2477.08      | 240.6         | 2476.91      | 244.8         | **2466.41**  | **232.95**    |
+| WAIC \& $p_w$    | 2459.26      | 164.78        | 2458.91      | 164.39        | 2454.91      | 164.3         | **2449.42**  | **160.03**    |
+| LMPL \& loglik   | -1329.61     | -997.16       | -1321.95     | -997.94       | -1329.29     | **-993.65**   | **-1310.09** | -1000.25      |
+| LOOIC            | 2602.21      |               | 2599.71      |               | 2599.96      |               | **2583.77**  |               |
+| ELPD             | -1301.1      |               | -1299.85     |               | -1299.98     |               | **-1291.88** |               |
+
+: Estimated regression coefficient, standard deviation parameter, and model information criteria (DIC, WAIC, LOOIC, ELPD) for the developed models M1 to M4 for prevalence of vulnerability in **Communication Skills and General Knowledge** domain {#tbl-model-01-communication}
+
+</div>
+
+
+- All models were fitted for each of the five AEDC domains, with the best results occurring in the Communication Skills and General Knowledge domain, as shown in @tbl-model-01-communication.
+
+- The results indicate that the (W)LIRSD and PC2 are stronger predictors of childhood vulnerability than the IRSD and ARIA, as reflected by lower DIC, WAIC, and LOOIC values.
+
+- PC2 is more significant in the model than ARIA, suggesting that PC2 may be a more suitable covariate for remoteness. This may be because ARIA is skewed toward major cities, whereas PC2 is more evenly distributed across different levels.
+
+#### Variance and bias trade-off by Taylor Diagram
+
+![Taylor diagrams of estimations in prevalence of childhood developmentally vulnerability in Communication Skills & General Knowledge domain by SA3 in Capital and Non-Capital regions.](notebooks/figures/Model_01/Figure_Taylor_Communication.png){#fig-LIRSD-model01}
+
+### Model Comparison II: Spatio-Temporal Models on multiple periods
+
+**Model specification**
+
+As AEDC is not always matched with the census year, when the spatio-temporal models was built, the IRSD and (W)LIRSD will be used as applied the cubic spline interpolation to the time variable from 2006 to 2021 to match them with the AEDC data in 2009, 2012, 2015, 2018 and 2021.
+
+The Bayesian hierarchical model with spatio-temporal structured random effects will be used to on small area estimation on childhood vulnerability. Random effect will be decomposed into three components: spatially structured, temporally structured, and unstructured random effects [@knorr2000bayesian].
+
+**Model development**
+
+```{=latex}
+\begin{align*}
+    M1: logit(p_{k,t}) &= \beta_0 + \beta_1 \mathbf{x}_{IRSD,k,t} + \mathbf{\phi_k} + \mathbf{\psi_t} + \mathbf{\epsilon_{k,t}} \\
+    M2: logit(p_{k,t}) &= \beta_0 + \beta_1 \mathbf{x}_{L-IRSD,k,t} + \mathbf{\phi_k} + \mathbf{\psi_t} + \mathbf{\epsilon_{k,t}} \\
+    M3: logit(p_{k,t}) &= \beta_0 + \beta_1 \mathbf{x}_{L-IRSD,k,t} + \beta_2 \mathbf{x}_{L-IRSD-PC2,k,t} + \mathbf{\phi_k} + \mathbf{\psi_t} + \mathbf{\epsilon_{k,t}}
+\end{align*}
+```
+
+#### Model fit results
+
+<div style="font-size: 0.55em;">
+
+| **Variable**      | **M1 %Mean** | **M1 t-value** | **M2 %Mean** | **M2 t-value** | **M3 %Mean** | **M3 t-value** |
+|---------------|-----|-----|-----|-----|-----|-----|
+| **Coefficients of Fixed Effects** |  |  |  |  |  |  |
+| (Intercept)      | 222.44       | **8.02**      | 161.42       | **7.84**      | 307.42       | **11.56**      |
+| IRSD             | -0.47        | **-16.9**     |              |               |              |                |
+| L-IRSD           |              |               | -0.41        | **-19.88**    | -0.39        | **-20.12**     |
+| L-IRSD-PC2       |              |               |              |               | -0.16        | **-7.29**      |
+| **Parameters in Random Effects** |  |  |  |  |  |  |
+| $\tau^2_{Sp}$    | 14.97        | **9.28**      | 16.19        | **9.91**      | 12.22        | **9.34**       |
+| $\tau^2_{Te}$    | 0.6          | 1.15          | 0.85         | 1.3           | 0.89         | 1.32           |
+| $\tau^2_{Ind}$   | 2.45         | **13.15**     | 2.16         | **12.52**     | 2.25         | **13.17**      |
+| $\rho_{Sp}$      | 83.1         | **11.26**     | 85.32        | **12.75**     | 88.23        | **14.87**      |
+| $\rho_{Te}$      | 49.94        | 1.92          | 49.39        | 1.89          | 48.45        | 1.85           |
+| **Information Criteria** |  |  |  |  |  |  |
+| DIC \& $p_d$     | 12125.02     | 1002.82       | 12100.06     | 967.12        | **12091.55** | 970.54         |
+| WAIC \& $p_w$    | 12075.75     | 716.76        | 12065.82     | 704.28        | **12047.43** | 699.27         |
+| LMPL \& loglik   | -6351.53     | -5059.69      | -6311.2      | -5082.91      | **-6297.64** | -5075.24       |
+| LOOIC            | 34460.99     |               | **33756.56** |               | 33987.54     |                |
+| ELPD             | -17230.5     |               | **-16878.3** |               | -16993.8     |                |
+
+</div>
 
 
 
@@ -468,10 +842,7 @@ SEIFA_Loading %>%
 
 
 
-
-
-
-## References
+# References
 
 ::: {#refs}
 :::

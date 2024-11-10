@@ -1,0 +1,30 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[t]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lrrrrrr}
+\hline
+\multicolumn{1}{c}{\multirow{2}{*}{Variable}} & \multicolumn{2}{c}{M1} & \multicolumn{2}{c}{M2} & \multicolumn{2}{c}{M3} \\
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{\%Mean} & \multicolumn{1}{c}{t-value} & \multicolumn{1}{c}{\%Mean} & \multicolumn{1}{c}{t-value} & \multicolumn{1}{c}{\%Mean} & \multicolumn{1}{c}{t-value} \\ \hline
+\multicolumn{7}{l}{Coefficients of Fixed Effects} \\ \hline
+(Intercept) & 148.76 & \textbf{7.4} & 74.06 & \textbf{4.88} & 40.65 & \textbf{1.81} \\
+IRSD & -0.38 & \textbf{-18.84} &  & \textbf{} &  &  \\
+L-IRSD &  &  & -0.3 & \textbf{-19.72} & -0.31 & \textbf{-18.79} \\
+L-IRSD-PC2 &  &  &  &  & 0.04 & \textbf{2.14} \\ \hline
+\multicolumn{7}{l}{Deviation Parameters in Random Effects} \\ \hline
+$\tau^2_{Sp}$ & 6.84 & \textbf{8} & 8.36 & \textbf{9.06} & 8.42 & \textbf{8.88} \\
+$\tau^2_{Te}$ & 0.47 & 1.02 & 0.48 & 1.21 & 0.48 & 1.33 \\
+$\tau^2_{Ind}$ & 2.49 & \textbf{14.31} & 2.25 & \textbf{13.98} & 2.23 & \textbf{14.08} \\
+$\rho_{Sp}$ & 93.93 & \textbf{26.08} & 93.86 & \textbf{26.29} & 93.13 & \textbf{23.69} \\
+$\rho_{Te}$ & 46.31 & 1.77 & 44.12 & 1.69 & 44.54 & 1.72 \\ \hline
+\multicolumn{7}{l}{Information Criteria} \\ \hline
+DIC \& $p_d$ & 12415.28 & 1039.97 & 12395.08 & 1014.97 & \textbf{12392.77} & 1010.73 \\
+WAIC \& $p_w$ & 12347.27 & 727.21 & 12337.75 & 718.38 & \textbf{12336.87} & 716.99 \\
+LMPL \& loglik & -6489.42 & -5167.66 & -6478.52 & -5182.57 & \textbf{-6469.57} & -5185.65 \\
+LOOIC & 12857.24 &  & 12823.19 &  & \textbf{12810.49} &  \\
+ELPD & -6428.62 &  & -6411.59 &  & \textbf{-6405.25} &  \\ \hline
+\end{tabular}
+}
+\caption{Estimated regression coefficient, standard deviation parameter, and model information criteria (DIC, WAIC, LOOIC, ELPD) for the developed models $M1$ to $M3$ for prevalence of vulnerability in \textbf{Physical Health and Wellbeing} domain. The posterior means of regression coefficients and standard deviation parameters are shown in percentage form. Significant effects (with $|t|>2.00$) are shown in bold. For the information criteria the best model is also in bold.}
+\label{tab:Model_Part2_Health_InfoCriteria}
+\end{table}

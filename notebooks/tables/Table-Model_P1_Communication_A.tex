@@ -1,0 +1,28 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[t]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllllllll}
+\hline
+\multicolumn{1}{c}{\multirow{2}{*}{Variable}} & \multicolumn{2}{c}{M1} & \multicolumn{2}{c}{M2} & \multicolumn{2}{c}{M3} & \multicolumn{2}{c}{M4} \\
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{\%Mean} & \multicolumn{1}{c}{t-value} & \multicolumn{1}{c}{\%Mean} & \multicolumn{1}{c}{t-value} & \multicolumn{1}{c}{\%Mean} & \multicolumn{1}{c}{t-value} & \multicolumn{1}{c}{\%Mean} & \multicolumn{1}{c}{t-value} \\ \hline
+\multicolumn{9}{l}{Coefficients of Fixed Effects} \\ \hline
+(Intercept) & 291.34 & \textbf{7.45} & 312.74 & \textbf{7.65} & 136.15 & \textbf{4.79} & 305.92 & \textbf{8.82} \\
+IRSD & -0.54 & \textbf{-13.78} & -0.56 & \textbf{-13.9} &  &  &  &  \\
+L-IRSD &  &  &  &  & -0.39 & \textbf{-13.58} & -0.36 & \textbf{-13.54} \\
+ARIA &  &  & -0.87 & -0.85 &  &  &  &  \\
+L-IRSD-PC2 &  &  &  &  &  &  & -0.2 & \textbf{-7.74} \\ \hline
+\multicolumn{9}{l}{Deviation Parameters in Random Effects} \\ \hline
+$\tau^2$ & 20.78 & \textbf{8.12} & 20.96 & \textbf{8.12} & 23.65 & \textbf{8.32} & 19.79 & \textbf{8.47} \\
+$\rho$ & 68.43 & \textbf{6.23} & 70.59 & \textbf{6.57} & 73.49 & \textbf{7.31} & 78.78 & \textbf{8.7} \\ \hline
+\multicolumn{9}{l}{Information Criteria} \\ \hline
+DIC \& $p_d$ & 2477.9 & 241.79 & 2477.08 & 240.6 & 2476.91 & 244.8 & \textbf{2466.41} & \textbf{232.95} \\
+WAIC \& $p_w$ & 2459.26 & 164.78 & 2458.91 & 164.39 & 2454.91 & 164.3 & \textbf{2449.42} & \textbf{160.03} \\
+LMPL \& loglik & -1329.61 & -997.16 & -1321.95 & -997.94 & -1329.29 & \textbf{-993.65} & \textbf{-1310.09} & -1000.25 \\
+LOOIC & 2602.21 &  & 2599.71 &  & 2599.96 &  & \textbf{2583.77} &  \\
+ELPD & -1301.1 &  & -1299.85 &  & -1299.98 &  & \textbf{-1291.88} &  \\ \hline
+\end{tabular}
+}
+\caption{Estimated regression coefficient, standard deviation parameter, and model information criteria (DIC, WAIC, LOOIC, ELPD) for the developed models $M1$ to $M4$ for prevalence of vulnerability in \textbf{Communication Skills and General Knowledge} domain. The posterior means of regression coefficients and standard deviation parameters are shown in percentage form. Significant effects (with $|t|>2.00$) are shown in bold. For the information criteria the best model is also in bold.}
+\label{tab:Model_Part1_Communication_InfoCriteria}
+\end{table}
