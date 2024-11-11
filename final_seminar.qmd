@@ -992,10 +992,37 @@ Diagram of Bivariate Leroux Model and Copula-based Leroux Model
 
 ## Applications
 
+- Models were fitted and validated on the AEDC data in 2021, and the results were compared to the traditional bivariate Leroux model without copula-based dependence
 
+- To make the comparison simple, the covariates in the models are the same, which is the IRSD in 2021. As models are bivariate, both the outcomes and the fitted coefficients in two dimensions
 
+- Among five domains of AEDC, the results of bivariate model on the `Emotional Maturity` and `Language and Cognitive Skills` domains are shown here. Among 10 pairs of model, not all of them give the better results than the traditional Leroux model, but some of them do.
 
+### Model Fit Results
 
+<div style="font-size: 0.55em;">
+
+| **Variable**                      | **Clayton** | **Frank** | **Gaussian** | **Gumbel** | **Inverseclayton** | **Inversegumbel** | **Inversejoe** | **Joe**      | **MVS**  |
+|-----------------------------------|-------------|-----------|--------------|------------|--------------------|-------------------|----------------|--------------|----------|
+| **Coefficients of Fixed Effects** |             |           |              |            |                    |                   |                |              |          |
+| (Intercept) - A                   | 95.96       | 61.89     | 69.81        | 63.4       | 56.82              | 83.28             | 95.14          | 58.84        | 61.59    |
+| IRSD - A                          | -0.33       | -0.3      | -0.31        | -0.3       | -0.29              | -0.32             | -0.33          | -0.3         | -0.3     |
+| (Intercept) - B                   | 483.14      | 461.59    | 465.16       | 460.33     | 454.95             | 475.19            | 484.12         | 457.3        | 448.75   |
+| IRSD - B                          | -0.75       | -0.72     | -0.73        | -0.72      | -0.72              | -0.74             | -0.75          | -0.72        | -0.71    |
+| **Parameters in Random Effects**  |             |           |              |            |                    |                   |                |              |          |
+| $\tau^2$ - A                      | 0.10        | 0.10      | 0.10         | 0.10       | 0.10               | 0.10              | 0.10           | 0.10         | 0.11     |
+| $\tau^2$ - B                      | 0.15        | 0.15      | 0.14         | 0.15       | 0.14               | 0.14              | 0.14           | 0.14         | 0.17     |
+| $\rho$                            | 0.61        | 0.67      | 0.68         | 0.66       | 0.63               | 0.63              | 0.59           | 0.63         | 0.83     |
+| $\alpha$                          | 1.48        | 5.49      | 0.71         | 1.89       | 1.14               | 2.01              | 2.37           | 2.00         |          |
+| **Information Criteria**          |             |           |              |            |                    |                   |                |              |          |
+| DIC                               | 4780.854    | 4781.618  | 4774.097     | 4779.401   | 4798.748           | **4768.245**      | 4779.08        | 4798.272     | 4770.026 |
+| WAIC                              | 4736.935    | 4751.704  | 4745.799     | 4745.883   | 4758.176           | **4732.035**      | 4735.668       | 4754.503     | 4742.22  |
+| loglikelihood                     | -2002.85    | -2010.31  | -2014.77     | -2009.01   | -2003.94           | -2010.34          | -2002.48       | **-2001.35** | -2017.5  |
+| LOOIC                             | 4858.137    | 4868.772  | 4859.403     | 4862.828   | 4882.989           | **4846.265**      | 4866.724       | 4880.508     | 4855.408 |
+
+: Estimated regression coefficient, standard deviation parameter, and model information criteria (DIC, WAIC, LOOIC, likelihood) for the developed models for prevalence of vulnerability in **Emotional Maturity** and **Language and Cognitive Skills** domains {#tbl-part2-model-fit}
+
+</div>
 
 
 
