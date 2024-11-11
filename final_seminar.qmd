@@ -1024,19 +1024,26 @@ Diagram of Bivariate Leroux Model and Copula-based Leroux Model
 
 </div>
 
+### Bivariate Model Results
+
+![Spatial Distribution of the Prevalence of Vulnerability in Emotional Maturity and Language and Cognitive Skills of Children by SA3, 2021](notebooks/figures/B02_prevalence_map.png){#fig-bivar-map}
+
+- High prevalence of vulnerability in `Emotional Maturity` and `Language and Cognitive Skills` tends to cluster in remote areas
+
+- Melbourne and Sydney tends to have lower prevalence of vulnerability in `Emotional Maturity` but higher in `Language and Cognitive Skills`
+
+- Brisbane and Adelaide tends to have higher prevalence of vulnerability in `Emotional Maturity` but lower in `Language and Cognitive Skills`
 
 
+## Conclusion on Part Two
 
+- Residuals of two outcomes are not only spatially autocorrelated, but also have a complex dependence structure, which can be plotted by empirical copulas
 
+- The bivariate Bayesian hierarchical models with copula-based spatial dependence using the Leroux spatial structure can capture the complex dependence structure between two outcomes, and the results show that the copula-based models can outperform the traditional bivariate Leroux model in some cases
 
+- Bivariate model can be used to give more insights on the relationship between two outcomes, which may help to understand the underlying mechanisms of the outcomes and to develop more effective interventions
 
-
-
-
-
-
-
-
+- The R package `CARBayesCopula`, make this model more accessible to researchers and practitioners
 
 
 
@@ -1119,7 +1126,6 @@ Here $\boldsymbol{y_A}$ and $\boldsymbol{y_B}$ represent the observed data for t
 
 
 The random effects $\boldsymbol{\epsilon_A}$ and $\boldsymbol{\epsilon_B}$ are assumed to be determined by the structured components $\boldsymbol{\phi_A}$ and $\boldsymbol{\phi_B}$, which are modeled as conditional autoregressive (CAR) effects. The marginal distributions of the structured components are assumed to follow normal distributions with spatial dependencies captured by the spatial dependence parameter $\rho$, the neighborhood matrix $\boldsymbol{W}$, and the precision parameters $\tau_A$ and $\tau_B$. While the joint distribution of the structured components is modeled using a copula function $C(\alpha)$, with $\alpha$ representing the copula parameter.
-
 
 ## References {.unnumbered}
 
