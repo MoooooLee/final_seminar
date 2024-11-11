@@ -1,0 +1,55 @@
+digraph G {
+    
+    subgraph cluster_1 {
+    node [style=filled];
+    
+    Y_A[label=<Y<sub>A</sub>>];
+    Y_B[label=<Y<sub>B</sub>>];
+    
+    label = <<b>layer 1: data layer</b>>;
+    color=blue
+  }
+  
+    subgraph cluster_2 {
+    node [style=filled];
+    
+    beta_A[label=<&beta;<sub>A</sub>>];
+    beta_B[label=<&beta;<sub>B</sub>>];
+    
+    phi_AB[label=<&#40;&phi;<sub>A</sub>,&phi;<sub>B</sub>&#41;>];
+    phi_A[label=<&phi;<sub>A</sub>>];
+    phi_B[label=<&phi;<sub>B</sub>>];
+    
+    label = <<b>layer 2: process layer</b>>;
+    color=blue
+  }
+  
+    subgraph cluster_3 {
+    node [style=filled];
+    
+    tau_A[label=<&tau;<sub>A</sub>>]
+    tau_B[label=<&tau;<sub>B</sub>>]
+    
+    rho[label=<&rho;>];
+    alpha[label=<&alpha;>];
+    
+    label = <<b>layer 3: prior layer</b>>;
+    color=blue
+  }
+  
+    mu_beta[label=<&mu;<sub>&beta;</sub>>];
+    Sigma_beta[label=<&Sigma;<sub>&beta;</sub>>];
+  
+   Y_A -> {beta_A phi_AB}
+   Y_B -> {beta_B phi_AB}
+  
+  {phi_AB} -> {phi_A phi_B}
+  {beta_A beta_B}  -> {mu_beta Sigma_beta}
+  
+  {phi_A phi_B} -> rho -> "U(0,1)"
+  {phi_AB} -> alpha -> "Prior depends on copula"
+  phi_A -> tau_A
+  phi_B -> tau_B
+  
+  {tau_A tau_B} -> "Inverse Gamma(a,b)"
+}

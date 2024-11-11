@@ -1,0 +1,17 @@
+graph G {
+  Y[label=<Y>];
+  beta[label=<&beta;>];
+  E[label=<&epsilon;>];
+  mu_beta[label=<&mu;<sub>&beta;</sub>>];
+  sigma_beta[label=<&Sigma;<sub>&beta;</sub>>];
+  F[label="."];
+  G[label="."];
+  H[label="."];
+  Y -- beta;
+  Y -- E;
+  beta -- mu_beta;
+  beta -- sigma_beta;
+  E -- F;
+  E -- G;
+  E -- H;
+}

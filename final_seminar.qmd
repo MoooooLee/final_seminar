@@ -348,6 +348,7 @@ In response to these challenges, we aim to develop an index that can longitudina
 
 - **Structured Indicator Approach**: This method was designed to maintain both dynamic socio-economic context representation and temporal comparability when comparing two time periods. When there are only two time periods, two indicators are created. The first indicator is constructed using PCA as usual, and the second indicator is built using the eigenvalue from the first PCA model and the standardized variables from the second period.
 
+---
 **Choose the Single Indicator Approach for L-IRSD**
 
 - The ABS clearly adapted the **Multiple Indicator Approach** when producing SEIFA
@@ -876,9 +877,9 @@ increases or decreases are labeled. The statistical significance of the APC calc
 
 - Disease mapping has become a critical tool for identifying high-risk areas, tracking disease trends, and understanding disparities within and across populations, which requires the development of spatial models [@persaud2021united].
 
-- Bayesian hierarchical models (BHMs) are a popular choice for disease mapping due to their ability to account for spatial dependence, unobserved heterogeneity, and measurement error. However, bivariate BHMs are less common, despite the importance of understanding the relationship between two diseases or health outcomes.
-    - The spatial dependence in BHMs is often modeled using conditional autoregressive (CAR) priors, as it assumes that near things are more related.
-    - The copula function is used to model the joint distribution of two random variables, which can capture the dependence structure between the two variables. Traditional spatial models only use bivariate normal distribution to model the joint distribution, which may not be flexible enough to capture the complex dependence structure between two diseases.
+- **Bayesian hierarchical models** (BHMs) are a popular choice for disease mapping due to their ability to account for spatial dependence, unobserved heterogeneity, and measurement error. However, bivariate BHMs are less common, despite the importance of understanding the relationship between two diseases or health outcomes.
+    - The **spatial dependence** in BHMs is often modeled using conditional autoregressive (CAR) priors, as it assumes that near things are more related.
+    - The **copula** function is used to model the joint distribution of two random variables, which can capture the dependence structure between the two variables. Traditional spatial models only use bivariate normal distribution to model the joint distribution, which may not be flexible enough to capture the complex dependence structure between two diseases.
 
 
 ## Reviews on Bivariate BHMs, Spatial Dependence, and Copula Functions
@@ -891,6 +892,30 @@ increases or decreases are labeled. The statistical significance of the APC calc
 
 
 ### Bayesian Hierarchical Models
+
+- The Bayesian models assumes the parameters in the model are random variables, and the prior distribution of the parameters are specified. The posterior distribution of the parameters can be obtained by Bayes' theorem, and the MCMC methods can be used to sample from the posterior distribution.
+
+- The hierarchical structure in the model allows the parameters to vary across different levels, where the prior of the former level is the posterior of the latter level
+
+    - **Data Layer**: Observed data are modeled as random variables conditional on the parameters
+    - **Process Layer**: Parameters from the data layer are modeled as random variables conditional on their own distributions. This layer can be hierarchically structured to capture different levels of variation in the data
+    - **Prior Layer**: Priors of the parameters in the process layer are specifed through hyperparameters, which can be fixed or random variables themselves.
+
+```{dot}
+//| label: fig-hierarchical-model
+//| fig-cap: "Diagram of a Bayesian hierarchical model in general form"
+//| file: notebooks/figures/bhm/fig_bhm.dot
+
+```
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,53 @@
+digraph G {
+    
+    subgraph cluster_1 {
+    node [style=filled];
+    
+    Y_A[label=<Y<sub>A</sub>>];
+    Y_B[label=<Y<sub>B</sub>>];
+    
+    label = <<b>layer 1: data layer</b>>;
+    color=blue
+  }
+  
+    subgraph cluster_2 {
+    node [style=filled];
+    
+    beta_A[label=<&beta;<sub>A</sub>>];
+    beta_B[label=<&beta;<sub>B</sub>>];
+    
+    phi_AB[label=<&#40;&phi;<sub>A</sub>,&phi;<sub>B</sub>&#41;>];
+    theta_AB[label=<&#40;&theta;<sub>A</sub>,&theta;<sub>B</sub>&#41;>];
+    
+    label = <<b>layer 2: process layer</b>>;
+    color=blue
+  }
+  
+    subgraph cluster_3 {
+    node [style=filled];
+    
+    Tau[label=<T>];
+    Sigma[label=<&Sigma;>];
+    
+    label = <<b>layer 3: prior layer</b>>;
+    color=blue
+  }
+  
+    nu_Tau[label=<&nu;<sub>T</sub>>];
+    Omega_Tau[label=<&Omega;<sub>T</sub>>];
+    
+    nu_Sigma[label=<&nu;<sub>&Sigma;</sub>>];
+    Omega_Sigma[label=<&Omega;<sub>&Sigma;</sub>>];
+    
+    mu_beta[label=<&mu;<sub>&beta;</sub>>];
+    Sigma_beta[label=<&Sigma;<sub>&beta;</sub>>];
+  
+  Y_A -> {beta_A phi_AB theta_AB}
+  Y_B -> {beta_B phi_AB theta_AB}
+  
+  {beta_A beta_B}  -> {mu_beta Sigma_beta}
+  
+  {phi_AB} -> Tau -> {nu_Tau Omega_Tau}
+  {theta_AB} -> Sigma -> {nu_Sigma Omega_Sigma}
+  
+}
