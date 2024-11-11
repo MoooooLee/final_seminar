@@ -901,12 +901,8 @@ increases or decreases are labeled. The statistical significance of the APC calc
     - **Process Layer**: Parameters from the data layer are modeled as random variables conditional on their own distributions. This layer can be hierarchically structured to capture different levels of variation in the data
     - **Prior Layer**: Priors of the parameters in the process layer are specifed through hyperparameters, which can be fixed or random variables themselves.
 
-```{dot}
-//| label: fig-hierarchical-model
-//| fig-cap: "Diagram of a Bayesian hierarchical model in general form"
-//| file: notebooks/figures/bhm/fig_bhm.dot
+![Diagram of a Bayesian hierarchical model in general form](notebooks/figures/bhm/dot-figure-1.png){#fig-hierarchical-model}
 
-```
 
 
 
