@@ -879,14 +879,14 @@ increases or decreases are labeled. The statistical significance of the APC calc
 
 - **Bayesian hierarchical models** (BHMs) are a popular choice for disease mapping due to their ability to account for spatial dependence, unobserved heterogeneity, and measurement error. However, bivariate BHMs are less common, despite the importance of understanding the relationship between two diseases or health outcomes.
     - The **spatial dependence** in BHMs is often modeled using conditional autoregressive (CAR) priors, as it assumes that near things are more related.
-    - The **copula** function is used to model the joint distribution of two random variables, which can capture the dependence structure between the two variables. Traditional spatial models only use bivariate normal distribution to model the joint distribution, which may not be flexible enough to capture the complex dependence structure between two diseases.
+    - The **copula** function is used to model the joint distribution of two random variables, which can capture the dependence structure between the two variables. Traditional spatial models only use bivariate normal distribution to model the joint distribution, which may not be flexible enough to capture the complex dependence structure between two diseases [@nelsen2006introduction].
 
 
 ## Reviews on Bivariate BHMs, Spatial Dependence, and Copula Functions
 
 - **Bayesian Hierarchical Models (BHMs)**: Bayesian models can be complex and flexible (than frequentest models) as they can incorporate prior information, can (always) be fitted by Markov Chain Monte Carlo (MCMC) methods.
 
-- **BHM with CAR Priors**: Spatial effects are the effects of the location of the area on the outcome, where near areas are more related. The CAR prior is a popular choice for spatial effects in BHMs, as it can capture the spatial dependence between areas by assuming the conditional distribution of the outcome in one area depends on the outcomes in neighboring areas.
+- **Spatial Effects and CAR Priors**: Spatial effects are the effects of the location of the area on the outcome, where near areas are more related. The CAR prior is a popular choice for spatial effects in BHMs, as it can capture the spatial dependence between areas by assuming the conditional distribution of the outcome in one area depends on the outcomes in neighboring areas.
 
 - **Copulas**: Copulas are a powerful tool for modeling the joint distribution of two or more random variables by decoupling the marginal distributions from the dependence structure.
 
@@ -901,20 +901,96 @@ increases or decreases are labeled. The statistical significance of the APC calc
     - **Process Layer**: Parameters from the data layer are modeled as random variables conditional on their own distributions. This layer can be hierarchically structured to capture different levels of variation in the data
     - **Prior Layer**: Priors of the parameters in the process layer are specifed through hyperparameters, which can be fixed or random variables themselves.
 
-![Diagram of a Bayesian hierarchical model in general form](notebooks/figures/bhm/dot-figure-1.png){#fig-hierarchical-model}
+**Formula of Bayesian Hierarchical Models in General**
+$$
+  y_i | \mu_i \sim \mathcal{D}(Y_i | \mu_i)
+$$
+$$
+  \quad g(\mu_i) = \boldsymbol{x}_i^\top \boldsymbol{\beta} + \epsilon_i 
+$$
+$$
+  \boldsymbol{\beta} \sim \text{Gaussian}(\boldsymbol{\mu_{\beta}}, \boldsymbol{\Sigma_{\beta}}) \quad \text{and} \quad \boldsymbol{\epsilon} \sim \mathcal{D_{\epsilon}}(\dots)
+$$
+
+![Diagram of a Bayesian hierarchical model in general form](notebooks/figures/bhm/dot-figure-1.png){#fig-bhm-general width=75%}
 
 
+### Spatial Effects and CAR Priors
+
+#### Spatial Effects
+
+- **Neighborhood matrix**: The spatial structure of the data can be represented by a neighborhood matrix, where the elements of the matrix indicate whether two areas are neighbors or not.
+
+- **Spatial autocorrelation**: The spatial autocorrelation is the correlation between the outcomes and its neighbors (named spatial lag), which can be captured by the CAR prior.
+
+![Prevalence of Vulnerability in Physical Health and Wellbeing in Greater Sydney by SA3, 2021](notebooks/figures/spatial/fig-syd-lisa-sa3-1.png){#fig-spatial-lisa}
+
+- **Spatial autocorrelation in models**: The spatial autocorrelation occurs in the residuals of the model, shows the remaining spatial effects that can not be caputred by the covariates in the model
+
+::: {#fig-spatial-res layout-ncol=1}
+![Spatial Distribution of the Prevalence of Vulnerability in Physical Health and Wellbeing of Dhildren and IRSD in Greater Sydney by SA3, 2021](notebooks/figures/spatial/fig-spatial-aedc-irsd-sa3-1.png){#fig-spatial-aedc-irsd}
+
+![Conmparison of Residuals and Spatial Lag of Residuals of Vulnerability in Physical Health and Wellbeing of Children in Australia by SA3, 2021](notebooks/figures/spatial/fig-spatial-residuals-sa3-1.png){#fig-spatial-residuals}
+
+Spatial Distribution of the Prevalence of Vulnerability in Physical Health and Wellbeing of Children and IRSD, and their residuals with spatial lag in Greater Sydney by SA3, 2021
+:::
+
+#### Conditional Autoregressive (CAR) Priors
+
+- The CAR prior is a popular choice for spatial effects in BHMs, as it can capture the spatial dependence between areas by assuming the conditional distribution of the outcome in one area depends on the outcomes in neighboring areas.
+
+- The structure of the CAR prior is not unique, and it can be defined based on the neighborhood matrix of the data. The most common CAR prior are Intrinsic Conditional Autoregressive (ICAR) and Besag-York-Mollie (BYM), and **Leroux prior** [@leroux2000estimation].
+
+- Brook's Lemma help with converting conditional distribution to joint distribution, which is the key for CAR model to be fit [@brook1964distinction].
 
 
+### Copulas
+
+- **Copulas** are a powerful tool for modeling the joint distribution of two or more random variables by decoupling the marginal distributions from the dependence structure 
+
+- Different choice of copulas can capture different types of dependence structure, such as Gaussian copula Clayton copula, and Gumbel copula [@genest1993statistical]
+
+- Dependence structure, not only the correlation, but also the shape (asymmetric or symmetric) and the tail (heavy or light) of the joint distribution 
+
+![Copula Density for Frank, Clayton, Gumbel and Joe copulas](notebooks/figures/copula/fig-copula-archimedean-1.png){#fig-copula-archimedean}
+
+![Residuals and Empirical Copulas of Residuals of Vulnerability in Social Competence and Language and Cognitive Skills](notebooks/figures/copula/fig-empirical-copula-1.png){#fig-copula-res}
+
+## Model Development - Bivariate Bayesian Hierarchical Models with Copula-based Spatial Dependence
+
+- New model was developed based on the framework of bivariate Bayesian hierarchical models with Leroux spatial structure, can be denoted as **"Cop-leroux model"**, we only show model specification briefly here.
+
+- The model can be fitted by MCMC methods, and random effects can be simulated by Gibbs sampling. The algorithm will not be shown here.
+
+- R Package `CARBayesCopula` was established and public available on GitHub for convenient install. The core algorithm of the model was written in `Rcpp` for computational efficiency
 
 
+### Model Specification
+
+:::{#fig-bhm-bivariate layout-ncol=2}
+
+![Diagram of Bivariate Leroux Model](notebooks/figures/bhm/dot-figure-3.png){#fig-bhm-leroux width=70%}
+
+![Diagram of Bivariate Copula-based Leroux Model](notebooks/figures/bhm/dot-figure-2.png){#fig-bhm-copleroux}
+
+Diagram of Bivariate Leroux Model and Copula-based Leroux Model
+:::
+
+### R Package `CARBayesCopula`
 
 
+- The R package `CARBayesCopula` is a flexible and efficient tool for fitting bivariate Bayesian hierarchical models with copula-based spatial dependence using the Leroux spatial structure. It was developed based the framework of `CARBayes` package [@lee2013carbayes]
+
+- The core simulation algorithm is written in `Rcpp` [@eddelbuettel2011rcpp] for computational efficiency, and the package provides functions for model diagnostics in LOOIC [@vehtari2020loo], DIC, and WAIC.
+
+- The choice of copula function are "Gaussian", "Clayton", "Gumbel", "Frank" and "Joe". 
+
+- Open to public by GitHub (and CRAN after the review)
+
+[https://github.com/MoooooLee/CARBayesCopula](https://github.com/MoooooLee/CARBayesCopula)
 
 
-
-
-
+## Applications
 
 
 
@@ -979,6 +1055,43 @@ $$
 $$ 
 
     where $v_{j,k}$ is the $j$th element of the $k$th eigenvector and the $\lambda_{k}$ is the $k$th eigenvalue as we mentioned in the previous step.
+
+
+### Taylor Diagram {.unnumbered}
+
+The trade-off between variance and bias can be always the key point in the model estimation. The Taylor diagram is a graphical method to visualize the trade-off. The good estimation should have lower variance and bias, where the estimation should have high correlation with the observed data.
+
+High variation with no bias may indicate that the model is overfitting the data, while low variation with high bias may indicate that the model is underfitting the data.
+
+![Taylor Diagram on Simulated Data](notebooks/figures/Model_01/H02_TaylorDiagram_Example.png){#fig-taylor-example}
+
+As we can see that model A should be the worst model, as it just predict the mean of the data, which has no variance but high bias. Model D faces the overfitting issue, as it has high variance but low bias. Model B and C are the good models, as they have lower variance and bias, and high correlation with the observed data.
+
+
+### Model Specification of Cop-leroux {.unnumbered }
+
+**Bivariate copula-based Leroux model with binomial data layer**
+
+A bivariate copula-based Leroux model with the binomial data layer can be described as the following set of equations.
+
+<div style="font-size: 0.6em;">
+
+\begin{align}
+    \boldsymbol{y_A} \sim Bin(\boldsymbol{n_A}, \boldsymbol{p_A}) \quad &\text{and} \quad \boldsymbol{y_B} \sim Bin(\boldsymbol{n_B}, \boldsymbol{p_B}) \\
+    logit(\boldsymbol{p_A}) = \boldsymbol{X}\boldsymbol{\beta_A} + \boldsymbol{\epsilon_A} \quad &\text{and} \quad logit(\boldsymbol{p_B}) = \boldsymbol{X}\boldsymbol{\beta_B} + \boldsymbol{\epsilon_B} \\
+    (\boldsymbol{\epsilon_A, \boldsymbol{\epsilon_B}}) &= (\boldsymbol{\phi_A}, \boldsymbol{\phi_B})\\
+    \boldsymbol{\phi_A} | \rho, \phi_{A,-j}, \boldsymbol{W}, \tau_A &\sim N \left( \frac{\rho \sum_{i=1}^{K}w_{ji} \phi_{A,i}}{\rho \sum_{i=1}^{K}w_{ji} +1-\rho}, \frac{\tau_A^2}{\rho \sum_{i=1}^{K}w_{ji} +1-\rho} \right) \\
+    \boldsymbol{\phi_B} | \rho, \phi_{B,-j}, \boldsymbol{W}, \tau_B &\sim N \left( \frac{\rho \sum_{i=1}^{K}w_{ji} \phi_{B,i}}{\rho \sum_{i=1}^{K}w_{ji} +1-\rho}, \frac{\tau_B^2}{\rho \sum_{i=1}^{K}w_{ji} +1-\rho} \right) \\
+    (\boldsymbol{\phi_A}, \boldsymbol{\phi_B}) | \alpha &\sim Cop(\boldsymbol{\phi_A}, \boldsymbol{\phi_B}, C(\alpha))\\
+\end{align}
+
+</div>
+
+
+Here $\boldsymbol{y_A}$ and $\boldsymbol{y_B}$ represent the observed data for the two components of the bivariate model, with $\boldsymbol{n_A}$ and $\boldsymbol{n_B}$ as the corresponding trial numbers. The probability vectors $\boldsymbol{p_A}$ and $\boldsymbol{p_B}$ are modeled using logit link functions with covariates $\boldsymbol{X}$ and regression coefficients $\boldsymbol{\beta_A}$ and $\boldsymbol{\beta_B}$, respectively.
+
+
+The random effects $\boldsymbol{\epsilon_A}$ and $\boldsymbol{\epsilon_B}$ are assumed to be determined by the structured components $\boldsymbol{\phi_A}$ and $\boldsymbol{\phi_B}$, which are modeled as conditional autoregressive (CAR) effects. The marginal distributions of the structured components are assumed to follow normal distributions with spatial dependencies captured by the spatial dependence parameter $\rho$, the neighborhood matrix $\boldsymbol{W}$, and the precision parameters $\tau_A$ and $\tau_B$. While the joint distribution of the structured components is modeled using a copula function $C(\alpha)$, with $\alpha$ representing the copula parameter.
 
 
 ## References {.unnumbered}

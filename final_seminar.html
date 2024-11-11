@@ -6,9 +6,8 @@
 <script src="final_seminar_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="final_seminar_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="final_seminar_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="final_seminar_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="final_seminar_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+<link href="final_seminar_files/libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.32">
 
   <meta name="author" content="Mu Li">
   <meta name="author" content="Supervised by">
@@ -52,7 +51,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="final_seminar_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="final_seminar_files/libs/revealjs/dist/theme/quarto-44a4fee74d4427260c4686afd629523f.css">
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
@@ -412,6 +411,8 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 <ul>
 <li><a href="#/backgrounds" id="/toc-backgrounds"><span class="header-section-number">3.1</span> Backgrounds</a></li>
 <li><a href="#/reviews-on-bivariate-bhms-spatial-dependence-and-copula-functions" id="/toc-reviews-on-bivariate-bhms-spatial-dependence-and-copula-functions"><span class="header-section-number">3.2</span> Reviews on Bivariate BHMs, Spatial Dependence, and Copula Functions</a></li>
+<li><a href="#/model-development---bivariate-bayesian-hierarchical-models-with-copula-based-spatial-dependence" id="/toc-model-development---bivariate-bayesian-hierarchical-models-with-copula-based-spatial-dependence"><span class="header-section-number">3.3</span> Model Development - Bivariate Bayesian Hierarchical Models with Copula-based Spatial Dependence</a></li>
+<li><a href="#/applications-1" id="/toc-applications-1"><span class="header-section-number">3.4</span> Applications</a></li>
 </ul></li>
 <li><a href="#/appendix" id="/toc-appendix">Appendix</a>
 <ul>
@@ -479,7 +480,7 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 <col style="width: 81%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;"><strong>Dimension</strong></th>
 <th style="text-align: left;"><strong>Variable</strong></th>
 <th style="text-align: left;"><strong>Loading</strong></th>
@@ -487,109 +488,109 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Income</strong></td>
 <td style="text-align: left;">INC_LOW</td>
 <td style="text-align: left;">-0.76</td>
 <td style="text-align: left;">% People with stated annual household equivalized income between $13,000 and $20,799 (approx. 2nd and 3rd deciles)</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Education</strong></td>
 <td style="text-align: left;">NOQUAL</td>
 <td style="text-align: left;">-0.76</td>
 <td style="text-align: left;">% People aged 15 years and over with no post-school qualifications</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">NOSCHOOL</td>
 <td style="text-align: left;">-0.44</td>
 <td style="text-align: left;">% People aged 15 years and over who did not go to school</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Employment</strong></td>
 <td style="text-align: left;">UNEMPLOYED</td>
 <td style="text-align: left;">-0.7</td>
 <td style="text-align: left;">% People (in the labour force) unemployed</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Occupation</strong></td>
 <td style="text-align: left;">OCC_LABOUR</td>
 <td style="text-align: left;">-0.76</td>
 <td style="text-align: left;">% Employed people classified as Labourers</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OCC_DRIVERS</td>
 <td style="text-align: left;">-0.51</td>
 <td style="text-align: left;">% Employed people classified as Machinery Operators and Drivers</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OCC_SERVICE_L</td>
 <td style="text-align: left;">-0.44</td>
 <td style="text-align: left;">% Employed people classified as Low Skill Community and Personal Service Workers</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Housing</strong></td>
 <td style="text-align: left;">RENT_SOCIAL</td>
 <td style="text-align: left;">-0.7</td>
 <td style="text-align: left;">% Households renting from a Government or Community organization</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">LOWRENT</td>
 <td style="text-align: left;">-0.67</td>
 <td style="text-align: left;">% Households paying rent who pay less than $120 per week (excluding $0 per week)</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Miscellaneous</strong></td>
 <td style="text-align: left;">NONET</td>
 <td style="text-align: left;">-0.85</td>
 <td style="text-align: left;">% Occupied private dwellings with no Internet connection</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">ONEPARENT</td>
 <td style="text-align: left;">-0.67</td>
 <td style="text-align: left;">% Families that are one-parent families with dependent offspring only</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">DISABILITYU70</td>
 <td style="text-align: left;">-0.61</td>
 <td style="text-align: left;">% People aged under 70 who have a long-term health condition or disability and need assistance with core activities</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">NOCAR</td>
 <td style="text-align: left;">-0.57</td>
 <td style="text-align: left;">% Occupied private dwellings with no car</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">INDIGENOUS</td>
 <td style="text-align: left;">-0.52</td>
 <td style="text-align: left;">% People who identified themselves as being Aboriginal and/or Torres Strait Islander origin</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OVERCROWD</td>
 <td style="text-align: left;">-0.52</td>
 <td style="text-align: left;">% Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard)</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">DIVORCED</td>
 <td style="text-align: left;">-0.51</td>
 <td style="text-align: left;">% People aged 15 years and over who are separated or divorced</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">ENGLISHPOOR</td>
 <td style="text-align: left;">-0.33</td>
 <td style="text-align: left;">% People who do not speak English well</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Total Number</strong></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"><strong>17</strong></td>
@@ -618,7 +619,7 @@ Table&nbsp;1: List of Variable for Constructing IRSD 2006
 <col style="width: 81%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;"><strong>Dimension</strong></th>
 <th style="text-align: left;"><strong>Variable</strong></th>
 <th style="text-align: left;"><strong>Loading</strong></th>
@@ -626,103 +627,103 @@ Table&nbsp;1: List of Variable for Constructing IRSD 2006
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Income</strong></td>
 <td style="text-align: left;">INC_LOW</td>
 <td style="text-align: left;">-0.9</td>
 <td style="text-align: left;">% People with stated annual household equivalized income between $1 and $20,799 (approx. 1st and 2nd deciles)</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Education</strong></td>
 <td style="text-align: left;">NOYR12ORHIGHER</td>
 <td style="text-align: left;">-0.75</td>
 <td style="text-align: left;">% People aged 15 years and over whose highest level of education is Year 12 or lower, including Certificate I and II</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">NOEDU</td>
 <td style="text-align: left;">-0.44</td>
 <td style="text-align: left;">% People aged 15 years and over who have no educational attainment</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Employment</strong></td>
 <td style="text-align: left;">UNEMPLOYED</td>
 <td style="text-align: left;">-0.74</td>
 <td style="text-align: left;">% People (in the labour force) unemployed</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Occupation</strong></td>
 <td style="text-align: left;">OCC_LABOUR</td>
 <td style="text-align: left;">-0.75</td>
 <td style="text-align: left;">% Employed people classified as “labourers”</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OCC_DRIVERS</td>
 <td style="text-align: left;">-0.52</td>
 <td style="text-align: left;">% Employed people classified as Machinery Operators and Drivers</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OCC_SERVICE_L</td>
 <td style="text-align: left;">-0.5</td>
 <td style="text-align: left;">% Employed people classified as Low Skill Community and Personal Service Workers</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Housing</strong></td>
 <td style="text-align: left;">LOWRENT</td>
 <td style="text-align: left;">-0.73</td>
 <td style="text-align: left;">% Occupied private dwellings paying rent less than $166 per week (excluding $0 per week)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Miscellaneous</strong></td>
 <td style="text-align: left;">CHILDJOBLESS</td>
 <td style="text-align: left;">-0.85</td>
 <td style="text-align: left;">% Families with children under 15 years of age who live with jobless parents</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">NONET</td>
 <td style="text-align: left;">-0.81</td>
 <td style="text-align: left;">% Occupied private dwellings with no Internet connection</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">ONEPARENT</td>
 <td style="text-align: left;">-0.71</td>
 <td style="text-align: left;">% One parent families with dependent offspring only</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">DISABILITYU70</td>
 <td style="text-align: left;">-0.66</td>
 <td style="text-align: left;">% People aged under 70 who have a long-term health condition or disability and need assistance with core activities</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">NOCAR</td>
 <td style="text-align: left;">-0.56</td>
 <td style="text-align: left;">% Occupied private dwellings with no car</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OVERCROWD</td>
 <td style="text-align: left;">-0.52</td>
 <td style="text-align: left;">% Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">SEP_DIVORCED</td>
 <td style="text-align: left;">-0.54</td>
 <td style="text-align: left;">% People aged 15 years and over who are separated or divorced</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">ENGLISHPOOR</td>
 <td style="text-align: left;">-0.34</td>
 <td style="text-align: left;">% People who do not speak English well</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Total Number</strong></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"><strong>16</strong></td>
@@ -751,7 +752,7 @@ Table&nbsp;2: List of Variable for Constructing IRSD 2011
 <col style="width: 81%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;"><strong>Dimension</strong></th>
 <th style="text-align: left;"><strong>Variable</strong></th>
 <th style="text-align: left;"><strong>Loading</strong></th>
@@ -759,103 +760,103 @@ Table&nbsp;2: List of Variable for Constructing IRSD 2011
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Income</strong></td>
 <td style="text-align: left;">INC_LOW</td>
 <td style="text-align: left;">-0.91</td>
 <td style="text-align: left;">% People with stated annual household equivalized income between $1 and $25,999 (approx. 1st and 2nd deciles)</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Education</strong></td>
 <td style="text-align: left;">NOYR12ORHIGHER</td>
 <td style="text-align: left;">-0.77</td>
 <td style="text-align: left;">% People aged 15 years and over whose highest level of education is Year 12 or lower, including Certificate I and II</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">NOEDU</td>
 <td style="text-align: left;">-0.43</td>
 <td style="text-align: left;">% People aged 15 years and over who have no educational attainment</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Employment</strong></td>
 <td style="text-align: left;">UNEMPLOYED</td>
 <td style="text-align: left;">-0.75</td>
 <td style="text-align: left;">% People (in the labour force) unemployed</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Occupation</strong></td>
 <td style="text-align: left;">OCC_LABOUR</td>
 <td style="text-align: left;">-0.74</td>
 <td style="text-align: left;">% Employed people classified as “labourers”</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OCC_DRIVERS</td>
 <td style="text-align: left;">-0.54</td>
 <td style="text-align: left;">% Employed people classified as Machinery Operators and Drivers</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OCC_SERVICE_L</td>
 <td style="text-align: left;">-0.53</td>
 <td style="text-align: left;">% Employed people classified as Low Skill Community and Personal Service Workers</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Housing</strong></td>
 <td style="text-align: left;">LOWRENT</td>
 <td style="text-align: left;">-0.73</td>
 <td style="text-align: left;">% Occupied private dwellings paying rent less than $215 per week (excluding $0 per week)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Miscellaneous</strong></td>
 <td style="text-align: left;">CHILDJOBLESS</td>
 <td style="text-align: left;">-0.83</td>
 <td style="text-align: left;">% Families with children under 15 years of age who live with jobless parents</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">NONET</td>
 <td style="text-align: left;">-0.79</td>
 <td style="text-align: left;">% Occupied private dwellings with no Internet connection</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">ONEPARENT</td>
 <td style="text-align: left;">-0.67</td>
 <td style="text-align: left;">% One parent families with dependent offspring only</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">DISABILITYU70</td>
 <td style="text-align: left;">-0.67</td>
 <td style="text-align: left;">% People aged under 70 who have a long-term health condition or disability and need assistance with core activities</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">SEPDIVORCED</td>
 <td style="text-align: left;">-0.55</td>
 <td style="text-align: left;">% People aged 15 years and over who are separated or divorced</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">NOCAR</td>
 <td style="text-align: left;">-0.49</td>
 <td style="text-align: left;">% Occupied private dwellings with no car</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OVERCROWD</td>
 <td style="text-align: left;">-0.46</td>
 <td style="text-align: left;">% Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard)</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">ENGLISHPOOR</td>
 <td style="text-align: left;">-0.3</td>
 <td style="text-align: left;">% People who do not speak English well</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Total Number</strong></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"><strong>16</strong></td>
@@ -884,7 +885,7 @@ Table&nbsp;3: List of Variable for Constructing IRSD 2016
 <col style="width: 81%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;"><strong>Dimension</strong></th>
 <th style="text-align: left;"><strong>Variable</strong></th>
 <th style="text-align: left;"><strong>Loading</strong></th>
@@ -892,97 +893,97 @@ Table&nbsp;3: List of Variable for Constructing IRSD 2016
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Income</strong></td>
 <td style="text-align: left;">INC_LOW</td>
 <td style="text-align: left;">-0.87</td>
 <td style="text-align: left;">% People with stated annual household equivalized income between $1 and $25,999 (approx. 1st and 2nd deciles)</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Education</strong></td>
 <td style="text-align: left;">NOYR12ORHIGHER</td>
 <td style="text-align: left;">-0.75</td>
 <td style="text-align: left;">% People aged 15 years and over whose highest level of education is Year 12 or lower, including Certificate I and II</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">NOEDU</td>
 <td style="text-align: left;">-0.47</td>
 <td style="text-align: left;">% People aged 15 years and over who have no educational attainment</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Employment</strong></td>
 <td style="text-align: left;">UNEMPLOYED</td>
 <td style="text-align: left;">-0.68</td>
 <td style="text-align: left;">% People (in the labour force) unemployed</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Occupation</strong></td>
 <td style="text-align: left;">OCC_LABOUR</td>
 <td style="text-align: left;">-0.74</td>
 <td style="text-align: left;">% Employed people classified as “labourers”</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OCC_DRIVERS</td>
 <td style="text-align: left;">-0.51</td>
 <td style="text-align: left;">% Employed people classified as Machinery Operators and Drivers</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OCC_SERVICE_L</td>
 <td style="text-align: left;">-0.45</td>
 <td style="text-align: left;">% Employed people classified as Low Skill Community and Personal Service Workers</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Housing</strong></td>
 <td style="text-align: left;">LOWRENT</td>
 <td style="text-align: left;">-0.71</td>
 <td style="text-align: left;">% Occupied private dwellings paying rent less than $250 per week (excluding $0 per week)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><strong>Miscellaneous</strong></td>
 <td style="text-align: left;">CHILDJOBLESS</td>
 <td style="text-align: left;">-0.78</td>
 <td style="text-align: left;">% Families with children under 15 years of age who live with jobless parents</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">DISABILITYU70</td>
 <td style="text-align: left;">-0.63</td>
 <td style="text-align: left;">% People aged under 70 who have a long-term health condition or disability and need assistance with core activities</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">ONEPARENT</td>
 <td style="text-align: left;">-0.58</td>
 <td style="text-align: left;">% One parent families with dependent offspring only</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">OVERCROWD</td>
 <td style="text-align: left;">-0.51</td>
 <td style="text-align: left;">% Occupied private dwellings requiring one or more extra bedrooms (based on Canadian National Occupancy Standard)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">SEPDIVORCED</td>
 <td style="text-align: left;">-0.51</td>
 <td style="text-align: left;">% People aged 15 years and over who are separated or divorced</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">NOCAR</td>
 <td style="text-align: left;">-0.43</td>
 <td style="text-align: left;">% Occupied private dwellings with no car</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">ENGLISHPOOR</td>
 <td style="text-align: left;">-0.35</td>
 <td style="text-align: left;">% People who do not speak English well</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><strong>Total Number</strong></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"><strong>15</strong></td>
@@ -1032,29 +1033,29 @@ Table&nbsp;4: List of Variable for Constructing IRSD 2021
 <col style="width: 42%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th><strong>Wave</strong></th>
 <th><strong>INC_LOW Reference Level</strong></th>
 <th><strong>LOWRENT Reference Level</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>2006</td>
 <td>Income between $13,000 and $20,799 (approx. 2nd and 3rd deciles)</td>
 <td>Rent less than $120 per week (excluding $0 per week)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>2011</td>
 <td>Income between $1 and $20,799 (approx. 1st and 2nd deciles)</td>
 <td>Rent less than $166 per week (excluding $0 per week)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>2016</td>
 <td>Income between $1 and $25,999 (approx. 1st and 2nd deciles)</td>
 <td>Rent less than $215 per week (excluding $0 per week)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>2021</td>
 <td>Income between $1 and $25,999 (approx. 1st and 2nd deciles)</td>
 <td>Rent less than $250 per week (excluding $0 per week)</td>
@@ -1105,7 +1106,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <col style="width: 16%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: center;"><strong>Index</strong></th>
 <th style="text-align: center;"><strong>Geographical Standards</strong></th>
 <th style="text-align: center;"><strong>2006</strong></th>
@@ -1115,7 +1116,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><strong>IRSD</strong></td>
 <td style="text-align: center;">CD ASGC06</td>
 <td style="text-align: center;">37448/38704 (96.75%)</td>
@@ -1123,7 +1124,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">SA1 ASGC11</td>
 <td style="text-align: center;"></td>
@@ -1131,7 +1132,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">SA1 ASGC16</td>
 <td style="text-align: center;"></td>
@@ -1139,7 +1140,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <td style="text-align: center;">55028/57523 (95.66%)</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">SA1 ASGC21</td>
 <td style="text-align: center;"></td>
@@ -1147,7 +1148,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <td style="text-align: center;"></td>
 <td style="text-align: center;">59283/61845 (95.86%)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><strong>Converted</strong></td>
 <td style="text-align: center;">SA2 ASGC21</td>
 <td style="text-align: center;">2423/2473 (97.98%)</td>
@@ -1155,7 +1156,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <td style="text-align: center;">2344/2473 (94.78%)</td>
 <td style="text-align: center;">2312/2473 (93.49%)</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1163,7 +1164,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><strong>L-IRSD</strong></td>
 <td style="text-align: center;">CD ASGC06</td>
 <td style="text-align: center;">37737/38704 (97.5%)</td>
@@ -1171,7 +1172,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">SA2 ASGC11</td>
 <td style="text-align: center;"></td>
@@ -1179,7 +1180,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">SA2 ASGC16</td>
 <td style="text-align: center;"></td>
@@ -1187,7 +1188,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <td style="text-align: center;">2200/2310 (95.24%)</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">SA2 ASGC21</td>
 <td style="text-align: center;"></td>
@@ -1195,7 +1196,7 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 <td style="text-align: center;"></td>
 <td style="text-align: center;">2372/2473 (95.92%)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><strong>Converted</strong></td>
 <td style="text-align: center;">SA2 ASGC21</td>
 <td style="text-align: center;">2392/2473 (96.72%)</td>
@@ -1297,7 +1298,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <col style="width: 13%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: center;"><strong>Dimension</strong></th>
 <th style="text-align: left;"><strong>Variable</strong></th>
 <th style="text-align: center;"><strong>06</strong></th>
@@ -1308,7 +1309,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><strong>Income</strong></td>
 <td style="text-align: left;">INC_LOW</td>
 <td style="text-align: center;">-0.76</td>
@@ -1317,7 +1318,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.87</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><strong>Education</strong></td>
 <td style="text-align: left;">NOQUAL</td>
 <td style="text-align: center;">-0.76</td>
@@ -1326,7 +1327,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;"></td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">NOYR12ORHIGHER</td>
 <td style="text-align: center;"></td>
@@ -1335,7 +1336,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.75</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">NOSCHOOL</td>
 <td style="text-align: center;">-0.44</td>
@@ -1344,7 +1345,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;"></td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">NOEDU</td>
 <td style="text-align: center;"></td>
@@ -1353,7 +1354,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.47</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><strong>Employment</strong></td>
 <td style="text-align: left;">UNEMPLOYED</td>
 <td style="text-align: center;">-0.7</td>
@@ -1362,7 +1363,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.68</td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><strong>Occupation</strong></td>
 <td style="text-align: left;">OCC_LABOUR</td>
 <td style="text-align: center;">-0.76</td>
@@ -1371,7 +1372,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.68</td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">OCC_DRIVERS</td>
 <td style="text-align: center;">-0.51</td>
@@ -1380,7 +1381,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.51</td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">OCC_SERVICE_L</td>
 <td style="text-align: center;">-0.44</td>
@@ -1389,7 +1390,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.45</td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><strong>Housing</strong></td>
 <td style="text-align: left;">RENT_SOCIAL</td>
 <td style="text-align: center;">-0.7</td>
@@ -1398,7 +1399,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">LOWRENT</td>
 <td style="text-align: center;">-0.67</td>
@@ -1407,7 +1408,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.71</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><strong>Miscellaneous</strong></td>
 <td style="text-align: left;">NONET</td>
 <td style="text-align: center;">-0.85</td>
@@ -1416,7 +1417,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">ONEPARENT</td>
 <td style="text-align: center;">-0.67</td>
@@ -1425,7 +1426,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.58</td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">DISABILITYU70</td>
 <td style="text-align: center;">-0.61</td>
@@ -1434,7 +1435,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.63</td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">NOCAR</td>
 <td style="text-align: center;">-0.57</td>
@@ -1443,7 +1444,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.43</td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">INDIGENOUS</td>
 <td style="text-align: center;">-0.52</td>
@@ -1452,7 +1453,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">OVERCROWD</td>
 <td style="text-align: center;">-0.52</td>
@@ -1461,7 +1462,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.51</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">DIVORCED</td>
 <td style="text-align: center;">-0.51</td>
@@ -1470,7 +1471,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;"></td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">SEPDIVORCED</td>
 <td style="text-align: center;"></td>
@@ -1479,7 +1480,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.51</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">ENGLISHPOOR</td>
 <td style="text-align: center;">-0.33</td>
@@ -1488,7 +1489,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.35</td>
 <td style="text-align: center;">Y</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">CHILDJOBLESS</td>
 <td style="text-align: center;"></td>
@@ -1497,7 +1498,7 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <td style="text-align: center;">-0.78</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><strong>Total Number of Variables</strong></td>
 <td style="text-align: left;"></td>
 <td style="text-align: center;"><strong>17</strong></td>
@@ -1566,7 +1567,7 @@ Figure&nbsp;2: Flowchart of constructing LIRSD and WLIRSD
 <figure class="quarto-float quarto-float-tbl">
 <div aria-describedby="tbl-variationexplained-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-792c713c{}.cl-7923ea94{font-family:'Arial';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7923eaf8{font-family:'Arial';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7926ef5a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7926ef64{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7926ef65{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:12pt;padding-top:12pt;padding-left:12pt;padding-right:12pt;line-height: 1;background-color:transparent;}.cl-7926ef6e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:12pt;padding-top:12pt;padding-left:12pt;padding-right:12pt;line-height: 1;background-color:transparent;}.cl-7927c51a{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c524{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c525{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c52e{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c52f{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c530{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c538{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c539{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c53a{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c542{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c543{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c544{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c54c{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c54d{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7927c54e{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-792c713c"><thead><tr style="overflow-wrap:break-word;"><th class="cl-7927c51a"><p class="cl-7926ef5a"><span class="cl-7923ea94">Year</span></p></th><th class="cl-7927c524"><p class="cl-7926ef64"><span class="cl-7923ea94">IRSD</span></p></th><th class="cl-7927c525"><p class="cl-7926ef64"><span class="cl-7923ea94">LIRSD</span></p></th><th class="cl-7927c525"><p class="cl-7926ef64"><span class="cl-7923ea94">WLIRSD</span></p></th><th class="cl-7927c52e"><p class="cl-7926ef64"><span class="cl-7923ea94">LIRSD-PC2</span></p></th><th class="cl-7927c52f"><p class="cl-7926ef64"><span class="cl-7923ea94">WLIRSD-PC2</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7927c530"><p class="cl-7926ef65"><span class="cl-7923eaf8">2006</span></p></td><td class="cl-7927c538"><p class="cl-7926ef6e"><span class="cl-7923eaf8">39%</span></p></td><td class="cl-7927c539"><p class="cl-7926ef6e"><span class="cl-7923eaf8">36.55%</span></p></td><td class="cl-7927c539"><p class="cl-7926ef6e"><span class="cl-7923eaf8">42.46%</span></p></td><td class="cl-7927c53a"><p class="cl-7926ef6e"><span class="cl-7923eaf8">21.69%</span></p></td><td class="cl-7927c542"><p class="cl-7926ef6e"><span class="cl-7923eaf8">22.14%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7927c530"><p class="cl-7926ef65"><span class="cl-7923eaf8">2011</span></p></td><td class="cl-7927c538"><p class="cl-7926ef6e"><span class="cl-7923eaf8">44%</span></p></td><td class="cl-7927c539"><p class="cl-7926ef6e"><span class="cl-7923eaf8">38.75%</span></p></td><td class="cl-7927c539"><p class="cl-7926ef6e"><span class="cl-7923eaf8">45.97%</span></p></td><td class="cl-7927c53a"><p class="cl-7926ef6e"><span class="cl-7923eaf8">20.92%</span></p></td><td class="cl-7927c542"><p class="cl-7926ef6e"><span class="cl-7923eaf8">20.86%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7927c530"><p class="cl-7926ef65"><span class="cl-7923eaf8">2016</span></p></td><td class="cl-7927c538"><p class="cl-7926ef6e"><span class="cl-7923eaf8">43%</span></p></td><td class="cl-7927c539"><p class="cl-7926ef6e"><span class="cl-7923eaf8">38.33%</span></p></td><td class="cl-7927c539"><p class="cl-7926ef6e"><span class="cl-7923eaf8">45.05%</span></p></td><td class="cl-7927c53a"><p class="cl-7926ef6e"><span class="cl-7923eaf8">21.79%</span></p></td><td class="cl-7927c542"><p class="cl-7926ef6e"><span class="cl-7923eaf8">22.03%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7927c530"><p class="cl-7926ef65"><span class="cl-7923eaf8">2021</span></p></td><td class="cl-7927c538"><p class="cl-7926ef6e"><span class="cl-7923eaf8">37%</span></p></td><td class="cl-7927c539"><p class="cl-7926ef6e"><span class="cl-7923eaf8">35.43%</span></p></td><td class="cl-7927c539"><p class="cl-7926ef6e"><span class="cl-7923eaf8">44.07%</span></p></td><td class="cl-7927c53a"><p class="cl-7926ef6e"><span class="cl-7923eaf8">19.98%</span></p></td><td class="cl-7927c542"><p class="cl-7926ef6e"><span class="cl-7923eaf8">22.49%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7927c543"><p class="cl-7926ef65"><span class="cl-7923eaf8">Overall</span></p></td><td class="cl-7927c544"><p class="cl-7926ef6e"><span class="cl-7923eaf8"></span></p></td><td class="cl-7927c54c"><p class="cl-7926ef6e"><span class="cl-7923eaf8">34.29%</span></p></td><td class="cl-7927c54c"><p class="cl-7926ef6e"><span class="cl-7923eaf8">40.63%</span></p></td><td class="cl-7927c54d"><p class="cl-7926ef6e"><span class="cl-7923eaf8">19.47%</span></p></td><td class="cl-7927c54e"><p class="cl-7926ef6e"><span class="cl-7923eaf8">20.08%</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-84a30624{}.cl-8497a202{font-family:'Arial';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-8497a216{font-family:'Arial';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-849b93bc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-849b93c6{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-849b93d0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:12pt;padding-top:12pt;padding-left:12pt;padding-right:12pt;line-height: 1;background-color:transparent;}.cl-849b93d1{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:12pt;padding-top:12pt;padding-left:12pt;padding-right:12pt;line-height: 1;background-color:transparent;}.cl-849bb9d2{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9d3{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9dc{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9dd{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9e6{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9e7{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9f0{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9f1{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9f2{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9f3{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9fa{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9fb{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bb9fc{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bba04{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-849bba0e{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-84a30624"><thead><tr style="overflow-wrap:break-word;"><th class="cl-849bb9d2"><p class="cl-849b93bc"><span class="cl-8497a202">Year</span></p></th><th class="cl-849bb9d3"><p class="cl-849b93c6"><span class="cl-8497a202">IRSD</span></p></th><th class="cl-849bb9dc"><p class="cl-849b93c6"><span class="cl-8497a202">LIRSD</span></p></th><th class="cl-849bb9dc"><p class="cl-849b93c6"><span class="cl-8497a202">WLIRSD</span></p></th><th class="cl-849bb9dd"><p class="cl-849b93c6"><span class="cl-8497a202">LIRSD-PC2</span></p></th><th class="cl-849bb9e6"><p class="cl-849b93c6"><span class="cl-8497a202">WLIRSD-PC2</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-849bb9e7"><p class="cl-849b93d0"><span class="cl-8497a216">2006</span></p></td><td class="cl-849bb9f0"><p class="cl-849b93d1"><span class="cl-8497a216">39%</span></p></td><td class="cl-849bb9f1"><p class="cl-849b93d1"><span class="cl-8497a216">36.55%</span></p></td><td class="cl-849bb9f1"><p class="cl-849b93d1"><span class="cl-8497a216">42.46%</span></p></td><td class="cl-849bb9f2"><p class="cl-849b93d1"><span class="cl-8497a216">21.69%</span></p></td><td class="cl-849bb9f3"><p class="cl-849b93d1"><span class="cl-8497a216">22.14%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-849bb9e7"><p class="cl-849b93d0"><span class="cl-8497a216">2011</span></p></td><td class="cl-849bb9f0"><p class="cl-849b93d1"><span class="cl-8497a216">44%</span></p></td><td class="cl-849bb9f1"><p class="cl-849b93d1"><span class="cl-8497a216">38.75%</span></p></td><td class="cl-849bb9f1"><p class="cl-849b93d1"><span class="cl-8497a216">45.97%</span></p></td><td class="cl-849bb9f2"><p class="cl-849b93d1"><span class="cl-8497a216">20.92%</span></p></td><td class="cl-849bb9f3"><p class="cl-849b93d1"><span class="cl-8497a216">20.86%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-849bb9e7"><p class="cl-849b93d0"><span class="cl-8497a216">2016</span></p></td><td class="cl-849bb9f0"><p class="cl-849b93d1"><span class="cl-8497a216">43%</span></p></td><td class="cl-849bb9f1"><p class="cl-849b93d1"><span class="cl-8497a216">38.33%</span></p></td><td class="cl-849bb9f1"><p class="cl-849b93d1"><span class="cl-8497a216">45.05%</span></p></td><td class="cl-849bb9f2"><p class="cl-849b93d1"><span class="cl-8497a216">21.79%</span></p></td><td class="cl-849bb9f3"><p class="cl-849b93d1"><span class="cl-8497a216">22.03%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-849bb9e7"><p class="cl-849b93d0"><span class="cl-8497a216">2021</span></p></td><td class="cl-849bb9f0"><p class="cl-849b93d1"><span class="cl-8497a216">37%</span></p></td><td class="cl-849bb9f1"><p class="cl-849b93d1"><span class="cl-8497a216">35.43%</span></p></td><td class="cl-849bb9f1"><p class="cl-849b93d1"><span class="cl-8497a216">44.07%</span></p></td><td class="cl-849bb9f2"><p class="cl-849b93d1"><span class="cl-8497a216">19.98%</span></p></td><td class="cl-849bb9f3"><p class="cl-849b93d1"><span class="cl-8497a216">22.49%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-849bb9fa"><p class="cl-849b93d0"><span class="cl-8497a216">Overall</span></p></td><td class="cl-849bb9fb"><p class="cl-849b93d1"><span class="cl-8497a216"></span></p></td><td class="cl-849bb9fc"><p class="cl-849b93d1"><span class="cl-8497a216">34.29%</span></p></td><td class="cl-849bb9fc"><p class="cl-849b93d1"><span class="cl-8497a216">40.63%</span></p></td><td class="cl-849bba04"><p class="cl-849b93d1"><span class="cl-8497a216">19.47%</span></p></td><td class="cl-849bba0e"><p class="cl-849b93d1"><span class="cl-8497a216">20.08%</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-variationexplained-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1675,7 +1676,7 @@ Figure&nbsp;4: Scatter plot of PC1 and PC2 of Observations across SA2s for L-IRS
 </figure>
 </div>
 <ul>
-<li><p><strong>SA2s with High Contribution to PC1:</strong> In PCA analysis, high contribution of PC1 on units means this units was represented by the PC1 well, which we highlight them with label on <a href="#/cluster-analysis-on-areas-based-on-pc1-and-pc2" class="quarto-xref">Figure&nbsp;4 (a)</a> and <a href="#/cluster-analysis-on-areas-based-on-pc1-and-pc2" class="quarto-xref">Figure&nbsp;4 (b)</a></p>
+<li><p><strong>SA2s with High Contribution to PC1:</strong> In PCA analysis, high contribution of PC1 on units means this units was represented by the PC1 well, which we highlight them with label on <a href="#/fig-LIRSD-ind" class="quarto-xref">Figure&nbsp;4 (a)</a> and <a href="#/fig-WLIRSD-ind" class="quarto-xref">Figure&nbsp;4 (b)</a></p>
 <ul>
 <li><strong>TYPE 1:</strong> Functional areas of urban centers, with high proportion of certain occupations and low educational attainment</li>
 </ul>
@@ -1836,7 +1837,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <col style="width: 9%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th><strong>Variable</strong></th>
 <th><strong>M1 %Mean</strong></th>
 <th><strong>M1 t-value</strong></th>
@@ -1849,7 +1850,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>Coefficients of Fixed Effects</strong></td>
 <td></td>
 <td></td>
@@ -1860,7 +1861,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>(Intercept)</td>
 <td>291.34</td>
 <td><strong>7.45</strong></td>
@@ -1871,7 +1872,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td>305.92</td>
 <td><strong>8.82</strong></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>IRSD</td>
 <td>-0.54</td>
 <td><strong>-13.78</strong></td>
@@ -1882,7 +1883,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>L-IRSD</td>
 <td></td>
 <td></td>
@@ -1893,7 +1894,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td>-0.36</td>
 <td><strong>-13.54</strong></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ARIA</td>
 <td></td>
 <td></td>
@@ -1904,7 +1905,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>L-IRSD-PC2</td>
 <td></td>
 <td></td>
@@ -1915,7 +1916,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td>-0.2</td>
 <td><strong>-7.74</strong></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>Parameters in Random Effects</strong></td>
 <td></td>
 <td></td>
@@ -1926,7 +1927,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td><span class="math inline">\tau^2</span></td>
 <td>20.78</td>
 <td><strong>8.12</strong></td>
@@ -1937,7 +1938,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td>19.79</td>
 <td><strong>8.47</strong></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><span class="math inline">\rho</span></td>
 <td>68.43</td>
 <td><strong>6.23</strong></td>
@@ -1948,7 +1949,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td>78.78</td>
 <td><strong>8.7</strong></td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>Information Criteria</strong></td>
 <td></td>
 <td></td>
@@ -1959,7 +1960,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>DIC &amp; <span class="math inline">p_d</span></td>
 <td>2477.9</td>
 <td>241.79</td>
@@ -1970,7 +1971,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td><strong>2466.41</strong></td>
 <td><strong>232.95</strong></td>
 </tr>
-<tr class="even">
+<tr>
 <td>WAIC &amp; <span class="math inline">p_w</span></td>
 <td>2459.26</td>
 <td>164.78</td>
@@ -1981,7 +1982,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td><strong>2449.42</strong></td>
 <td><strong>160.03</strong></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>LMPL &amp; loglik</td>
 <td>-1329.61</td>
 <td>-997.16</td>
@@ -1992,7 +1993,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td><strong>-1310.09</strong></td>
 <td>-1000.25</td>
 </tr>
-<tr class="even">
+<tr>
 <td>LOOIC</td>
 <td>2602.21</td>
 <td></td>
@@ -2003,7 +2004,7 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <td><strong>2583.77</strong></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ELPD</td>
 <td>-1301.1</td>
 <td></td>
@@ -2024,7 +2025,7 @@ Table&nbsp;9: Estimated regression coefficient, standard deviation parameter, an
 </div>
 </div>
 <ul>
-<li><p>All models were fitted for each of the five AEDC domains, with the best results occurring in the Communication Skills and General Knowledge domain, as shown in <a href="#/model-comparison-i-spatial-models-within-one-period" class="quarto-xref">Table&nbsp;9</a>.</p></li>
+<li><p>All models were fitted for each of the five AEDC domains, with the best results occurring in the Communication Skills and General Knowledge domain, as shown in <a href="#/tbl-model-01-communication" class="quarto-xref">Table&nbsp;9</a>.</p></li>
 <li><p>The results indicate that the (W)LIRSD and PC2 are stronger predictors of childhood vulnerability than the IRSD and ARIA, as reflected by lower DIC, WAIC, and LOOIC values.</p></li>
 <li><p>PC2 is more significant in the model than ARIA, suggesting that PC2 may be a more suitable covariate for remoteness. This may be because ARIA is skewed toward major cities, whereas PC2 is more evenly distributed across different levels.</p></li>
 </ul>
@@ -2070,7 +2071,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <col style="width: 11%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th><strong>Variable</strong></th>
 <th><strong>M1 %Mean</strong></th>
 <th><strong>M1 t-value</strong></th>
@@ -2081,7 +2082,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>Coefficients of Fixed Effects</strong></td>
 <td></td>
 <td></td>
@@ -2090,7 +2091,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>(Intercept)</td>
 <td>222.44</td>
 <td><strong>8.02</strong></td>
@@ -2099,7 +2100,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td>307.42</td>
 <td><strong>11.56</strong></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>IRSD</td>
 <td>-0.47</td>
 <td><strong>-16.9</strong></td>
@@ -2108,7 +2109,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>L-IRSD</td>
 <td></td>
 <td></td>
@@ -2117,7 +2118,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td>-0.39</td>
 <td><strong>-20.12</strong></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>L-IRSD-PC2</td>
 <td></td>
 <td></td>
@@ -2126,7 +2127,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td>-0.16</td>
 <td><strong>-7.29</strong></td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>Parameters in Random Effects</strong></td>
 <td></td>
 <td></td>
@@ -2135,7 +2136,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><span class="math inline">\tau^2_{Sp}</span></td>
 <td>14.97</td>
 <td><strong>9.28</strong></td>
@@ -2144,7 +2145,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td>12.22</td>
 <td><strong>9.34</strong></td>
 </tr>
-<tr class="even">
+<tr>
 <td><span class="math inline">\tau^2_{Te}</span></td>
 <td>0.6</td>
 <td>1.15</td>
@@ -2153,7 +2154,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td>0.89</td>
 <td>1.32</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><span class="math inline">\tau^2_{Ind}</span></td>
 <td>2.45</td>
 <td><strong>13.15</strong></td>
@@ -2162,7 +2163,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td>2.25</td>
 <td><strong>13.17</strong></td>
 </tr>
-<tr class="even">
+<tr>
 <td><span class="math inline">\rho_{Sp}</span></td>
 <td>83.1</td>
 <td><strong>11.26</strong></td>
@@ -2171,7 +2172,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td>88.23</td>
 <td><strong>14.87</strong></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><span class="math inline">\rho_{Te}</span></td>
 <td>49.94</td>
 <td>1.92</td>
@@ -2180,7 +2181,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td>48.45</td>
 <td>1.85</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>Information Criteria</strong></td>
 <td></td>
 <td></td>
@@ -2189,7 +2190,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>DIC &amp; <span class="math inline">p_d</span></td>
 <td>12125.02</td>
 <td>1002.82</td>
@@ -2198,7 +2199,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td><strong>12091.55</strong></td>
 <td>970.54</td>
 </tr>
-<tr class="even">
+<tr>
 <td>WAIC &amp; <span class="math inline">p_w</span></td>
 <td>12075.75</td>
 <td>716.76</td>
@@ -2207,7 +2208,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td><strong>12047.43</strong></td>
 <td>699.27</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>LMPL &amp; loglik</td>
 <td>-6351.53</td>
 <td>-5059.69</td>
@@ -2216,7 +2217,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td><strong>-6297.64</strong></td>
 <td>-5075.24</td>
 </tr>
-<tr class="even">
+<tr>
 <td>LOOIC</td>
 <td>34460.99</td>
 <td></td>
@@ -2225,7 +2226,7 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <td>33987.54</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ELPD</td>
 <td>-17230.5</td>
 <td></td>
@@ -2244,7 +2245,7 @@ Table&nbsp;10: Estimated regression coefficient, standard deviation parameter, a
 </div>
 </div>
 <ul>
-<li><p>We only show the results of the Communication Skills and General Knowledge domain in <a href="#/model-comparison-ii-spatio-temporal-models-on-multiple-periods" class="quarto-xref">Table&nbsp;10</a>, and the results of other domains are similar</p></li>
+<li><p>We only show the results of the Communication Skills and General Knowledge domain in <a href="#/tbl-model-02-communication" class="quarto-xref">Table&nbsp;10</a>, and the results of other domains are similar</p></li>
 <li><p>(W)LIRSD works better than IRSD, while the combination of (W)LIRSD and PC2 works the best</p></li>
 <li><p>This may be because the (W)LIRSD and PC2 are more sensitive to the socio-economic status of the areas in different periods than the IRSD</p></li>
 </ul>
@@ -2301,7 +2302,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <col style="width: 7%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;"><strong>Region</strong></th>
 <th style="text-align: center;"><strong>2015 - 2018 APC</strong></th>
 <th style="text-align: center;"><strong>t-value</strong></th>
@@ -2314,7 +2315,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Australian Capital Territory</td>
 <td style="text-align: center;">-0.03</td>
 <td style="text-align: center;">-0.02</td>
@@ -2325,7 +2326,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">6.78</td>
 <td style="text-align: center;">0.28</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Greater Adelaide</td>
 <td style="text-align: center;">0.10</td>
 <td style="text-align: center;">0.10</td>
@@ -2336,7 +2337,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">2.51</td>
 <td style="text-align: center;">-1.55</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Greater Brisbane</td>
 <td style="text-align: center;">-1.05</td>
 <td style="text-align: center;">-1.59</td>
@@ -2347,7 +2348,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">-1.02</td>
 <td style="text-align: center;">-3.68</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Greater Darwin</td>
 <td style="text-align: center;">-1.81</td>
 <td style="text-align: center;">-0.73</td>
@@ -2358,7 +2359,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">13.34</td>
 <td style="text-align: center;">3.83</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Greater Hobart</td>
 <td style="text-align: center;">-2.08</td>
 <td style="text-align: center;">-0.90</td>
@@ -2369,7 +2370,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">4.82</td>
 <td style="text-align: center;">-4.30</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Greater Melbourne</td>
 <td style="text-align: center;">-1.32</td>
 <td style="text-align: center;"><strong>-2.10</strong></td>
@@ -2380,7 +2381,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">2.02</td>
 <td style="text-align: center;">-0.41</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Greater Perth</td>
 <td style="text-align: center;">-3.51</td>
 <td style="text-align: center;"><strong>-4.04</strong></td>
@@ -2391,7 +2392,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">4.76</td>
 <td style="text-align: center;">1.30</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Greater Sydney</td>
 <td style="text-align: center;">-0.57</td>
 <td style="text-align: center;">-1.02</td>
@@ -2402,7 +2403,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">2.00</td>
 <td style="text-align: center;">-0.16</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Rest of NSW</td>
 <td style="text-align: center;">-0.87</td>
 <td style="text-align: center;">-1.21</td>
@@ -2413,7 +2414,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">3.47</td>
 <td style="text-align: center;">0.70</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Rest of NT</td>
 <td style="text-align: center;">1.53</td>
 <td style="text-align: center;">0.71</td>
@@ -2424,7 +2425,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">0.82</td>
 <td style="text-align: center;">-8.06</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Rest of Qld</td>
 <td style="text-align: center;">-1.10</td>
 <td style="text-align: center;">-1.69</td>
@@ -2435,7 +2436,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">-0.17</td>
 <td style="text-align: center;">-2.79</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Rest of SA</td>
 <td style="text-align: center;">0.95</td>
 <td style="text-align: center;">0.58</td>
@@ -2446,7 +2447,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">3.30</td>
 <td style="text-align: center;">-3.21</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Rest of Tas.</td>
 <td style="text-align: center;">-4.19</td>
 <td style="text-align: center;"><strong>-2.06</strong></td>
@@ -2457,7 +2458,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">9.36</td>
 <td style="text-align: center;">1.33</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Rest of Vic.</td>
 <td style="text-align: center;">0.18</td>
 <td style="text-align: center;">0.19</td>
@@ -2468,7 +2469,7 @@ Figure&nbsp;10: Trends in prevalence of childhood developmentally vulnerability 
 <td style="text-align: center;">0.98</td>
 <td style="text-align: center;">-2.91</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Rest of WA</td>
 <td style="text-align: center;">-2.30</td>
 <td style="text-align: center;">-1.74</td>
@@ -2523,7 +2524,7 @@ Figure&nbsp;11: The map displays the significant and insignificant changes in pr
 <li><p><strong>Bayesian hierarchical models</strong> (BHMs) are a popular choice for disease mapping due to their ability to account for spatial dependence, unobserved heterogeneity, and measurement error. However, bivariate BHMs are less common, despite the importance of understanding the relationship between two diseases or health outcomes.</p>
 <ul>
 <li>The <strong>spatial dependence</strong> in BHMs is often modeled using conditional autoregressive (CAR) priors, as it assumes that near things are more related.</li>
-<li>The <strong>copula</strong> function is used to model the joint distribution of two random variables, which can capture the dependence structure between the two variables. Traditional spatial models only use bivariate normal distribution to model the joint distribution, which may not be flexible enough to capture the complex dependence structure between two diseases.</li>
+<li>The <strong>copula</strong> function is used to model the joint distribution of two random variables, which can capture the dependence structure between the two variables. Traditional spatial models only use bivariate normal distribution to model the joint distribution, which may not be flexible enough to capture the complex dependence structure between two diseases <span class="citation" data-cites="nelsen2006introduction">(<a href="#/references" role="doc-biblioref" onclick="">Nelsen 2006</a>)</span>.</li>
 </ul></li>
 </ul>
 </section>
@@ -2532,7 +2533,7 @@ Figure&nbsp;11: The map displays the significant and insignificant changes in pr
 <h2><span class="header-section-number">3.2</span> Reviews on Bivariate BHMs, Spatial Dependence, and Copula Functions</h2>
 <ul>
 <li><p><strong>Bayesian Hierarchical Models (BHMs)</strong>: Bayesian models can be complex and flexible (than frequentest models) as they can incorporate prior information, can (always) be fitted by Markov Chain Monte Carlo (MCMC) methods.</p></li>
-<li><p><strong>BHM with CAR Priors</strong>: Spatial effects are the effects of the location of the area on the outcome, where near areas are more related. The CAR prior is a popular choice for spatial effects in BHMs, as it can capture the spatial dependence between areas by assuming the conditional distribution of the outcome in one area depends on the outcomes in neighboring areas.</p></li>
+<li><p><strong>Spatial Effects and CAR Priors</strong>: Spatial effects are the effects of the location of the area on the outcome, where near areas are more related. The CAR prior is a popular choice for spatial effects in BHMs, as it can capture the spatial dependence between areas by assuming the conditional distribution of the outcome in one area depends on the outcomes in neighboring areas.</p></li>
 <li><p><strong>Copulas</strong>: Copulas are a powerful tool for modeling the joint distribution of two or more random variables by decoupling the marginal distributions from the dependence structure.</p></li>
 </ul>
 </section>
@@ -2547,16 +2548,177 @@ Figure&nbsp;11: The map displays the significant and insignificant changes in pr
 <li><strong>Prior Layer</strong>: Priors of the parameters in the process layer are specifed through hyperparameters, which can be fixed or random variables themselves.</li>
 </ul></li>
 </ul>
-<div id="fig-hierarchical-model" class="quarto-float quarto-figure quarto-figure-center">
+<p><strong>Formula of Bayesian Hierarchical Models in General</strong> <span class="math display">
+  y_i | \mu_i \sim \mathcal{D}(Y_i | \mu_i)
+</span> <span class="math display">
+  \quad g(\mu_i) = \boldsymbol{x}_i^\top \boldsymbol{\beta} + \epsilon_i
+</span> <span class="math display">
+  \boldsymbol{\beta} \sim \text{Gaussian}(\boldsymbol{\mu_{\beta}}, \boldsymbol{\Sigma_{\beta}}) \quad \text{and} \quad \boldsymbol{\epsilon} \sim \mathcal{D_{\epsilon}}(\dots)
+</span></p>
+<div id="fig-bhm-general" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-hierarchical-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="notebooks/figures/bhm/dot-figure-1.png">
+<div aria-describedby="fig-bhm-general-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="notebooks/figures/bhm/dot-figure-1.png" style="width:75.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hierarchical-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bhm-general-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12: Diagram of a Bayesian hierarchical model in general form
 </figcaption>
 </figure>
 </div>
+</section>
+<section id="spatial-effects-and-car-priors" class="slide level3" data-number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Spatial Effects and CAR Priors</h3>
+<h4 id="spatial-effects">Spatial Effects</h4>
+<ul>
+<li><p><strong>Neighborhood matrix</strong>: The spatial structure of the data can be represented by a neighborhood matrix, where the elements of the matrix indicate whether two areas are neighbors or not.</p></li>
+<li><p><strong>Spatial autocorrelation</strong>: The spatial autocorrelation is the correlation between the outcomes and its neighbors (named spatial lag), which can be captured by the CAR prior.</p></li>
+</ul>
+<div id="fig-spatial-lisa" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-spatial-lisa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="notebooks/figures/spatial/fig-syd-lisa-sa3-1.png">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spatial-lisa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Prevalence of Vulnerability in Physical Health and Wellbeing in Greater Sydney by SA3, 2021
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>Spatial autocorrelation in models</strong>: The spatial autocorrelation occurs in the residuals of the model, shows the remaining spatial effects that can not be caputred by the covariates in the model</li>
+</ul>
+<div id="fig-spatial-res" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-spatial-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-spatial-res" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-spatial-aedc-irsd" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-spatial-aedc-irsd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="notebooks/figures/spatial/fig-spatial-aedc-irsd-sa3-1.png" data-ref-parent="fig-spatial-res">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-spatial-aedc-irsd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Spatial Distribution of the Prevalence of Vulnerability in Physical Health and Wellbeing of Dhildren and IRSD in Greater Sydney by SA3, 2021
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-spatial-res" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-spatial-residuals" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-spatial-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="notebooks/figures/spatial/fig-spatial-residuals-sa3-1.png" data-ref-parent="fig-spatial-res">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-spatial-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Conmparison of Residuals and Spatial Lag of Residuals of Vulnerability in Physical Health and Wellbeing of Children in Australia by SA3, 2021
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spatial-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Spatial Distribution of the Prevalence of Vulnerability in Physical Health and Wellbeing of Children and IRSD, and their residuals with spatial lag in Greater Sydney by SA3, 2021
+</figcaption>
+</figure>
+</div>
+<h4 id="conditional-autoregressive-car-priors">Conditional Autoregressive (CAR) Priors</h4>
+<ul>
+<li><p>The CAR prior is a popular choice for spatial effects in BHMs, as it can capture the spatial dependence between areas by assuming the conditional distribution of the outcome in one area depends on the outcomes in neighboring areas.</p></li>
+<li><p>The structure of the CAR prior is not unique, and it can be defined based on the neighborhood matrix of the data. The most common CAR prior are Intrinsic Conditional Autoregressive (ICAR) and Besag-York-Mollie (BYM), and <strong>Leroux prior</strong> <span class="citation" data-cites="leroux2000estimation">(<a href="#/references" role="doc-biblioref" onclick="">Leroux, Lei, and Breslow 2000</a>)</span>.</p></li>
+<li><p>Brook’s Lemma help with converting conditional distribution to joint distribution, which is the key for CAR model to be fit <span class="citation" data-cites="brook1964distinction">(<a href="#/references" role="doc-biblioref" onclick="">Brook 1964</a>)</span>.</p></li>
+</ul>
+</section>
+<section id="copulas" class="slide level3" data-number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Copulas</h3>
+<ul>
+<li><p><strong>Copulas</strong> are a powerful tool for modeling the joint distribution of two or more random variables by decoupling the marginal distributions from the dependence structure</p></li>
+<li><p>Different choice of copulas can capture different types of dependence structure, such as Gaussian copula Clayton copula, and Gumbel copula <span class="citation" data-cites="genest1993statistical">(<a href="#/references" role="doc-biblioref" onclick="">Genest and Rivest 1993</a>)</span></p></li>
+<li><p>Dependence structure, not only the correlation, but also the shape (asymmetric or symmetric) and the tail (heavy or light) of the joint distribution</p></li>
+</ul>
+<div id="fig-copula-archimedean" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-copula-archimedean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="notebooks/figures/copula/fig-copula-archimedean-1.png">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-copula-archimedean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Copula Density for Frank, Clayton, Gumbel and Joe copulas
+</figcaption>
+</figure>
+</div>
+<div id="fig-copula-res" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-copula-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="notebooks/figures/copula/fig-empirical-copula-1.png">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-copula-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: Residuals and Empirical Copulas of Residuals of Vulnerability in Social Competence and Language and Cognitive Skills
+</figcaption>
+</figure>
+</div>
+</section>
+
+<section id="model-development---bivariate-bayesian-hierarchical-models-with-copula-based-spatial-dependence" class="title-slide slide level2 center" data-number="3.3">
+<h2><span class="header-section-number">3.3</span> Model Development - Bivariate Bayesian Hierarchical Models with Copula-based Spatial Dependence</h2>
+<ul>
+<li><p>New model was developed based on the framework of bivariate Bayesian hierarchical models with Leroux spatial structure, can be denoted as <strong>“Cop-leroux model”</strong>, we only show model specification briefly here.</p></li>
+<li><p>The model can be fitted by MCMC methods, and random effects can be simulated by Gibbs sampling. The algorithm will not be shown here.</p></li>
+<li><p>R Package <code>CARBayesCopula</code> was established and public available on GitHub for convenient install. The core algorithm of the model was written in <code>Rcpp</code> for computational efficiency</p></li>
+</ul>
+</section>
+<section id="model-specification" class="slide level3" data-number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Model Specification</h3>
+<div id="fig-bhm-bivariate" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-bhm-bivariate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-bhm-bivariate" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-bhm-leroux" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-bhm-leroux-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="notebooks/figures/bhm/dot-figure-3.png" style="width:70.0%" data-ref-parent="fig-bhm-bivariate">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-bhm-leroux-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Diagram of Bivariate Leroux Model
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-bhm-bivariate" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-bhm-copleroux" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-bhm-copleroux-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="notebooks/figures/bhm/dot-figure-2.png" data-ref-parent="fig-bhm-bivariate">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-bhm-copleroux-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Diagram of Bivariate Copula-based Leroux Model
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bhm-bivariate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: Diagram of Bivariate Leroux Model and Copula-based Leroux Model
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="r-package-carbayescopula" class="slide level3" data-number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> R Package <code>CARBayesCopula</code></h3>
+<ul>
+<li><p>The R package <code>CARBayesCopula</code> is a flexible and efficient tool for fitting bivariate Bayesian hierarchical models with copula-based spatial dependence using the Leroux spatial structure. It was developed based the framework of <code>CARBayes</code> package <span class="citation" data-cites="lee2013carbayes">(<a href="#/references" role="doc-biblioref" onclick="">Lee 2013</a>)</span></p></li>
+<li><p>The core simulation algorithm is written in <code>Rcpp</code> <span class="citation" data-cites="eddelbuettel2011rcpp">(<a href="#/references" role="doc-biblioref" onclick="">Eddelbuettel and François 2011</a>)</span> for computational efficiency, and the package provides functions for model diagnostics in LOOIC <span class="citation" data-cites="vehtari2020loo">(<a href="#/references" role="doc-biblioref" onclick="">Vehtari et al. 2020</a>)</span>, DIC, and WAIC.</p></li>
+<li><p>The choice of copula function are “Gaussian”, “Clayton”, “Gumbel”, “Frank” and “Joe”.</p></li>
+<li><p>Open to public by GitHub (and CRAN after the review)</p></li>
+</ul>
+<p><a href="https://github.com/MoooooLee/CARBayesCopula">https://github.com/MoooooLee/CARBayesCopula</a></p>
+</section>
+
+<section id="applications-1" class="title-slide slide level2 center" data-number="3.4">
+<h2><span class="header-section-number">3.4</span> Applications</h2>
+
 </section>
 </section>
 <section>
@@ -2590,6 +2752,39 @@ PC_{i,k} = \sum_{j=1}^{p} \alpha_{j,k} Z_{i,j}
 <p>where <span class="math inline">v_{j,k}</span> is the <span class="math inline">j</span>th element of the <span class="math inline">k</span>th eigenvector and the <span class="math inline">\lambda_{k}</span> is the <span class="math inline">k</span>th eigenvalue as we mentioned in the previous step.</p></li>
 </ol>
 </section>
+<section id="taylor-diagram" class="slide level3 unnumbered">
+<h3>Taylor Diagram</h3>
+<p>The trade-off between variance and bias can be always the key point in the model estimation. The Taylor diagram is a graphical method to visualize the trade-off. The good estimation should have lower variance and bias, where the estimation should have high correlation with the observed data.</p>
+<p>High variation with no bias may indicate that the model is overfitting the data, while low variation with high bias may indicate that the model is underfitting the data.</p>
+<div id="fig-taylor-example" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-taylor-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="notebooks/figures/Model_01/H02_TaylorDiagram_Example.png">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-taylor-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18: Taylor Diagram on Simulated Data
+</figcaption>
+</figure>
+</div>
+<p>As we can see that model A should be the worst model, as it just predict the mean of the data, which has no variance but high bias. Model D faces the overfitting issue, as it has high variance but low bias. Model B and C are the good models, as they have lower variance and bias, and high correlation with the observed data.</p>
+</section>
+<section id="model-specification-of-cop-leroux" class="slide level3 unnumbered">
+<h3>Model Specification of Cop-leroux</h3>
+<p><strong>Bivariate copula-based Leroux model with binomial data layer</strong></p>
+<p>A bivariate copula-based Leroux model with the binomial data layer can be described as the following set of equations.</p>
+<div style="font-size: 0.6em;">
+<p><span class="math display">\begin{align}
+    \boldsymbol{y_A} \sim Bin(\boldsymbol{n_A}, \boldsymbol{p_A}) \quad &amp;\text{and} \quad \boldsymbol{y_B} \sim Bin(\boldsymbol{n_B}, \boldsymbol{p_B}) \\
+    logit(\boldsymbol{p_A}) = \boldsymbol{X}\boldsymbol{\beta_A} + \boldsymbol{\epsilon_A} \quad &amp;\text{and} \quad logit(\boldsymbol{p_B}) = \boldsymbol{X}\boldsymbol{\beta_B} + \boldsymbol{\epsilon_B} \\
+    (\boldsymbol{\epsilon_A, \boldsymbol{\epsilon_B}}) &amp;= (\boldsymbol{\phi_A}, \boldsymbol{\phi_B})\\
+    \boldsymbol{\phi_A} | \rho, \phi_{A,-j}, \boldsymbol{W}, \tau_A &amp;\sim N \left( \frac{\rho \sum_{i=1}^{K}w_{ji} \phi_{A,i}}{\rho \sum_{i=1}^{K}w_{ji} +1-\rho}, \frac{\tau_A^2}{\rho \sum_{i=1}^{K}w_{ji} +1-\rho} \right) \\
+    \boldsymbol{\phi_B} | \rho, \phi_{B,-j}, \boldsymbol{W}, \tau_B &amp;\sim N \left( \frac{\rho \sum_{i=1}^{K}w_{ji} \phi_{B,i}}{\rho \sum_{i=1}^{K}w_{ji} +1-\rho}, \frac{\tau_B^2}{\rho \sum_{i=1}^{K}w_{ji} +1-\rho} \right) \\
+    (\boldsymbol{\phi_A}, \boldsymbol{\phi_B}) | \alpha &amp;\sim Cop(\boldsymbol{\phi_A}, \boldsymbol{\phi_B}, C(\alpha))\\
+\end{align}</span></p>
+</div>
+<p>Here <span class="math inline">\boldsymbol{y_A}</span> and <span class="math inline">\boldsymbol{y_B}</span> represent the observed data for the two components of the bivariate model, with <span class="math inline">\boldsymbol{n_A}</span> and <span class="math inline">\boldsymbol{n_B}</span> as the corresponding trial numbers. The probability vectors <span class="math inline">\boldsymbol{p_A}</span> and <span class="math inline">\boldsymbol{p_B}</span> are modeled using logit link functions with covariates <span class="math inline">\boldsymbol{X}</span> and regression coefficients <span class="math inline">\boldsymbol{\beta_A}</span> and <span class="math inline">\boldsymbol{\beta_B}</span>, respectively.</p>
+<p>The random effects <span class="math inline">\boldsymbol{\epsilon_A}</span> and <span class="math inline">\boldsymbol{\epsilon_B}</span> are assumed to be determined by the structured components <span class="math inline">\boldsymbol{\phi_A}</span> and <span class="math inline">\boldsymbol{\phi_B}</span>, which are modeled as conditional autoregressive (CAR) effects. The marginal distributions of the structured components are assumed to follow normal distributions with spatial dependencies captured by the spatial dependence parameter <span class="math inline">\rho</span>, the neighborhood matrix <span class="math inline">\boldsymbol{W}</span>, and the precision parameters <span class="math inline">\tau_A</span> and <span class="math inline">\tau_B</span>. While the joint distribution of the structured components is modeled using a copula function <span class="math inline">C(\alpha)</span>, with <span class="math inline">\alpha</span> representing the copula parameter.</p>
+</section>
 <section id="references" class="title-slide slide level2 unnumbered smaller scrollable">
 <h2>References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
@@ -2599,17 +2794,29 @@ ABS. 2021a. <span>“Correspondences.”</span> Australian Bureau of Statistics.
 <div id="ref-TableBuilder" class="csl-entry" role="listitem">
 ———. 2021b. <span>“TableBuilder.”</span> Australian Bureau of Statistics. <a href="https://www.abs.gov.au/statistics/microdata-tablebuilder/tablebuilder">https://www.abs.gov.au/statistics/microdata-tablebuilder/tablebuilder</a>.
 </div>
+<div id="ref-brook1964distinction" class="csl-entry" role="listitem">
+Brook, D. 1964. <span>“On the Distinction Between the Conditional Probability and the Joint Probability Approaches in the Specification of Nearest-Neighbour Systems.”</span> <em>Biometrika</em> 51 (3/4): 481–83.
+</div>
 <div id="ref-Chiappori2006Divorce" class="csl-entry" role="listitem">
 Chiappori, P., and Y. Weiss. 2006. <span>“Divorce, Remarriage, and Welfare: A General Equilibrium Approach.”</span> <em>Journal of the European Economic Association</em> 4: 415–26. <a href="https://doi.org/10.1162/JEEA.2006.4.2-3.415">https://doi.org/10.1162/JEEA.2006.4.2-3.415</a>.
 </div>
 <div id="ref-cramb2018investigation" class="csl-entry" role="listitem">
 Cramb, SM, EW Duncan, PD Baade, and KL Mengersen. 2018. <span>“Investigation of Bayesian Spatial Models.”</span>
 </div>
+<div id="ref-eddelbuettel2011rcpp" class="csl-entry" role="listitem">
+Eddelbuettel, Dirk, and Romain François. 2011. <span>“Rcpp: Seamless r and c++ Integration.”</span> <em>Journal of Statistical Software</em> 40: 1–18.
+</div>
+<div id="ref-genest1993statistical" class="csl-entry" role="listitem">
+Genest, Christian, and Louis-Paul Rivest. 1993. <span>“Statistical Inference Procedures for Bivariate Archimedean Copulas.”</span> <em>Journal of the American Statistical Association</em> 88 (423): 1034–43.
+</div>
 <div id="ref-Herbst2016Mothers" class="csl-entry" role="listitem">
 Herbst, Anat, and Amit Kaplan. 2016. <span>“Mothers’ Postdivorce Earnings in the Context of Welfare Policy Change.”</span> <em>International Journal of Social Welfare</em> 25: 222–34. <a href="https://doi.org/10.1111/IJSW.12205">https://doi.org/10.1111/IJSW.12205</a>.
 </div>
 <div id="ref-knorr2000bayesian" class="csl-entry" role="listitem">
 Knorr-Held, Leonhard. 2000. <span>“Bayesian Modelling of Inseparable Space-Time Variation in Disease Risk.”</span> <em>Statistics in Medicine</em> 19 (17-18): 2555–67.
+</div>
+<div id="ref-lee2013carbayes" class="csl-entry" role="listitem">
+Lee, Duncan. 2013. <span>“CARBayes: An r Package for Bayesian Spatial Modeling with Conditional Autoregressive Priors.”</span> <em>Journal of Statistical Software</em> 55 (13): 1–24.
 </div>
 <div id="ref-leroux2000estimation" class="csl-entry" role="listitem">
 Leroux, Brian G, Xingye Lei, and Norman Breslow. 2000. <span>“Estimation of Disease Rates in Small Areas: A New Mixed Model for Spatial Dependence.”</span> In <em>Statistical Models in Epidemiology, the Environment, and Clinical Trials</em>, 179–91. Springer.
@@ -2626,6 +2833,9 @@ Mazziotta, M., and Adriano Pareto. 2019. <span>“Use and Misuse of PCA for Meas
 <div id="ref-mollie1996bayesian" class="csl-entry" role="listitem">
 Mollié, Annie. 1996. <span>“Bayesian Mapping of Disease.”</span> <em>Markov Chain Monte Carlo in Practice</em> 1: 359–79.
 </div>
+<div id="ref-nelsen2006introduction" class="csl-entry" role="listitem">
+Nelsen, Roger B. 2006. <em>An Introduction to Copulas</em>. Springer.
+</div>
 <div id="ref-persaud2021united" class="csl-entry" role="listitem">
 Persaud, Nadini, and Ruby Dagher. 2021. <span>“The United Nations: 2030 Sustainable Development Goals Agenda.”</span> In <em>The Role of Monitoring and Evaluation in the UN 2030 SDGs Agenda</em>, 1–41. Springer.
 </div>
@@ -2638,20 +2848,23 @@ Trewin, Dennis. 2004. <span>“Census of Population and Housing: Socio-Economic 
 <div id="ref-Tucker2008Enduring" class="csl-entry" role="listitem">
 Tucker, M., and A. Crouter. 2008. <span>“Enduring Couples in Varying Sociocultural Contexts.”</span> <em>Family Relations</em> 57: 113–16. <a href="https://doi.org/10.1111/J.1741-3729.2008.00487.X">https://doi.org/10.1111/J.1741-3729.2008.00487.X</a>.
 </div>
+<div id="ref-vehtari2020loo" class="csl-entry" role="listitem">
+Vehtari, Aki, Jonah Gabry, Mans Magnusson, Yuling Yao, Paul-Christian Bürkner, Topi Paananen, Andrew Gelman, et al. 2020. <span>“Loo: Efficient Leave-One-Out Cross-Validation and WAIC for Bayesian Models.”</span> <em>R Package Version</em> 2 (1): 12.
+</div>
 <div id="ref-Zagorski1986Demographic" class="csl-entry" role="listitem">
 Zagórski, K. 1986. <span>“Demographic Characteristics, Work Complexity and Economic Setting as Social Status Determinants.”</span> <em>Social Indicators Research</em> 18: 175–92. <a href="https://doi.org/10.1007/BF00317547">https://doi.org/10.1007/BF00317547</a>.
 </div>
 </div>
-<div class="quarto-auto-generated-content">
+
+</section>
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="_extensions/anu-links/anu-light/logo/ANU_ Crest_Gold.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
-</div>
-</section>
-</section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="final_seminar_files/libs/revealjs/dist/reveal.js"></script>
@@ -2679,7 +2892,8 @@ Zagórski, K. 1986. <span>“Demographic Characteristics, Work Complexity and Ec
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
