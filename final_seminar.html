@@ -437,6 +437,23 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 <li>Bayesian analysis using copulas for capturing heterogeneity.</li>
 </ul></li>
 </ul>
+<aside class="notes">
+<p>Good afternoon, everyone, and welcome to the final seminar of my PhD research. Thank you for joining me today.</p>
+<p>I’ll be presenting the scope and outcomes of my research, which covers two distinct but related areas: socio-economic status measurement and advanced spatial modeling for small area estimation.</p>
+<p>First, I developed a longitudinal socio-economic index that allows us to track socio-economic status more effectively over time. This index is designed to be consistent across different periods, offering a clearer view of how socio-economic status shifts over time.</p>
+<p>In the second part of my research, I explored advanced statistical models to improve the accuracy of disease mapping and small area estimation. Specifically, I used Bayesian analysis with copulas to capture complex relationships in the data. I then translated this new approach into an R package to make it accessible for researchers and practitioners in the field.</p>
+<p>Throughout the presentation, I’ll look into each of these areas, motiavtions of them, discussing the methods, insights, and contributions my work offers to these fields.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
 <section>
@@ -454,6 +471,21 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 <li>Principal Component Analysis (PCA) is a common method to construct composite indices</li>
 </ul>
 <p>When given multiple indicators of socio-economic status, PCA can be used to construct a composite index by providing a linear combination of the indicators that maximizes the variance of the data. The first principal component is often used as the composite index, as it captures the most variation in the data, where this variation is assumed to be related to socio-economic status <span class="citation" data-cites="Mazziotta2019Use">(<a href="#/references" role="doc-biblioref" onclick="">Mazziotta and Pareto 2019</a>)</span>.</p>
+<aside class="notes">
+<p>Composite indices are widely used in socio-economic research to measure complex concepts like socio-economic status. By combining multiple indicators into a single measure, these indices offer a comprehensive view of the concept being studied.</p>
+<p>A common method for creating composite indices is Principal Component Analysis, or PCA. PCA identifies the combination of variables that captures the most variation, allowing us to condense multiple indicators into a single summary measure.</p>
+<p>For socio-economic status, using PCA helps create an index that reflects its multidimensional aspects, like income, education, and occupation. This approach makes it easier to analyze and interpret socio-economic data in a meaningful way.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
 <section id="historical-review-of-the-seifa-irsd" class="title-slide slide level2 center" data-number="2.2">
@@ -466,6 +498,21 @@ Dr.&nbsp;Bernard Baffour, Dr.&nbsp;Alice Richardson, Dr.&nbsp;Susanna Cramb
 <li>The 2001 SEIFA replaced two indices with one, which was the IRSAD. And four indices were produced since then until 2021, which are IRSD, IRSAD, IEO and IER.</li>
 </ul>
 <p>Among these indexes, the IRSD is regarded as the most established and widely used, as it encompasses all available variables that reflect or measure socio-economic disadvantage <span class="citation" data-cites="SEIFA2001">(<a href="#/references" role="doc-biblioref" onclick="">Trewin 2004</a>)</span>. Furthermore, the IRSD is recognized for its consistency, as it has maintained a nearly identical methodological approach and variables in its construction process across various periods <span class="citation" data-cites="SEIFA2001 SEIFA2021">(<a href="#/references" role="doc-biblioref" onclick="">Trewin 2004</a>; <a href="#/references" role="doc-biblioref" onclick="">Statistics 2023</a>)</span>.</p>
+<aside class="notes">
+<p>In Australia, the Socio-Economic Indexes for Areas, or SEIFA, have served as a key tool for measuring socio-economic status since 1986. Updated every five years, SEIFA provides a comprehensive view of socio-economic conditions across different regions.</p>
+<p>Initially, SEIFA included various indices to capture socio-economic differences between urban and rural areas. However, in 2001, these indices were consolidated into a single, more streamlined index known as the Index of Relative Socio-economic Advantage and Disadvantage (IRSAD). Since then, SEIFA has been regularly updated to reflect current socio-economic trends.</p>
+<p>Among the four indices created since 2001, the Index of Relative Socio-economic Disadvantage (IRSD) stands out for its widespread use and reliability. Focused specifically on measuring disadvantage, the IRSD has maintained a consistent methodology and variable selection across updates, making it a trusted tool in socio-economic analysis.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="variable-selection-for-irsd" class="slide level3" data-number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Variable Selection for IRSD</h3>
@@ -1074,6 +1121,22 @@ Table&nbsp;5: Reference Level of INC_LOW and LOWRENT in Different Waves
 </figure>
 </div>
 </div>
+<aside class="notes">
+<p>Let’s take a closer look at the variables used in the IRSD index over time. These variables capture aspects of income, education, employment, and housing to reflect socio-economic status.</p>
+<p>In 2006, the IRSD included 17 variables like income levels, education, and employment status. Over time, some variables have been added, removed, or modified based on relevance and data quality. For example, CHILDJOBLESS was added in 2011 to capture families with jobless parents, while RENT_SOCIAL and INDIGENOUS were removed due to concerns over data quality and interpretation.</p>
+<p>In 2021, NONET was removed, as internet access no longer serves as a reliable socio-economic indicator. Such adjustments ensure the index remains relevant to current standards.</p>
+<p>A key issue is the changing reference values for variables like INC_LOW and LOWRENT, which complicates comparisons over time and highlights the need for standardized reference values to maintain consistency across years.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="geographical-boundary-changes" class="slide level3" data-number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Geographical Boundary Changes</h3>
@@ -1218,6 +1281,22 @@ Table&nbsp;6: Number of Valid Areas in Constructing IRSD and L-IRSD
 </figure>
 </div>
 </div>
+<aside class="notes">
+<p>An important consideration in constructing the IRSD index is the geographical boundaries used. Australia has used two classification systems: the Australian Standard Geographical Classification (ASGC) before 2011 and the Australian Statistical Geography Standard (ASGS) since 2011, updated every five years.</p>
+<p>The ABS produces the SEIFA IRSD index using areal units like Census Collection Districts (CD) and Statistical Area Level 1 (SA1) to capture socio-economic data. For consistency, these are converted to larger units like SA2 ASGS 2021 using population-weighted averages.</p>
+<p>Some areas are excluded from the index—such as non-residential zones or regions with high non-response rates. Since 2011, additional exclusions apply to areas with fewer than six denominator values, ensuring reliability.</p>
+<p>The table shows the number of valid areas for each period, aligning geographical standards to SA2 ASGS 2021 for consistent comparison across years.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="loading-of-variables-in-irsd" class="slide level3" data-number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Loading of Variables in IRSD</h3>
@@ -1248,6 +1327,22 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <li><code>INC_LOW</code> increased significantly between 2011 and 2016.</li>
 </ul></li>
 </ul>
+<aside class="notes">
+<p>This plot shows the loading of each variable in the IRSD index across different years. A variable’s loading reflects its contribution to the index, with higher values indicating greater importance.</p>
+<p>The IRSD index captures a substantial share of socio-economic variance, explaining 39% of variation in 2006, increasing to 44% in 2011, 43% in 2016, and 37% in 2021. This indicates the index’s effectiveness in representing socio-economic status across periods.</p>
+<p>The graph highlights stable variables like DISABILITYU70, SEPDIVORCED, and ENGLISHPOOR, which consistently contribute to the index. Meanwhile, variables like CHILDJOBLESS and ONEPARENT show decreasing loadings, possibly reflecting societal changes and the impact of welfare policies on single-parent families.</p>
+<p>Additionally, INC_LOW shows a notable increase in loading from 2011 to 2016, pointing to a growing emphasis on income levels in assessing socio-economic status.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="limitations-and-motivations-for-longitudinal-analysis" class="slide level3" data-number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Limitations and Motivations for Longitudinal analysis</h3>
@@ -1266,6 +1361,21 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <li><p><strong>Comparability</strong>: The new index LIRSD and WLIRSD should be able to comparing with the traditional widely used SEIFA index, and can be used to track the socio-economic status of areas over time</p></li>
 <li><p><strong>Secondary Finding</strong>: Analysis the potential role of the second principal component of the constructed index</p></li>
 </ul>
+<aside class="notes">
+<p>Our review of the SEIFA IRSD index reveals several challenges for longitudinal analysis of socio-economic status. Key issues include inconsistent variable selection, shifts in reference values, spatial boundary changes, standardization issues, and evolving patterns over time.</p>
+<p>While many of these limitations were discussed in earlier slides, I want to briefly touch on standardization issues here. Standardizing variables before applying PCA is essential to ensure comparability, as it places all variables on the same scale. However, if standardization is done separately for each period, it can compromise the comparability of the index over time.</p>
+<p>To overcome these challenges, our goal is to develop a new index that captures socio-economic status consistently across time in Australia. This new index will build on the SEIFA framework, aiming to be consistent, comparable, and transparent—ensuring both reliability and relevance for longitudinal socio-economic analysis.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
 <section id="development-of-the-longitudinal-irsd-l-irsd-and-pc2-index" class="title-slide slide level2 center" data-number="2.3">
@@ -1276,6 +1386,22 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <li><p><strong>Multiple Indicator Approach</strong>: Weights are determined for each time period, which prioritize the capturing of the changing chracteristics of SES over time. But hard to compare the index across different time period.</p></li>
 <li><p><strong>Structured Indicator Approach</strong>: This method was designed to maintain both dynamic socio-economic context representation and temporal comparability when comparing two time periods. When there are only two time periods, two indicators are created. The first indicator is constructed using PCA as usual, and the second indicator is built using the eigenvalue from the first PCA model and the standardized variables from the second period.</p></li>
 </ul>
+<aside class="notes">
+<p>When creating a longitudinal socio-economic index, we face a trade-off in how we handle variable weights over time. We can use one of three approaches: Single Indicator, Multiple Indicator, or Structured Indicator.</p>
+<p>The Single Indicator Approach uses the same weights for each period, making comparisons easier but possibly missing changes in socio-economic patterns.</p>
+<p>The Multiple Indicator Approach allows weights to change over time, capturing shifts in socio-economic status. However, this makes cross-period comparisons harder.</p>
+<p>Finally, the Structured Indicator Approach balances stable and changing weights, but it requires that the first principal component explains more than 50% of the variance, which our data doesn’t meet—so we didn’t use this method.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level3">
 
@@ -1285,6 +1411,20 @@ Figure&nbsp;1: Loading of Variables in IRSD
 <li><p><strong>Structured Indicator Approach</strong> is not suitable here as when there are more than two time periods, the number of indicators will increase exponentially. And is is only recommended when the explained variance of the first principal component is greater than 50% <span class="citation" data-cites="liborio2022principal">(<a href="#/references" role="doc-biblioref" onclick="">Libório et al. 2022</a>)</span>.</p></li>
 <li><p>We choose the <strong>Single Indicator Approach</strong> for the L-IRSD and WL-IRSD, as it aligns with our objective.</p></li>
 </ul>
+<aside class="notes">
+<p>The SEIFA by the ABS uses the Multiple Indicator Approach, which is good for capturing changes in socio-economic status over time. However, the Structured Indicator Approach isn’t a fit for our data, as it requires a high level of explained variance that we don’t have.</p>
+<p>For our indices, L-IRSD and WL-IRSD, we chose the Single Indicator Approach. This approach makes it easier to compare socio-economic status consistently across different time periods, helping us track changes over time more effectively.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="variable-selection-for-l-irsd" class="slide level3" data-number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> Variable Selection for L-IRSD</h3>
@@ -1528,6 +1668,20 @@ Table&nbsp;7: List of Variables for Constructing IRSD across 2006-2021
 <li><p><code>CHILDJOBLESS</code> is excluded since it is not accessible in the 2006</p></li>
 </ul>
 <p>This careful exclusion strategy is essential to maintaining the index’s longitudinal consistency and robustness, even in light of certain data unavailability. Nevertheless, keeping there eleven variables in the L-IRSD ensures that the index remains comprehensive and representative of socio-economic status across different periods.</p>
+<aside class="notes">
+<p>The L-IRSD index is built using eleven variables that remain consistent across time periods, with data sourced from the ABS TableBuilder.</p>
+<p>Some variables were excluded due to data limitations or customization issues. For instance, INC_LOW and LOWRENT were excluded because their reference values couldn’t be customized. OVERCROWD was unavailable in 2006 and 2011, and CHILDJOBLESS was unavailable in 2006, so these variables were also excluded.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="alignment-of-geographic-boundaries" class="slide level3" data-number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Alignment of Geographic Boundaries</h3>
@@ -1540,6 +1694,20 @@ Table&nbsp;7: List of Variables for Constructing IRSD across 2006-2021
 <ul>
 <li>Omitting areas where any variable has a denominator smaller than 6, which is a logical choice, mirroring the ABS’s own exclusion rule.</li>
 </ul>
+<aside class="notes">
+<p>To ensure consistency and comparability, we align data from each census wave to SA2 under ASGS 2021. We use ABS correspondence files for this, which provide population-weighted averages for each area.</p>
+<p>After converting to this geographical standard, we apply exclusion rules. Specifically, we omit areas where any variable has a denominator smaller than 6, following the ABS’s own criteria.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="overall-procedure-for-constructing-l-irsd" class="slide level3" data-number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Overall Procedure for Constructing L-IRSD</h3>
@@ -1553,6 +1721,22 @@ Figure&nbsp;2: Flowchart of constructing LIRSD and WLIRSD
 </figcaption>
 </figure>
 </div>
+<aside class="notes">
+<p>This flowchart shows the steps for constructing the L-IRSD and WL-IRSD indices.</p>
+<p>First, we select variables and download the source data. We align the data to SA2 ASGS 2021 using population-weighted averages and apply exclusion rules to ensure data quality.</p>
+<p>Next, we standardize the variables and apply PCA to create the L-IRSD index. The WL-IRSD follows the same process.</p>
+<p>Finally, we select the first principal component from the PCA as the L-IRSD index. The second component, PC2, is also saved for future analysis.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
 <section id="results-of-lirsd-and-wlirsd" class="title-slide slide level2 center" data-number="2.4">
@@ -1564,6 +1748,20 @@ Figure&nbsp;2: Flowchart of constructing LIRSD and WLIRSD
 <li><p><strong>Cluster Analysis on areas based on PC1 and PC2</strong>: The clustering of SA2s based on the PC1 and PC2 of the L-IRSD and WLIRSD will be compared to the IRSD across different years.</p></li>
 <li><p><strong>Comparison of (W)L-IRSD with IRSD and Trend Analysis</strong>: The L-IRSD and WLIRSD will be compared to the IRSD across different years.</p></li>
 </ul>
+<aside class="notes">
+<p>After constructing the L-IRSD and WL-IRSD indices, we analyze and validate them through four key aspects:</p>
+<p>Proportion of Variation Explained – to check if the index effectively captures socio-economic status. Variable Loadings on PC1 and PC2 – to see each variable’s contribution to the index. Cluster Analysis – to group areas with similar socio-economic characteristics based on PC1 and PC2. Comparison with IRSD and Trend Analysis – to assess the consistency and relevance of the new indices over time. These steps ensure the robustness and applicability of our indices.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="proportion-of-variation-explained" class="slide level3" data-number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Proportion of Variation Explained</h3>
@@ -1572,7 +1770,7 @@ Figure&nbsp;2: Flowchart of constructing LIRSD and WLIRSD
 <figure class="quarto-float quarto-float-tbl">
 <div aria-describedby="tbl-variationexplained-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-373ca406{}.cl-372f3410{font-family:'Arial';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-372f342e{font-family:'Arial';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3733a61c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3733a626{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3733a630{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:12pt;padding-top:12pt;padding-left:12pt;padding-right:12pt;line-height: 1;background-color:transparent;}.cl-3733a63a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:12pt;padding-top:12pt;padding-left:12pt;padding-right:12pt;line-height: 1;background-color:transparent;}.cl-3733dbaa{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbb4{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbbe{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbbf{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbc0{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbc8{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbd2{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbd3{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbdc{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbdd{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbde{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbe6{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbf0{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbf1{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3733dbf2{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-373ca406"><thead><tr style="overflow-wrap:break-word;"><th class="cl-3733dbaa"><p class="cl-3733a61c"><span class="cl-372f3410">Year</span></p></th><th class="cl-3733dbb4"><p class="cl-3733a626"><span class="cl-372f3410">IRSD</span></p></th><th class="cl-3733dbbe"><p class="cl-3733a626"><span class="cl-372f3410">LIRSD</span></p></th><th class="cl-3733dbbe"><p class="cl-3733a626"><span class="cl-372f3410">WLIRSD</span></p></th><th class="cl-3733dbbf"><p class="cl-3733a626"><span class="cl-372f3410">LIRSD-PC2</span></p></th><th class="cl-3733dbc0"><p class="cl-3733a626"><span class="cl-372f3410">WLIRSD-PC2</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-3733dbc8"><p class="cl-3733a630"><span class="cl-372f342e">2006</span></p></td><td class="cl-3733dbd2"><p class="cl-3733a63a"><span class="cl-372f342e">39%</span></p></td><td class="cl-3733dbd3"><p class="cl-3733a63a"><span class="cl-372f342e">36.55%</span></p></td><td class="cl-3733dbd3"><p class="cl-3733a63a"><span class="cl-372f342e">42.46%</span></p></td><td class="cl-3733dbdc"><p class="cl-3733a63a"><span class="cl-372f342e">21.69%</span></p></td><td class="cl-3733dbdd"><p class="cl-3733a63a"><span class="cl-372f342e">22.14%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3733dbc8"><p class="cl-3733a630"><span class="cl-372f342e">2011</span></p></td><td class="cl-3733dbd2"><p class="cl-3733a63a"><span class="cl-372f342e">44%</span></p></td><td class="cl-3733dbd3"><p class="cl-3733a63a"><span class="cl-372f342e">38.75%</span></p></td><td class="cl-3733dbd3"><p class="cl-3733a63a"><span class="cl-372f342e">45.97%</span></p></td><td class="cl-3733dbdc"><p class="cl-3733a63a"><span class="cl-372f342e">20.92%</span></p></td><td class="cl-3733dbdd"><p class="cl-3733a63a"><span class="cl-372f342e">20.86%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3733dbc8"><p class="cl-3733a630"><span class="cl-372f342e">2016</span></p></td><td class="cl-3733dbd2"><p class="cl-3733a63a"><span class="cl-372f342e">43%</span></p></td><td class="cl-3733dbd3"><p class="cl-3733a63a"><span class="cl-372f342e">38.33%</span></p></td><td class="cl-3733dbd3"><p class="cl-3733a63a"><span class="cl-372f342e">45.05%</span></p></td><td class="cl-3733dbdc"><p class="cl-3733a63a"><span class="cl-372f342e">21.79%</span></p></td><td class="cl-3733dbdd"><p class="cl-3733a63a"><span class="cl-372f342e">22.03%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3733dbc8"><p class="cl-3733a630"><span class="cl-372f342e">2021</span></p></td><td class="cl-3733dbd2"><p class="cl-3733a63a"><span class="cl-372f342e">37%</span></p></td><td class="cl-3733dbd3"><p class="cl-3733a63a"><span class="cl-372f342e">35.43%</span></p></td><td class="cl-3733dbd3"><p class="cl-3733a63a"><span class="cl-372f342e">44.07%</span></p></td><td class="cl-3733dbdc"><p class="cl-3733a63a"><span class="cl-372f342e">19.98%</span></p></td><td class="cl-3733dbdd"><p class="cl-3733a63a"><span class="cl-372f342e">22.49%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3733dbde"><p class="cl-3733a630"><span class="cl-372f342e">Overall</span></p></td><td class="cl-3733dbe6"><p class="cl-3733a63a"><span class="cl-372f342e"></span></p></td><td class="cl-3733dbf0"><p class="cl-3733a63a"><span class="cl-372f342e">34.29%</span></p></td><td class="cl-3733dbf0"><p class="cl-3733a63a"><span class="cl-372f342e">40.63%</span></p></td><td class="cl-3733dbf1"><p class="cl-3733a63a"><span class="cl-372f342e">19.47%</span></p></td><td class="cl-3733dbf2"><p class="cl-3733a63a"><span class="cl-372f342e">20.08%</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-d3bd5aee{}.cl-d3b1dd36{font-family:'Arial';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-d3b1dd4a{font-family:'Arial';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-d3b6201c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-d3b62030{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-d3b62031{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:12pt;padding-top:12pt;padding-left:12pt;padding-right:12pt;line-height: 1;background-color:transparent;}.cl-d3b6203a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:12pt;padding-top:12pt;padding-left:12pt;padding-right:12pt;line-height: 1;background-color:transparent;}.cl-d3b6479a{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647a4{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647ae{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647af{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647b0{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647b8{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647b9{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647c2{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647c3{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647c4{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647cc{width:1.424in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647cd{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647ce{width:1.487in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647d6{width:1.751in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d3b647d7{width:2.014in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d3bd5aee"><thead><tr style="overflow-wrap:break-word;"><th class="cl-d3b6479a"><p class="cl-d3b6201c"><span class="cl-d3b1dd36">Year</span></p></th><th class="cl-d3b647a4"><p class="cl-d3b62030"><span class="cl-d3b1dd36">IRSD</span></p></th><th class="cl-d3b647ae"><p class="cl-d3b62030"><span class="cl-d3b1dd36">LIRSD</span></p></th><th class="cl-d3b647ae"><p class="cl-d3b62030"><span class="cl-d3b1dd36">WLIRSD</span></p></th><th class="cl-d3b647af"><p class="cl-d3b62030"><span class="cl-d3b1dd36">LIRSD-PC2</span></p></th><th class="cl-d3b647b0"><p class="cl-d3b62030"><span class="cl-d3b1dd36">WLIRSD-PC2</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-d3b647b8"><p class="cl-d3b62031"><span class="cl-d3b1dd4a">2006</span></p></td><td class="cl-d3b647b9"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">39%</span></p></td><td class="cl-d3b647c2"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">36.55%</span></p></td><td class="cl-d3b647c2"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">42.46%</span></p></td><td class="cl-d3b647c3"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">21.69%</span></p></td><td class="cl-d3b647c4"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">22.14%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d3b647b8"><p class="cl-d3b62031"><span class="cl-d3b1dd4a">2011</span></p></td><td class="cl-d3b647b9"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">44%</span></p></td><td class="cl-d3b647c2"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">38.75%</span></p></td><td class="cl-d3b647c2"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">45.97%</span></p></td><td class="cl-d3b647c3"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">20.92%</span></p></td><td class="cl-d3b647c4"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">20.86%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d3b647b8"><p class="cl-d3b62031"><span class="cl-d3b1dd4a">2016</span></p></td><td class="cl-d3b647b9"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">43%</span></p></td><td class="cl-d3b647c2"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">38.33%</span></p></td><td class="cl-d3b647c2"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">45.05%</span></p></td><td class="cl-d3b647c3"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">21.79%</span></p></td><td class="cl-d3b647c4"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">22.03%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d3b647b8"><p class="cl-d3b62031"><span class="cl-d3b1dd4a">2021</span></p></td><td class="cl-d3b647b9"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">37%</span></p></td><td class="cl-d3b647c2"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">35.43%</span></p></td><td class="cl-d3b647c2"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">44.07%</span></p></td><td class="cl-d3b647c3"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">19.98%</span></p></td><td class="cl-d3b647c4"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">22.49%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d3b647cc"><p class="cl-d3b62031"><span class="cl-d3b1dd4a">Overall</span></p></td><td class="cl-d3b647cd"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a"></span></p></td><td class="cl-d3b647ce"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">34.29%</span></p></td><td class="cl-d3b647ce"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">40.63%</span></p></td><td class="cl-d3b647d6"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">19.47%</span></p></td><td class="cl-d3b647d7"><p class="cl-d3b6203a"><span class="cl-d3b1dd4a">20.08%</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-variationexplained-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1586,6 +1784,20 @@ Table&nbsp;8: Proportion of Variation Explained by IRSD, LIRSD and WLIRSD
 <li><p>The proportion of variation explained by PC2 around 20% in <code>L-IRSD</code> and <code>WLIRSD</code> across different years, which reveals the potential of PC2 in capturing the socio-economic status of the areas.</p></li>
 <li><p>The higher value within each year compared to the overall value make sense as the they may have same pattern within each year, but different pattern across different years.</p></li>
 </ul>
+<aside class="notes">
+<p>This table shows the proportion of variation explained by the IRSD, L-IRSD, and WL-IRSD indices across different years. The L-IRSD and WL-IRSD indices capture a higher proportion of variation than the IRSD, indicating their stronger effectiveness in representing socio-economic status.</p>
+<p>We also observe that PC2 explains around 20% of the variation in the L-IRSD and WL-IRSD indices. This suggests that PC2 may play a notable role in capturing socio-economic patterns—a factor not discussed in the ABS SEIFA documentation or other studies.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="loading-of-variables-on-pc1-and-pc2" class="slide level3" data-number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Loading of Variables on PC1 and PC2</h3>
@@ -1642,6 +1854,21 @@ Figure&nbsp;3: Correlation Circle of Variables on PC1 and PC2 for L-IRSD and WLI
 <li>The diverse between <code>NOEDU</code> and <code>NOYEAR12ORHIGHER</code> is also interesting, indicating the lack of different level of education may refers to different types of disadvantage in the socio-economic status</li>
 </ul></li>
 </ul>
+<aside class="notes">
+<p>This figure shows the correlation circle of variables on PC1 and PC2 for the L-IRSD and WL-IRSD indices.</p>
+<p>In PC1, all variables point in the same direction, making it straightforward to interpret the index. The variables with the highest loadings are OCC LABOUR, ONEPARENT, and DISABILITYU70, followed by UNEMPLOYED, OCC DRIVERS, and OCC SERVICE_L. NOYEAR12ORHIGHER and NOEDU have moderate loadings, while ENGLISHPOOR and NOCAR show the lowest.</p>
+<p>PC2 presents a more interesting pattern. Here, some variables load in opposite directions, forming clusters with similar loading patterns. For example, ENGLISHPOOR and NOCAR cluster together, suggesting a shared lifestyle or demographic grouping. Meanwhile, ONEPARENT, SEPDIVORCED, and DISABILITYU70 form another cluster, likely representing a socio-economic grouping. The opposite directions of these clusters in PC2 reveal different types of socio-economic disadvantage across areas.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="cluster-analysis-on-areas-based-on-pc1-and-pc2" class="slide level3" data-number="2.4.3">
 <h3><span class="header-section-number">2.4.3</span> Cluster Analysis on areas based on PC1 and PC2</h3>
@@ -1701,6 +1928,25 @@ Figure&nbsp;4: Scatter plot of PC1 and PC2 of Observations across SA2s for L-IRS
 <li><p>Also, this founding enlighten the importance of PC2 in capturing the urban-rural differences in socio-economic status</p></li>
 </ul></li>
 </ul>
+<aside class="notes">
+<p>In addition to the correlation circle, we analyzed the scatter plot of PC1 and PC2 across SA2s for the L-IRSD and WL-IRSD indices.</p>
+<p>Highlighted observations are based on contribution, a metric indicating how well each area is represented by the principal components. After reviewing the community profiles of these SA2s, we identified three types of areas based on their contribution to PC1:</p>
+<p>Type 1: Functional urban centers, often near airports, with high concentrations in specific occupations and lower education levels—examples include Elizabeth, Smithfield - Elizabeth North, Bridge - Gagebrook, and Logan Central.</p>
+<p>Type 2: Areas with high proportions of First Nations people, reflecting unique cultural and social characteristics, such as Yarrabah, East Arnhem, Yuendumu - Anmatjere, and Sandover - Plenty.</p>
+<p>Type 3: Areas with high proportions of immigrants with low English proficiency and car ownership, such as Cabramatta-Lansvale, Inala - Richlands, Ashcroft - Busby - Miller, and Davoren Park.</p>
+<p>This classification shows that our new index captures different types of socio-economic disadvantage effectively.</p>
+<p>We also colored the points to differentiate capital and non-capital areas. The spread across PC1 suggests that disadvantage isn’t exclusive to either capital or non-capital areas. However, capital areas tend to have higher PC2 values, indicating a different kind of disadvantage compared to non-capital areas.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="comparison-of-wl-irsd-with-irsd-and-trend-analysis" class="slide level3" data-number="2.4.4">
 <h3><span class="header-section-number">2.4.4</span> Comparison of (W)L-IRSD with IRSD and Trend Analysis</h3>
@@ -1788,6 +2034,21 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <li><p>In ACT and Greater Sydney, there is a modest decline in the IRSD, which is not mirrored in the (W)LIRSD scores, indicating that the socio-economic status of these areas has improved over time, but the relative level within each time period declined</p></li>
 <li><p>In non-capital areas of NT, there is decreasing trend in the IRSD, but increasing trend in the (W)LIRSD, indicating that the socio-economic status of these areas has improved over time, and the relative level within each time period became worse (other areas improved more than these areas)</p></li>
 </ul>
+<aside class="notes">
+<p>This scatter plot compares the original IRSD with the new L-IRSD and WL-IRSD scores at the SA2 level. The diagonal line represents where scores are equal; points above indicate higher L-IRSD/WL-IRSD scores, while points below indicate lower scores.</p>
+<p>In 2006, trend lines for both capital and non-capital areas are close to the diagonal, but they diverge over time. For non-capital areas, the flatter trend line suggests that high-disadvantage areas have seen some improvement. In contrast, the steeper trend line for capital areas indicates increasing socio-economic differences within these regions.</p>
+<p>The parallel coordinate plot further highlights these trends. While socio-economic status in ACT and Greater Sydney has generally improved, their relative standing within each period has declined. Conversely, non-capital areas in the Northern Territory have shown improvement but have worsened in relative position over time.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
 <section id="applications" class="title-slide slide level2 center" data-number="2.5">
@@ -1804,6 +2065,21 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 </ul>
 <p>We want to validate the (W)LIRSD on capturing the socio-economic status of areas across different periods. The (W)LIRSD will be used as a covariate in the models comparing to use the IRSD. No other covariates will be used in the models.</p></li>
 </ul>
+<aside class="notes">
+<p>Based on our analysis, we designed two sets of models to explore applications of the L-IRSD and WL-IRSD indices.</p>
+<p>The first series focuses on spatial models within a single period. Here, we aim to validate the effectiveness of our new indices, not only the L-IRSD but also PC2, which shows potential in capturing unique aspects of socio-economic status. We will compare the L-IRSD, WL-IRSD, and PC2 to the IRSD and ARIA index as covariates in these models.</p>
+<p>The second series involves spatio-temporal models across periods to validate the indices’ consistency over time. For this, we’ll use the L-IRSD and WL-IRSD as the sole covariates and compare them with the IRSD across different periods.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="data" class="slide level3" data-number="2.5.1">
 <h3><span class="header-section-number">2.5.1</span> Data</h3>
@@ -1812,6 +2088,20 @@ Figure&nbsp;6: Parallel Coordinate Plot of IRSD and (W)LIRSD for Greater Capital
 <li><p><strong>The Australia Early Development Census (AEDC)</strong>: The AEDC is a national census of early childhood development in Australia. It provides a snapshot of how children have developed by the time they start their first year of full-time school. It is conducted every three years from 2009, and consists of five domains: <code>physical health and well-being</code>, <code>social competence</code>, <code>emotional maturity</code>, <code>language and cognitive skills</code>, and <code>communication skills and general knowledge</code>.</p></li>
 <li><p><strong>Accessibility/Remoteness Index of Australia (ARIA)</strong>: The ARIA is a measure of the relative access to services in different parts of Australia. It is based on the road distance to different types of services, such as hospitals, schools, and shopping centers. The ARIA can be grouped into five categories: <code>major cities</code>, <code>inner regional</code>, <code>outer regional</code>, <code>remote</code>, and <code>very remote</code>. However, in this study, we will use the continuous ARIA index in 2016.</p></li>
 </ul>
+<aside class="notes">
+<p>Our model data includes the IRSD, L-IRSD, and WL-IRSD indices, along with two additional datasets: the Australian Early Development Census (AEDC) and the Accessibility/Remoteness Index of Australia (ARIA).</p>
+<p>The AEDC offers insights into early childhood development across five key domains, while the ARIA measures access to services across Australia. We believe ARIA can serve as an alternative indicator to capture urban-rural differences in socio-economic status.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="model-comparison-i-spatial-models-within-one-period" class="slide level3" data-number="2.5.2">
 <h3><span class="header-section-number">2.5.2</span> Model Comparison I: Spatial Models within one period</h3>
@@ -2048,6 +2338,22 @@ Figure&nbsp;7: Taylor diagrams of estimations in prevalence of childhood develop
 <ul>
 <li>Combination of (W)LIRSD and PC2 as predictors in the model works best in terms of lower variations while still achieving strong correlation with the observed data on non-capital areas</li>
 </ul>
+<aside class="notes">
+<p>We won’t dive into the formulas here. Our model uses a Bayesian hierarchical approach with spatial structure to smooth estimates of childhood vulnerability, accounting for both covariates and spatial variations.</p>
+<p>We compared four models: M1 and M2 as benchmarks, using IRSD and ARIA as covariates, and M3 and M4 using the new indices (W)LIRSD and PC2 as covariates.</p>
+<p>Good models are identified by information criteria like DIC, WAIC, and LOOIC. Our results show that (W)LIRSD and PC2 outperform IRSD and ARIA as predictors of childhood vulnerability.</p>
+<p>The Taylor diagram illustrates the balance between variance and bias, showing that M4 reduces variation while maintaining strong correlation with observed data, especially in non-capital areas.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="model-comparison-ii-spatio-temporal-models-on-multiple-periods" class="slide level3" data-number="2.5.3">
 <h3><span class="header-section-number">2.5.3</span> Model Comparison II: Spatio-Temporal Models on multiple periods</h3>
@@ -2505,6 +2811,23 @@ Figure&nbsp;11: The map displays the significant and insignificant changes in pr
 </figcaption>
 </figure>
 </div>
+<aside class="notes">
+<p>n the spatio-temporal models, we applied cubic spline interpolation to align the AEDC data with census years. The models use (W)LIRSD and PC2 as covariates to capture fixed effects, with random effects divided into spatially structured, temporally structured, and unstructured components.</p>
+<p>We compared three models: M1 as a benchmark using IRSD, and M2 and M3 using (W)LIRSD and PC2 as covariates. The results indicate that (W)LIRSD and PC2 are more effective predictors of childhood vulnerability than IRSD, demonstrating greater sensitivity to socio-economic status changes over time.</p>
+<p>A variance-bias test confirms that M3 performs best, showing lower variation and strong correlation with observed data, particularly in non-capital areas.</p>
+<p>An advantage of spatio-temporal models is their ability to analyze trends. While we’ll skip the detailed analysis here, I’d like to highlight that these models provide narrow credibility intervals, which help identify significant changes in childhood vulnerability over time.</p>
+<p>Additionally, we can calculate the Annual Percentage Change (APC) with credibility intervals and map significant changes across Australia and capital regions. The results show that the model effectively identifies areas with notable increases or decreases in vulnerability.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
 <section id="conclusion-on-part-one" class="title-slide slide level2 center" data-number="2.6">
@@ -2515,6 +2838,23 @@ Figure&nbsp;11: The map displays the significant and insignificant changes in pr
 <li><p>The combination of (W)LIRSD and PC2 serves as a better predictor of childhood vulnerability than IRSD and ARIA, demonstrating the new index’s effectiveness in capturing socio-economic status in applications</p></li>
 <li><p>The spatio-temporal models indicate that (W)LIRSD is more sensitive to socio-economic status across different periods than IRSD. The combination of (W)LIRSD and PC2 performs even better, demonstrating the new index’s ability to capture socio-economic status variations over time in applications</p></li>
 </ul>
+<aside class="notes">
+<p>In conclusion, our study highlights four key findings and contributions:</p>
+<p>Our historical review of the IRSD showed how socio-economic conditions have shifted over time, with variable loadings reflecting these changes.</p>
+<p>We developed the new (W)LIRSD index, which tracks socio-economic changes effectively. Adding PC2 provides a more detailed view of different types of socio-economic disadvantage.</p>
+<p>We demonstrated that (W)LIRSD and PC2 are stronger predictors of childhood vulnerability than IRSD and ARIA in some case, showing the new index’s practical value.</p>
+<p>Finally, our spatio-temporal models show that (W)LIRSD is more sensitive to changes over time than IRSD, with (W)LIRSD and PC2 together capturing these shifts even better.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 </section>
 <section>
@@ -2532,6 +2872,25 @@ Figure&nbsp;11: The map displays the significant and insignificant changes in pr
 <li>The <strong>copula</strong> function is used to model the joint distribution of two random variables, which can capture the dependence structure between the two variables. Traditional spatial models only use bivariate normal distribution to model the joint distribution, which may not be flexible enough to capture the complex dependence structure between two diseases <span class="citation" data-cites="nelsen2006introduction">(<a href="#/references" role="doc-biblioref" onclick="">Nelsen 2006</a>)</span>.</li>
 </ul></li>
 </ul>
+<aside class="notes">
+<p>The second part of my research focuses on bivariate Bayesian hierarchical modeling with copula-based spatial dependence using a conditional autoregressive framework.</p>
+<p>It involves many terminologies that may be new to you, so I will try to explain them in simple terms.</p>
+<p>When we have a small sample size, we often want to “borrow strength” to improve estimation accuracy. Besides selecting good covariates, as we did in Part One, we can also assume specific structures in the data to enhance our estimates.</p>
+<p>In this research, we focus on two main structures: spatial dependence and copula functions.</p>
+<p>For spatial dependence, we assume that outcomes in nearby areas are more related. This is a common assumption in spatial modeling, where the location and neighborhood relationships play a role in predictions.</p>
+<p>In a bivariate model, we model two outcomes at the same time. Traditional models assume a simple, multivariate normal structure for their dependence, but this may not fully capture the complexity of relationships between outcomes, like between two diseases.</p>
+<p>By using these assumptions, our models aim to provide more accurate estimations in cases where data relationships are complex.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
 <section id="reviews-on-bivariate-bhms-spatial-dependence-and-copula-functions" class="title-slide slide level2 center" data-number="3.2">
@@ -2541,6 +2900,22 @@ Figure&nbsp;11: The map displays the significant and insignificant changes in pr
 <li><p><strong>Spatial Effects and CAR Priors</strong>: Spatial effects are the effects of the location of the area on the outcome, where near areas are more related. The CAR prior is a popular choice for spatial effects in BHMs, as it can capture the spatial dependence between areas by assuming the conditional distribution of the outcome in one area depends on the outcomes in neighboring areas.</p></li>
 <li><p><strong>Copulas</strong>: Copulas are a powerful tool for modeling the joint distribution of two or more random variables by decoupling the marginal distributions from the dependence structure.</p></li>
 </ul>
+<aside class="notes">
+<p>In this part of the research, we’ll cover three main topics:</p>
+<p>Bayesian Hierarchical Models (BHMs) – These models help us analyze complex data, especially when data is limited. They use prior information and are fitted with MCMC methods, which provide accurate estimates.</p>
+<p>Spatial Effects and CAR Priors – Spatial effects mean that nearby areas tend to have similar outcomes. CAR priors are used to model this, assuming each area is influenced by its neighbors.</p>
+<p>Copulas – Copulas let us model the relationship between multiple variables separately from their individual distributions, which helps capture complex dependencies.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="bayesian-hierarchical-models" class="slide level3" data-number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Bayesian Hierarchical Models</h3>
@@ -2570,6 +2945,21 @@ Figure&nbsp;12: Diagram of a Bayesian hierarchical model in general form
 </figcaption>
 </figure>
 </div>
+<aside class="notes">
+<p>Bayesian Hierarchical Models (BHMs) are a powerful tool for analyzing complex data. They treat model parameters as random variables with specified prior distributions. Using MCMC methods, we can sample from the parameters’ posterior distributions.</p>
+<p>One key advantage of BHMs is their hierarchical structure, allowing parameters to vary at different levels. The model has three layers: the data layer for observed data, the process layer for parameters, and the prior layer for parameter priors.</p>
+<p>The diagram above illustrates a general BHM setup, where Y is explained by a combination of covariates (x) and random errors (epsilon). The parameters beta and epsilon are also modeled as random variables with their own distributions.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="spatial-effects-and-car-priors" class="slide level3" data-number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Spatial Effects and CAR Priors</h3>
@@ -2634,6 +3024,21 @@ Figure&nbsp;14: Spatial Distribution of the Prevalence of Vulnerability in Physi
 <li><p>The structure of the CAR prior is not unique, and it can be defined based on the neighborhood matrix of the data. The most common CAR prior are Intrinsic Conditional Autoregressive (ICAR) and Besag-York-Mollie (BYM), and <strong>Leroux prior</strong> <span class="citation" data-cites="leroux2000estimation">(<a href="#/references" role="doc-biblioref" onclick="">Leroux, Lei, and Breslow 2000</a>)</span>.</p></li>
 <li><p>Brook’s Lemma help with converting conditional distribution to joint distribution, which is the key for CAR model to be fit <span class="citation" data-cites="brook1964distinction">(<a href="#/references" role="doc-biblioref" onclick="">Brook 1964</a>)</span>.</p></li>
 </ul>
+<aside class="notes">
+<p>Spatial effects occur when nearby areas have similar outcomes, shown by spatial autocorrelation in the model’s residuals. Neighborhood matrices define these relationships, while spatial lag helps identify the size and location of these effects.</p>
+<p>It’s important to note that spatial effects can appear not only in the observed data but also in covariates and residuals. This means spatial patterns in Y may not be fully captured by the covariates alone.</p>
+<p>The CAR prior is commonly used in BHMs to model spatial effects. It assumes that an area’s outcome depends on its neighbors, using conditional distributions to represent this relationship. Brook’s Lemma is key in CAR models, converting conditional distributions into joint distributions, which is essential for fitting the model.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="copulas" class="slide level3" data-number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Copulas</h3>

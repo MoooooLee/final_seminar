@@ -40,7 +40,21 @@ toc-depth: 2
 - **Aims**: Contributions to public health and socio-economic analysis through statistical modeling by:
   - Creation of a socio-economic index that allows longitudinal analysis.
   - Bayesian analysis using copulas for capturing heterogeneity.
-  
+
+
+:::{.notes}
+
+Good afternoon, everyone, and welcome to the final seminar of my PhD research. Thank you for joining me today.
+
+I’ll be presenting the scope and outcomes of my research, which covers two distinct but related areas: socio-economic status measurement and advanced spatial modeling for small area estimation.
+
+First, I developed a longitudinal socio-economic index that allows us to track socio-economic status more effectively over time. This index is designed to be consistent across different periods, offering a clearer view of how socio-economic status shifts over time.
+
+In the second part of my research, I explored advanced statistical models to improve the accuracy of disease mapping and small area estimation. Specifically, I used Bayesian analysis with copulas to capture complex relationships in the data. I then translated this new approach into an R package to make it accessible for researchers and practitioners in the field.
+
+Throughout the presentation, I’ll look into each of these areas, motiavtions of them, discussing the methods, insights, and contributions my work offers to these fields.
+
+:::
   
 
 # Part One: Constructing a Socio-Economic Index for Longitudinal Analysis
@@ -56,6 +70,17 @@ To measure socio-economic status is a complex task, as it is a multidimensional 
 When given multiple indicators of socio-economic status, PCA can be used to construct a composite index by providing a linear combination of the indicators that maximizes the variance of the data. The first principal component is often used as the composite index, as it captures the most variation in the data, where this variation is assumed to be related to socio-economic status [@Mazziotta2019Use].
 
 
+:::{.notes}
+
+Composite indices are widely used in socio-economic research to measure complex concepts like socio-economic status. By combining multiple indicators into a single measure, these indices offer a comprehensive view of the concept being studied.
+
+A common method for creating composite indices is Principal Component Analysis, or PCA. PCA identifies the combination of variables that captures the most variation, allowing us to condense multiple indicators into a single summary measure.
+
+For socio-economic status, using PCA helps create an index that reflects its multidimensional aspects, like income, education, and occupation. This approach makes it easier to analyze and interpret socio-economic data in a meaningful way.
+
+:::
+
+
 ## Historical Review of the SEIFA-IRSD
 
 - The current recognized form of SEIFA first appeared in 1986 and has been updated every five years since then.
@@ -65,6 +90,17 @@ Five indices are produced from 1986 to 1996, where there were two different indi
 - The 2001 SEIFA replaced two indices with one, which was the IRSAD. And four indices were produced since then until 2021, which are IRSD, IRSAD, IEO and IER.
 
 Among these indexes, the IRSD is regarded as the most established and widely used, as it encompasses all available variables that reflect or measure socio-economic disadvantage [@SEIFA2001]. Furthermore, the IRSD is recognized for its consistency, as it has maintained a nearly identical methodological approach and variables in its construction process across various periods [@SEIFA2001; @SEIFA2021].
+
+
+:::{.notes}
+
+In Australia, the Socio-Economic Indexes for Areas, or SEIFA, have served as a key tool for measuring socio-economic status since 1986. Updated every five years, SEIFA provides a comprehensive view of socio-economic conditions across different regions.
+
+Initially, SEIFA included various indices to capture socio-economic differences between urban and rural areas. However, in 2001, these indices were consolidated into a single, more streamlined index known as the Index of Relative Socio-economic Advantage and Disadvantage (IRSAD). Since then, SEIFA has been regularly updated to reflect current socio-economic trends.
+
+Among the four indices created since 2001, the Index of Relative Socio-economic Disadvantage (IRSD) stands out for its widespread use and reliability. Focused specifically on measuring disadvantage, the IRSD has maintained a consistent methodology and variable selection across updates, making it a trusted tool in socio-economic analysis.
+
+:::
 
 
 ### Variable Selection for IRSD
@@ -216,6 +252,18 @@ Among these indexes, the IRSD is regarded as the most established and widely use
 
 </div>
 
+:::{.notes}
+
+Let’s take a closer look at the variables used in the IRSD index over time. These variables capture aspects of income, education, employment, and housing to reflect socio-economic status.
+
+In 2006, the IRSD included 17 variables like income levels, education, and employment status. Over time, some variables have been added, removed, or modified based on relevance and data quality. For example, CHILDJOBLESS was added in 2011 to capture families with jobless parents, while RENT_SOCIAL and INDIGENOUS were removed due to concerns over data quality and interpretation.
+
+In 2021, NONET was removed, as internet access no longer serves as a reliable socio-economic indicator. Such adjustments ensure the index remains relevant to current standards.
+
+A key issue is the changing reference values for variables like INC_LOW and LOWRENT, which complicates comparisons over time and highlights the need for standardized reference values to maintain consistency across years.
+
+:::
+
 
 ### Geographical Boundary Changes
 
@@ -255,6 +303,19 @@ When comparing the index, all index will be converted into the same geographical
 : Number of Valid Areas in Constructing IRSD and L-IRSD {#tbl-valid-areas}
 
 </div>
+
+
+:::{.notes}
+
+An important consideration in constructing the IRSD index is the geographical boundaries used. Australia has used two classification systems: the Australian Standard Geographical Classification (ASGC) before 2011 and the Australian Statistical Geography Standard (ASGS) since 2011, updated every five years.
+
+The ABS produces the SEIFA IRSD index using areal units like Census Collection Districts (CD) and Statistical Area Level 1 (SA1) to capture socio-economic data. For consistency, these are converted to larger units like SA2 ASGS 2021 using population-weighted averages.
+
+Some areas are excluded from the index—such as non-residential zones or regions with high non-response rates. Since 2011, additional exclusions apply to areas with fewer than six denominator values, ensuring reliability.
+
+The table shows the number of valid areas for each period, aligning geographical standards to SA2 ASGS 2021 for consistent comparison across years.
+
+:::
 
 
 ### Loading of Variables in IRSD
@@ -316,6 +377,19 @@ SEIFA_Loading %>%
     - `INC_LOW` increased significantly between 2011 and 2016.
 
 
+:::{.notes}
+
+This plot shows the loading of each variable in the IRSD index across different years. A variable's loading reflects its contribution to the index, with higher values indicating greater importance.
+
+The IRSD index captures a substantial share of socio-economic variance, explaining 39% of variation in 2006, increasing to 44% in 2011, 43% in 2016, and 37% in 2021. This indicates the index’s effectiveness in representing socio-economic status across periods.
+
+The graph highlights stable variables like DISABILITYU70, SEPDIVORCED, and ENGLISHPOOR, which consistently contribute to the index. Meanwhile, variables like CHILDJOBLESS and ONEPARENT show decreasing loadings, possibly reflecting societal changes and the impact of welfare policies on single-parent families.
+
+Additionally, INC_LOW shows a notable increase in loading from 2011 to 2016, pointing to a growing emphasis on income levels in assessing socio-economic status.
+
+:::
+
+
 ### Limitations and Motivations for Longitudinal analysis
 
 **Challenges for Longitudinal Analysis**
@@ -341,6 +415,16 @@ In response to these challenges, we aim to develop an index that can longitudina
 
 - **Secondary Finding**: Analysis the potential role of the second principal component of the constructed index
 
+:::{.notes}
+
+Our review of the SEIFA IRSD index reveals several challenges for longitudinal analysis of socio-economic status. Key issues include inconsistent variable selection, shifts in reference values, spatial boundary changes, standardization issues, and evolving patterns over time.
+
+While many of these limitations were discussed in earlier slides, I want to briefly touch on standardization issues here. Standardizing variables before applying PCA is essential to ensure comparability, as it places all variables on the same scale. However, if standardization is done separately for each period, it can compromise the comparability of the index over time.
+
+To overcome these challenges, our goal is to develop a new index that captures socio-economic status consistently across time in Australia. This new index will build on the SEIFA framework, aiming to be consistent, comparable, and transparent—ensuring both reliability and relevance for longitudinal socio-economic analysis.
+
+:::
+
 
 ## Development of the Longitudinal IRSD (L-IRSD) and PC2 Index
 
@@ -352,6 +436,20 @@ In response to these challenges, we aim to develop an index that can longitudina
 
 - **Structured Indicator Approach**: This method was designed to maintain both dynamic socio-economic context representation and temporal comparability when comparing two time periods. When there are only two time periods, two indicators are created. The first indicator is constructed using PCA as usual, and the second indicator is built using the eigenvalue from the first PCA model and the standardized variables from the second period.
 
+
+:::{.notes}
+
+When creating a longitudinal socio-economic index, we face a trade-off in how we handle variable weights over time. We can use one of three approaches: Single Indicator, Multiple Indicator, or Structured Indicator.
+
+The Single Indicator Approach uses the same weights for each period, making comparisons easier but possibly missing changes in socio-economic patterns.
+
+The Multiple Indicator Approach allows weights to change over time, capturing shifts in socio-economic status. However, this makes cross-period comparisons harder.
+
+Finally, the Structured Indicator Approach balances stable and changing weights, but it requires that the first principal component explains more than 50% of the variance, which our data doesn’t meet—so we didn’t use this method.
+
+:::
+
+
 ---
 **Choose the Single Indicator Approach for L-IRSD**
 
@@ -360,6 +458,14 @@ In response to these challenges, we aim to develop an index that can longitudina
 - **Structured Indicator Approach** is not suitable here as when there are more than two time periods, the number of indicators will increase exponentially. And is is only recommended when the explained variance of the first principal component is greater than 50% [@liborio2022principal].
 
 - We choose the **Single Indicator Approach** for the L-IRSD and WL-IRSD, as it aligns with our objective.
+
+:::{.notes}
+
+The SEIFA by the ABS uses the Multiple Indicator Approach, which is good for capturing changes in socio-economic status over time. However, the Structured Indicator Approach isn’t a fit for our data, as it requires a high level of explained variance that we don’t have.
+
+For our indices, L-IRSD and WL-IRSD, we chose the Single Indicator Approach. This approach makes it easier to compare socio-economic status consistently across different time periods, helping us track changes over time more effectively.
+
+:::
 
 
 ### Variable Selection for L-IRSD
@@ -406,6 +512,14 @@ Data obtained from *TableBuilder* from the ABS [@TableBuilder].
 
 This careful exclusion strategy is essential to maintaining the index’s longitudinal consistency and robustness, even in light of certain data unavailability. Nevertheless, keeping there eleven variables in the L-IRSD ensures that the index remains comprehensive and representative of socio-economic status across different periods.
 
+:::{.notes}
+
+The L-IRSD index is built using eleven variables that remain consistent across time periods, with data sourced from the ABS TableBuilder.
+
+Some variables were excluded due to data limitations or customization issues. For instance, INC_LOW and LOWRENT were excluded because their reference values couldn’t be customized. OVERCROWD was unavailable in 2006 and 2011, and CHILDJOBLESS was unavailable in 2006, so these variables were also excluded.
+
+:::
+
 
 ### Alignment of Geographic Boundaries
 
@@ -419,10 +533,31 @@ Exclusion rules after translating the original data to the SA2s under the ASGS 2
 
 - Omitting areas where any variable has a denominator smaller than 6, which is a logical choice, mirroring the ABS’s own exclusion rule.
 
+:::{.notes}
+
+To ensure consistency and comparability, we align data from each census wave to SA2 under ASGS 2021. We use ABS correspondence files for this, which provide population-weighted averages for each area.
+
+After converting to this geographical standard, we apply exclusion rules. Specifically, we omit areas where any variable has a denominator smaller than 6, following the ABS’s own criteria.
+
+
+:::
+
 
 ### Overall Procedure for Constructing L-IRSD
 
 ![Flowchart of constructing LIRSD and WLIRSD](notebooks/figures/steps.png){#fig-LIRSD-flowchart}
+
+:::{.notes}
+
+This flowchart shows the steps for constructing the L-IRSD and WL-IRSD indices.
+
+First, we select variables and download the source data. We align the data to SA2 ASGS 2021 using population-weighted averages and apply exclusion rules to ensure data quality.
+
+Next, we standardize the variables and apply PCA to create the L-IRSD index. The WL-IRSD follows the same process.
+
+Finally, we select the first principal component from the PCA as the L-IRSD index. The second component, PC2, is also saved for future analysis.
+
+:::
 
 
 ## Results of LIRSD and WLIRSD
@@ -436,6 +571,19 @@ Results will be analyzed in four aspects:
 - **Cluster Analysis on areas based on PC1 and PC2**: The clustering of SA2s based on the PC1 and PC2 of the L-IRSD and WLIRSD will be compared to the IRSD across different years.
 
 - **Comparison of (W)L-IRSD with IRSD and Trend Analysis**: The L-IRSD and WLIRSD will be compared to the IRSD across different years.
+
+
+:::{.notes}
+
+After constructing the L-IRSD and WL-IRSD indices, we analyze and validate them through four key aspects:
+
+Proportion of Variation Explained – to check if the index effectively captures socio-economic status.
+Variable Loadings on PC1 and PC2 – to see each variable’s contribution to the index.
+Cluster Analysis – to group areas with similar socio-economic characteristics based on PC1 and PC2.
+Comparison with IRSD and Trend Analysis – to assess the consistency and relevance of the new indices over time.
+These steps ensure the robustness and applicability of our indices.
+
+:::
 
 
 ### Proportion of Variation Explained
@@ -577,6 +725,15 @@ tibble(Year = c("2006", "2011", "2016", "2021"),
 - The higher value within each year compared to the overall value make sense as the they may have same pattern within each year, but different pattern across different years.
 
 
+:::{.notes}
+
+This table shows the proportion of variation explained by the IRSD, L-IRSD, and WL-IRSD indices across different years. The L-IRSD and WL-IRSD indices capture a higher proportion of variation than the IRSD, indicating their stronger effectiveness in representing socio-economic status.
+
+We also observe that PC2 explains around 20% of the variation in the L-IRSD and WL-IRSD indices. This suggests that PC2 may play a notable role in capturing socio-economic patterns—a factor not discussed in the ABS SEIFA documentation or other studies.
+
+:::
+
+
 ### Loading of Variables on PC1 and PC2
 
 ::: {#fig-PCA-var layout-ncol=2}
@@ -603,6 +760,16 @@ Correlation Circle of Variables on PC1 and PC2 for L-IRSD and WLIRSD
     - `ONEPARENT`, `SEPDIVORCED`, and `DISABILITYU70` cluster together, indicating a socio-economic grouping where single-parent families, divorced individuals, and those with disabilities are prevalent
     - The above two clusters are in opposite direction in PC2, which means that there are two different types of disadvantage in the socio-economic status occurs in different areas
     - The diverse between `NOEDU` and `NOYEAR12ORHIGHER` is also interesting, indicating the lack of different level of education may refers to different types of disadvantage in the socio-economic status
+
+:::{.notes}
+
+This figure shows the correlation circle of variables on PC1 and PC2 for the L-IRSD and WL-IRSD indices.
+
+In PC1, all variables point in the same direction, making it straightforward to interpret the index. The variables with the highest loadings are OCC LABOUR, ONEPARENT, and DISABILITYU70, followed by UNEMPLOYED, OCC DRIVERS, and OCC SERVICE_L. NOYEAR12ORHIGHER and NOEDU have moderate loadings, while ENGLISHPOOR and NOCAR show the lowest.
+
+PC2 presents a more interesting pattern. Here, some variables load in opposite directions, forming clusters with similar loading patterns. For example, ENGLISHPOOR and NOCAR cluster together, suggesting a shared lifestyle or demographic grouping. Meanwhile, ONEPARENT, SEPDIVORCED, and DISABILITYU70 form another cluster, likely representing a socio-economic grouping. The opposite directions of these clusters in PC2 reveal different types of socio-economic disadvantage across areas.
+
+:::
 
 
 ### Cluster Analysis on areas based on PC1 and PC2
@@ -636,6 +803,24 @@ Scatter plot of PC1 and PC2 of Observations across SA2s for L-IRSD and WLIRSD
     - However, capital areas tend to have higher PC2 values, indicating a different type of disadvantage compared to non-capital areas
     
     - Also, this founding enlighten the importance of PC2 in capturing the urban-rural differences in socio-economic status
+
+:::{.notes}
+
+In addition to the correlation circle, we analyzed the scatter plot of PC1 and PC2 across SA2s for the L-IRSD and WL-IRSD indices.
+
+Highlighted observations are based on contribution, a metric indicating how well each area is represented by the principal components. After reviewing the community profiles of these SA2s, we identified three types of areas based on their contribution to PC1:
+
+Type 1: Functional urban centers, often near airports, with high concentrations in specific occupations and lower education levels—examples include Elizabeth, Smithfield - Elizabeth North, Bridge - Gagebrook, and Logan Central.
+
+Type 2: Areas with high proportions of First Nations people, reflecting unique cultural and social characteristics, such as Yarrabah, East Arnhem, Yuendumu - Anmatjere, and Sandover - Plenty.
+
+Type 3: Areas with high proportions of immigrants with low English proficiency and car ownership, such as Cabramatta-Lansvale, Inala - Richlands, Ashcroft - Busby - Miller, and Davoren Park.
+
+This classification shows that our new index captures different types of socio-economic disadvantage effectively.
+
+We also colored the points to differentiate capital and non-capital areas. The spread across PC1 suggests that disadvantage isn’t exclusive to either capital or non-capital areas. However, capital areas tend to have higher PC2 values, indicating a different kind of disadvantage compared to non-capital areas.
+
+:::
 
 
 ### Comparison of (W)L-IRSD with IRSD and Trend Analysis
@@ -676,6 +861,16 @@ in the (W)LIRSD scores, indicating that the socio-economic status of these areas
 
 - In non-capital areas of NT, there is decreasing trend in the IRSD, but increasing trend in the (W)LIRSD, indicating that the socio-economic status of these areas has improved over time, and the relative level within each time period became worse (other areas improved more than these areas)
 
+:::{.notes}
+
+This scatter plot compares the original IRSD with the new L-IRSD and WL-IRSD scores at the SA2 level. The diagonal line represents where scores are equal; points above indicate higher L-IRSD/WL-IRSD scores, while points below indicate lower scores.
+
+In 2006, trend lines for both capital and non-capital areas are close to the diagonal, but they diverge over time. For non-capital areas, the flatter trend line suggests that high-disadvantage areas have seen some improvement. In contrast, the steeper trend line for capital areas indicates increasing socio-economic differences within these regions.
+
+The parallel coordinate plot further highlights these trends. While socio-economic status in ACT and Greater Sydney has generally improved, their relative standing within each period has declined. Conversely, non-capital areas in the Northern Territory have shown improvement but have worsened in relative position over time.
+
+:::
+
 
 ## Applications
 
@@ -691,6 +886,16 @@ in the (W)LIRSD scores, indicating that the socio-economic status of these areas
     
     We want to validate the (W)LIRSD on capturing the socio-economic status of areas across different periods. The (W)LIRSD will be used as a covariate in the models comparing to use the IRSD. No other covariates will be used in the models.
 
+:::{.notes}
+
+Based on our analysis, we designed two sets of models to explore applications of the L-IRSD and WL-IRSD indices.
+
+The first series focuses on spatial models within a single period. Here, we aim to validate the effectiveness of our new indices, not only the L-IRSD but also PC2, which shows potential in capturing unique aspects of socio-economic status. We will compare the L-IRSD, WL-IRSD, and PC2 to the IRSD and ARIA index as covariates in these models.
+
+The second series involves spatio-temporal models across periods to validate the indices’ consistency over time. For this, we’ll use the L-IRSD and WL-IRSD as the sole covariates and compare them with the IRSD across different periods.
+
+:::
+
 
 ### Data
 
@@ -699,6 +904,14 @@ Other than IRSD and (W)LIRSD, two other datasets will be used in the models.
 - **The Australia Early Development Census (AEDC)**: The AEDC is a national census of early childhood development in Australia. It provides a snapshot of how children have developed by the time they start their first year of full-time school. It is conducted every three years from 2009, and consists of five domains: `physical health and well-being`, `social competence`, `emotional maturity`, `language and cognitive skills`, and `communication skills and general knowledge`.
 
 - **Accessibility/Remoteness Index of Australia (ARIA)**: The ARIA is a measure of the relative access to services in different parts of Australia. It is based on the road distance to different types of services, such as hospitals, schools, and shopping centers. The ARIA can be grouped into five categories: `major cities`, `inner regional`, `outer regional`, `remote`, and `very remote`. However, in this study, we will use the continuous ARIA index in 2016.
+
+:::{.notes}
+
+Our model data includes the IRSD, L-IRSD, and WL-IRSD indices, along with two additional datasets: the Australian Early Development Census (AEDC) and the Accessibility/Remoteness Index of Australia (ARIA).
+
+The AEDC offers insights into early childhood development across five key domains, while the ARIA measures access to services across Australia. We believe ARIA can serve as an alternative indicator to capture urban-rural differences in socio-economic status.
+
+:::
 
 
 ### Model Comparison I: Spatial Models within one period
@@ -758,6 +971,18 @@ Following the methodologies of @cramb2018investigation, @li2020bayesian, and @mo
 ![Taylor diagrams of estimations in prevalence of childhood developmentally vulnerability in Communication Skills & General Knowledge domain by SA3 in Capital and Non-Capital regions](notebooks/figures/Model_01/Figure_Taylor_Communication.png){#fig-LIRSD-model01 width=80%}
 
 - Combination of (W)LIRSD and PC2 as predictors in the model works best in terms of lower variations while still achieving strong correlation with the observed data on non-capital areas
+
+:::{.notes}
+
+We won’t dive into the formulas here. Our model uses a Bayesian hierarchical approach with spatial structure to smooth estimates of childhood vulnerability, accounting for both covariates and spatial variations.
+
+We compared four models: M1 and M2 as benchmarks, using IRSD and ARIA as covariates, and M3 and M4 using the new indices (W)LIRSD and PC2 as covariates.
+
+Good models are identified by information criteria like DIC, WAIC, and LOOIC. Our results show that (W)LIRSD and PC2 outperform IRSD and ARIA as predictors of childhood vulnerability.
+
+The Taylor diagram illustrates the balance between variance and bias, showing that M4 reduces variation while maintaining strong correlation with observed data, especially in non-capital areas.
+
+:::
 
 
 ### Model Comparison II: Spatio-Temporal Models on multiple periods
@@ -864,6 +1089,21 @@ increases or decreases are labeled. The statistical significance of the APC calc
 95% credibility level.](notebooks/figures/Model_02/H03_Map_Communication_APC_2018-2021.png){#fig-LIRSD-map-model02 width=100%}
 
 
+:::{.notes}
+
+n the spatio-temporal models, we applied cubic spline interpolation to align the AEDC data with census years. The models use (W)LIRSD and PC2 as covariates to capture fixed effects, with random effects divided into spatially structured, temporally structured, and unstructured components.
+
+We compared three models: M1 as a benchmark using IRSD, and M2 and M3 using (W)LIRSD and PC2 as covariates. The results indicate that (W)LIRSD and PC2 are more effective predictors of childhood vulnerability than IRSD, demonstrating greater sensitivity to socio-economic status changes over time.
+
+A variance-bias test confirms that M3 performs best, showing lower variation and strong correlation with observed data, particularly in non-capital areas.
+
+An advantage of spatio-temporal models is their ability to analyze trends. While we’ll skip the detailed analysis here, I’d like to highlight that these models provide narrow credibility intervals, which help identify significant changes in childhood vulnerability over time.
+
+Additionally, we can calculate the Annual Percentage Change (APC) with credibility intervals and map significant changes across Australia and capital regions. The results show that the model effectively identifies areas with notable increases or decreases in vulnerability.
+
+:::
+
+
 ## Conclusion on Part One 
 
 - A historical review of the ABS's IRSD reveals shifts in the socio-economic status norms of areas over time, captured by tracking variable loadings on the IRSD
@@ -873,6 +1113,20 @@ increases or decreases are labeled. The statistical significance of the APC calc
 - The combination of (W)LIRSD and PC2 serves as a better predictor of childhood vulnerability than IRSD and ARIA, demonstrating the new index's effectiveness in capturing socio-economic status in applications
 
 - The spatio-temporal models indicate that (W)LIRSD is more sensitive to socio-economic status across different periods than IRSD. The combination of (W)LIRSD and PC2 performs even better, demonstrating the new index's ability to capture socio-economic status variations over time in applications
+
+:::{.notes}
+
+In conclusion, our study highlights four key findings and contributions:
+
+Our historical review of the IRSD showed how socio-economic conditions have shifted over time, with variable loadings reflecting these changes.
+
+We developed the new (W)LIRSD index, which tracks socio-economic changes effectively. Adding PC2 provides a more detailed view of different types of socio-economic disadvantage.
+
+We demonstrated that (W)LIRSD and PC2 are stronger predictors of childhood vulnerability than IRSD and ARIA in some case, showing the new index’s practical value.
+
+Finally, our spatio-temporal models show that (W)LIRSD is more sensitive to changes over time than IRSD, with (W)LIRSD and PC2 together capturing these shifts even better.
+
+:::
 
 
 # Part Two: Bivariate Bayesian Hierarchical Modeling with Copula-based Spatial Dependence Using Conditional Autoregressive Frameworks
@@ -886,6 +1140,25 @@ increases or decreases are labeled. The statistical significance of the APC calc
     - The **copula** function is used to model the joint distribution of two random variables, which can capture the dependence structure between the two variables. Traditional spatial models only use bivariate normal distribution to model the joint distribution, which may not be flexible enough to capture the complex dependence structure between two diseases [@nelsen2006introduction].
 
 
+:::{.notes}
+
+The second part of my research focuses on bivariate Bayesian hierarchical modeling with copula-based spatial dependence using a conditional autoregressive framework.
+
+It involves many terminologies that may be new to you, so I will try to explain them in simple terms.
+
+When we have a small sample size, we often want to "borrow strength" to improve estimation accuracy. Besides selecting good covariates, as we did in Part One, we can also assume specific structures in the data to enhance our estimates.
+
+In this research, we focus on two main structures: spatial dependence and copula functions.
+
+For spatial dependence, we assume that outcomes in nearby areas are more related. This is a common assumption in spatial modeling, where the location and neighborhood relationships play a role in predictions.
+
+In a bivariate model, we model two outcomes at the same time. Traditional models assume a simple, multivariate normal structure for their dependence, but this may not fully capture the complexity of relationships between outcomes, like between two diseases.
+
+By using these assumptions, our models aim to provide more accurate estimations in cases where data relationships are complex.
+
+:::
+
+
 ## Reviews on Bivariate BHMs, Spatial Dependence, and Copula Functions
 
 - **Bayesian Hierarchical Models (BHMs)**: Bayesian models can be complex and flexible (than frequentest models) as they can incorporate prior information, can (always) be fitted by Markov Chain Monte Carlo (MCMC) methods.
@@ -893,6 +1166,18 @@ increases or decreases are labeled. The statistical significance of the APC calc
 - **Spatial Effects and CAR Priors**: Spatial effects are the effects of the location of the area on the outcome, where near areas are more related. The CAR prior is a popular choice for spatial effects in BHMs, as it can capture the spatial dependence between areas by assuming the conditional distribution of the outcome in one area depends on the outcomes in neighboring areas.
 
 - **Copulas**: Copulas are a powerful tool for modeling the joint distribution of two or more random variables by decoupling the marginal distributions from the dependence structure.
+
+:::{.notes}
+
+In this part of the research, we’ll cover three main topics:
+
+Bayesian Hierarchical Models (BHMs) – These models help us analyze complex data, especially when data is limited. They use prior information and are fitted with MCMC methods, which provide accurate estimates.
+
+Spatial Effects and CAR Priors – Spatial effects mean that nearby areas tend to have similar outcomes. CAR priors are used to model this, assuming each area is influenced by its neighbors.
+
+Copulas – Copulas let us model the relationship between multiple variables separately from their individual distributions, which helps capture complex dependencies.
+
+:::
 
 
 ### Bayesian Hierarchical Models
@@ -917,6 +1202,16 @@ $$
 $$
 
 ![Diagram of a Bayesian hierarchical model in general form](notebooks/figures/bhm/dot-figure-1.png){#fig-bhm-general width=75%}
+
+:::{.notes}
+
+Bayesian Hierarchical Models (BHMs) are a powerful tool for analyzing complex data. They treat model parameters as random variables with specified prior distributions. Using MCMC methods, we can sample from the parameters’ posterior distributions.
+
+One key advantage of BHMs is their hierarchical structure, allowing parameters to vary at different levels. The model has three layers: the data layer for observed data, the process layer for parameters, and the prior layer for parameter priors.
+
+The diagram above illustrates a general BHM setup, where Y is explained by a combination of covariates (x) and random errors (epsilon). The parameters beta and epsilon are also modeled as random variables with their own distributions.
+
+:::
 
 
 ### Spatial Effects and CAR Priors
@@ -946,6 +1241,17 @@ Spatial Distribution of the Prevalence of Vulnerability in Physical Health and W
 - The structure of the CAR prior is not unique, and it can be defined based on the neighborhood matrix of the data. The most common CAR prior are Intrinsic Conditional Autoregressive (ICAR) and Besag-York-Mollie (BYM), and **Leroux prior** [@leroux2000estimation].
 
 - Brook's Lemma help with converting conditional distribution to joint distribution, which is the key for CAR model to be fit [@brook1964distinction].
+
+:::{.notes}
+
+Spatial effects occur when nearby areas have similar outcomes, shown by spatial autocorrelation in the model’s residuals. Neighborhood matrices define these relationships, while spatial lag helps identify the size and location of these effects.
+
+It’s important to note that spatial effects can appear not only in the observed data but also in covariates and residuals. This means spatial patterns in Y may not be fully captured by the covariates alone.
+
+The CAR prior is commonly used in BHMs to model spatial effects. It assumes that an area’s outcome depends on its neighbors, using conditional distributions to represent this relationship. Brook's Lemma is key in CAR models, converting conditional distributions into joint distributions, which is essential for fitting the model.
+
+:::
+
 
 
 ### Copulas
